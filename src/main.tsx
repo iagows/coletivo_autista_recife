@@ -7,7 +7,9 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
 import App from "./App.tsx";
+import { store } from "./stores/index.ts";
 import theme from "./util/theme.ts";
 
 const doc = document.getElementById("root");
@@ -18,9 +20,11 @@ if (!doc) {
 
 createRoot(doc).render(
 	<StrictMode>
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<App />
-		</ThemeProvider>
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<CssBaseline />
+				<App />
+			</ThemeProvider>
+		</Provider>
 	</StrictMode>,
 );
