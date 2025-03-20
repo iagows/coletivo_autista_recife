@@ -1,10 +1,11 @@
-import { Box, Toolbar } from "@mui/material";
+import { Box } from "@mui/material";
 import { Outlet } from "react-router";
+import AppTopbar from "../../components/AppTopbar";
 
 const MainPage = () => {
 	return (
 		<Box display={"flex"} flexDirection={"column"}>
-			<Toolbar />
+			<AppTopbar />
 			<Outlet />
 		</Box>
 	);

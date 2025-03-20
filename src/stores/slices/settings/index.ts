@@ -1,26 +1,32 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { DrawerModelType } from "../../../models/DrawerModel";
+import type { SettingsModelType } from "../../../models/SettingsModel";
+import RouteNames from "../../../navigation/RouteNames";
 
-const INITIAL: DrawerModelType = {
-    isClosing: false,
-    isMobileOpen: false,
+const INITIAL: SettingsModelType = {
+	isOpen: false,
+	currentRoute: RouteNames.ROOT,
+	isDarkMode: true,
 };
 
-const slice = createSlice({
-    name: "drawer_config",
-    initialState: INITIAL,
-    reducers: {
-        setClosing: (state, action: PayloadAction<boolean>) => {
-            state.isClosing = action.payload;
-        },
-        setMobileOpen: (state, action: PayloadAction<boolean>) => {
-            state.isMobileOpen = action.payload;
-        },
-        invertClosing: (state) => {
-            state.isClosing = !state.isClosing;
-        },
-    },
+const configSlice = createSlice({
+	name: "drawer_config",
+	initialState: INITIAL,
+	reducers: {
+		toggleDrawer(state) {
+			state.isOpen = !state.isOpen;
+		},
+		setDrawerOpen(state, action: PayloadAction<boolean>) {
+			state.isOpen = action.payload;
+		},
+		setCurrentRoute(state, action: PayloadAction<RouteNames>) {
+			state.currentRoute = action.payload;
+		},
+		toggleTheme(state) {
+			state.isDarkMode = !state.isDarkMode; // Alterna entre light e dark
+		},
+	},
 });
 
-export default slice.reducer;
-export const { setClosing, setMobileOpen, invertClosing } = slice.actions;
+export default configSlice.reducer;
+export const { toggleDrawer, setDrawerOpen, setCurrentRoute, toggleTheme } =
+	configSlice.actions;
