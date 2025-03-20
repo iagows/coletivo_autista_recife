@@ -23,19 +23,26 @@ type RouteData = {
 };
 
 const routeName: Map<RouteNames, RouteData> = new Map([
-	[RouteNames.ROOT, { title: "page.title", icon: HomeOutlinedIcon }],
-	[RouteNames.REGRAS, { title: "Regras", icon: RuleOutlinedIcon }],
-	[RouteNames.LINKS, { title: "Links", icon: InsertLinkOutlinedIcon }],
 	[
 		RouteNames.QUEM_SOMOS,
-		{ title: "page.title", icon: Diversity3OutlinedIcon },
+		{ title: "path.quem_somos", icon: Diversity3OutlinedIcon },
 	],
+	[RouteNames.ROOT, { title: "page.title", icon: HomeOutlinedIcon }],
+	[RouteNames.REGRAS, { title: "path.regras", icon: RuleOutlinedIcon }],
+	[RouteNames.LINKS, { title: "path.links", icon: InsertLinkOutlinedIcon }],
 ]);
 
 export const getRouteTitle = (route: RouteNames): string => {
 	return routeName.get(route)?.title ?? "page.title";
 };
 
-export const getRouteIcon = (route: RouteNames) => {
-	return routeName.get(route)?.icon ?? HomeOutlinedIcon;
+export const getRouteAsList = () => {
+	return [...routeName]
+		.filter((item) => item[0] !== RouteNames.ROOT)
+
+		.map((item) => ({
+			path: item[0],
+			title: item[1].title,
+			Icon: item[1].icon,
+		}));
 };
