@@ -9,6 +9,7 @@ import MainPage from "../pages/MainPage";
 import RulesPage from "../pages/RulesPage";
 import WhoAreWePage from "../pages/WhoAreWePage";
 import RouteNames from "./RouteNames";
+import Guide from "../pages/Guides";
 
 const BASENAME = "/coletivo_autista_recife";
 
@@ -34,6 +35,10 @@ const router = createBrowserRouter(
 				{
 					path: RouteNames.REGRAS,
 					element: <RulesPage />,
+				},
+				{
+					path:RouteNames.GUIAS,
+					element: <Guide />
 				},
 				{
 					path: "*",

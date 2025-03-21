@@ -6,6 +6,7 @@
         "root": "Coletivo",
         "regras": "Regras",
         "links": "Links",
-        "quem_somos": "Quem somos nós"
+        "quem_somos": "Quem somos nós",
+        "guias":"Guias"
     }
 }
