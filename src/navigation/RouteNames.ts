@@ -1,9 +1,9 @@
 import Diversity3OutlinedIcon from "@mui/icons-material/Diversity3Outlined";
+import FormatListNumberedOutlinedIcon from "@mui/icons-material/FormatListNumberedOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InsertLinkOutlinedIcon from "@mui/icons-material/InsertLinkOutlined";
 import RuleOutlinedIcon from "@mui/icons-material/RuleOutlined";
 import type { SvgIconTypeMap } from "@mui/material";
-import FormatListNumberedOutlinedIcon from '@mui/icons-material/FormatListNumberedOutlined';
 import type { OverridableComponent } from "@mui/material/OverridableComponent";
 
 enum RouteNames {
@@ -31,7 +31,10 @@ const routeName: Map<RouteNames, RouteData> = new Map([
 	],
 	[RouteNames.ROOT, { title: "page.title", icon: HomeOutlinedIcon }],
 	[RouteNames.REGRAS, { title: "path.regras", icon: RuleOutlinedIcon }],
-	[RouteNames.GUIAS, { title: "path.guias", icon: FormatListNumberedOutlinedIcon }],
+	[
+		RouteNames.GUIAS,
+		{ title: "path.guias", icon: FormatListNumberedOutlinedIcon },
+	],
 	[RouteNames.LINKS, { title: "path.links", icon: InsertLinkOutlinedIcon }],
 ]);
 
@@ -42,7 +45,6 @@ export const getRouteTitle = (route: RouteNames): string => {
 export const getRouteAsList = () => {
 	return [...routeName]
 		.filter((item) => item[0] !== RouteNames.ROOT)
-
 		.map((item) => ({
 			path: item[0],
 			title: item[1].title,

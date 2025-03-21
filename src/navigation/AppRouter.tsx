@@ -4,12 +4,12 @@ import {
 	createBrowserRouter,
 } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
+import Guide from "../pages/Guides";
 import LinksPage from "../pages/LinksPage";
 import MainPage from "../pages/MainPage";
 import RulesPage from "../pages/RulesPage";
 import WhoAreWePage from "../pages/WhoAreWePage";
 import RouteNames from "./RouteNames";
-import Guide from "../pages/Guides";
 
 const BASENAME = "/coletivo_autista_recife";
 
@@ -37,8 +37,8 @@ const router = createBrowserRouter(
 					element: <RulesPage />,
 				},
 				{
-					path:RouteNames.GUIAS,
-					element: <Guide />
+					path: RouteNames.GUIAS,
+					element: <Guide />,
 				},
 				{
 					path: "*",

@@ -1,12 +1,12 @@
 {
-    "page": {
-        "title": "Coletivo de Autistas Adultos de Recife"
-    },
-    "path": {
-        "root": "Coletivo",
-        "regras": "Regras",
-        "links": "Links",
-        "quem_somos": "Quem somos nós",
-        "guias":"Guias"
-    }
+	"page": {
+		"title": "Coletivo de Autistas Adultos de Recife"
+	},
+	"path": {
+		"root": "Coletivo",
+		"regras": "Regras",
+		"links": "Links",
+		"quem_somos": "Quem somos nós",
+		"guias": "Guias"
+	}
 }
