@@ -7,7 +7,6 @@ import list from "./guias.json";
 const guides: GuideType[] = list.map((i) => GuideModel.parse(i));
 
 const Guide = () => {
-	console.log({ guides });
 	return (
 		<CardContainer>
 			{guides.map((g) => (

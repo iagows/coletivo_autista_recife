@@ -14,7 +14,7 @@ const LinksPage = () => {
 	return (
 		<CardContainer>
 			{links.map((l) => (
-				<PaperCard key={l.url}>
+				<PaperCard key={l.id}>
 					<CardContent>
 						<Typography gutterBottom color="text.secondary">
 							{l.titulo}

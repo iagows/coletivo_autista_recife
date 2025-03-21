@@ -1,20 +1,12 @@
 import { z } from "zod";
+import GenericModel from "./GenericModel";
 
-const StepModel = z.object({
-	id: z.number(),
-	texto: z.string(),
-});
-
-type StepType = z.infer<typeof StepModel>;
-
-const GuideModel = z.object({
-	id: z.number(),
+const GuideModel = GenericModel.extend({
 	titulo: z.string(),
-	texto: z.string(),
-	passos: StepModel.array(),
+	passos: GenericModel.array(),
 });
 
 type GuideType = z.infer<typeof GuideModel>;
 
-export type { StepType, GuideType };
-export { StepModel, GuideModel };
+export type { GuideType };
+export { GuideModel };
