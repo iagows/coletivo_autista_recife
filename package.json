@@ -1,54 +1,54 @@
 {
-  "name": "coletivo_autista_recife",
-  "private": true,
-  "version": "0.2.0",
-  "type": "module",
-  "homepage": "https://github.com/iagows/coletivo_autista_recife",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview",
-    "buildMinor": "bun run incMinor && bun run build",
-    "buildMajor": "bun run incMajor && bun run build",
-    "buildPatch": "bun run incPatch && bun run build",
-    "lint": "npx @biomejs/biome check --apply .",
-    "predeploy": "npm run build",
-    "gen-assets": "pwa-assets-generator",
-    "deploy": "gh-pages -d dist",
-    "incPatch": "bun predeploy.ts p",
-    "incMinor": "bun predeploy.ts m",
-    "incMajor": "bun predeploy.ts M"
-  },
-  "peerDependencies": {
-    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@fontsource/roboto": "^5.2.5",
-    "@mui/icons-material": "^6.4.8",
-    "@mui/material": "^6.4.8",
-    "@reduxjs/toolkit": "^2.6.1",
-    "add": "^2.0.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1",
-    "react-redux": "^9.2.0",
-    "react-router": "^7.4.0",
-    "react-router-dom": "^7.4.0",
-    "zod": "^3.24.2"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
-    "@vite-pwa/assets-generator": "^0.2.6",
-    "@vitejs/plugin-react": "^4.3.4",
-    "gh-pages": "^6.3.0",
-    "globals": "^15.15.0",
-    "typescript": "~5.7.3",
-    "vite": "^6.2.2",
-    "vite-plugin-pwa": "^0.21.1"
-  }
+	"name": "coletivo_autista_recife",
+	"private": true,
+	"version": "0.2.0",
+	"type": "module",
+	"homepage": "https://github.com/iagows/coletivo_autista_recife",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview",
+		"buildPatch": "bun run incPatch && bun run build",
+		"buildMinor": "bun run incMinor && bun run build",
+		"buildMajor": "bun run incMajor && bun run build",
+		"lint": "npx @biomejs/biome check --apply .",
+		"predeploy": "npm run build",
+		"gen-assets": "pwa-assets-generator",
+		"deploy": "gh-pages -d dist",
+		"incPatch": "bun predeploy.ts p",
+		"incMinor": "bun predeploy.ts m",
+		"incMajor": "bun predeploy.ts M"
+	},
+	"peerDependencies": {
+		"react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+		"react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
+		"@fontsource/roboto": "^5.2.5",
+		"@mui/icons-material": "^6.4.8",
+		"@mui/material": "^6.4.8",
+		"@reduxjs/toolkit": "^2.6.1",
+		"add": "^2.0.6",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-i18next": "^15.4.1",
+		"react-redux": "^9.2.0",
+		"react-router": "^7.4.0",
+		"react-router-dom": "^7.4.0",
+		"zod": "^3.24.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/react": "^19.0.12",
+		"@types/react-dom": "^19.0.4",
+		"@vite-pwa/assets-generator": "^0.2.6",
+		"@vitejs/plugin-react": "^4.3.4",
+		"gh-pages": "^6.3.0",
+		"globals": "^15.15.0",
+		"typescript": "~5.7.3",
+		"vite": "^6.2.2",
+		"vite-plugin-pwa": "^0.21.1"
+	}
 }
