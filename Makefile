@@ -32,7 +32,7 @@ menu:
 		1) $(MAKE) frontend@install ;; \
 		2) $(MAKE) frontend@run ;; \
 		3) $(MAKE) frontend@assets ;; \
-		4) $(MAKE) build@patch ;; \
-		5) $(MAKE) build@minor ;; \
-		6) $(MAKE) build@major ;; \
+		4) $(MAKE) update@patch ;; \
+		5) $(MAKE) update@minor ;; \
+		6) $(MAKE) update@major ;; \
 	esac
