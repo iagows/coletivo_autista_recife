@@ -1,19 +1,31 @@
-import { Box, Typography } from "@mui/material";
+import { CardContent, Typography } from "@mui/material";
+import CardContainer from "../../components/CardContainer";
+import PaperCard from "../../components/PaperCard";
+import { GuideModel, type GuideType } from "../../models/GuideModel";
 import list from "./guias.json";
-import { GuideModel } from "../../models/GuideModel";
 
-const guides = GuideModel.parse(list);
+const guides: GuideType[] = list.map((i) => GuideModel.parse(i));
 
 const Guide = () => {
+	console.log({ guides });
 	return (
-		<>
-			{guides.map((g) => {
-				<Box key={g.id}>
-					<Typography>{g.titulo}</Typography>
-					<Typography>{g.texto}</Typography>
-				</Box>;
-			})}
-		</>
+		<CardContainer>
+			{guides.map((g) => (
+				<PaperCard key={g.id}>
+					<CardContent>
+						<Typography gutterBottom color="text.secondary">
+							{g.titulo}
+						</Typography>
+						<Typography variant="h5" component="div">
+							{g.texto}
+						</Typography>
+						{g.passos.map((p) => (
+							<Typography key={p.id}>{p.texto}</Typography>
+						))}
+					</CardContent>
+				</PaperCard>
+			))}
+		</CardContainer>
 	);
 };
 

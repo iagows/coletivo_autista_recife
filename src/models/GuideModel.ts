@@ -7,14 +7,12 @@ const StepModel = z.object({
 
 type StepType = z.infer<typeof StepModel>;
 
-const GuideModel = z.array(
-	z.object({
-		id: z.number(),
-		titulo: z.string(),
-		texto: z.string(),
-		passos: StepModel.array(),
-	}),
-);
+const GuideModel = z.object({
+	id: z.number(),
+	titulo: z.string(),
+	texto: z.string(),
+	passos: StepModel.array(),
+});
 
 type GuideType = z.infer<typeof GuideModel>;
 
