@@ -1,12 +1,23 @@
 {
   "name": "coletivo_autista_recife",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
+  "homepage": "https://github.com/iagows/coletivo_autista_recife",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "buildMinor": "bun run incMinor && bun run build",
+    "buildMajor": "bun run incMajor && bun run build",
+    "buildPatch": "bun run incPatch && bun run build",
+    "lint": "npx @biomejs/biome check --apply .",
+    "predeploy": "npm run build",
+    "gen-assets": "pwa-assets-generator",
+    "deploy": "gh-pages -d dist",
+    "incPatch": "bun predeploy.ts p",
+    "incMinor": "bun predeploy.ts m",
+    "incMajor": "bun predeploy.ts M"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
@@ -32,9 +43,12 @@
     "@biomejs/biome": "1.9.4",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
+    "@vite-pwa/assets-generator": "^0.2.6",
     "@vitejs/plugin-react": "^4.3.4",
+    "gh-pages": "^6.3.0",
     "globals": "^15.15.0",
     "typescript": "~5.7.3",
-    "vite": "^6.2.2"
+    "vite": "^6.2.2",
+    "vite-plugin-pwa": "^0.21.1"
   }
 }

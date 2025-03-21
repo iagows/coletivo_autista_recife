@@ -10,7 +10,7 @@ import RulesPage from "../pages/RulesPage";
 import WhoAreWePage from "../pages/WhoAreWePage";
 import RouteNames from "./RouteNames";
 
-const BASENAME = "/coletivo_autista";
+const BASENAME = "/coletivo_autista_recife";
 
 const router = createBrowserRouter(
 	[
