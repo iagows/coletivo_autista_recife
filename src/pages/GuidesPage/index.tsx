@@ -6,7 +6,7 @@ import list from "./guias.json";
 
 const guides: GuideType[] = list.map((i) => GuideModel.parse(i));
 
-const Guide = () => {
+const GuidePage = () => {
 	return (
 		<CardContainer>
 			{guides.map((g) => (
@@ -28,4 +28,4 @@ const Guide = () => {
 	);
 };
 
-export default Guide;
+export default GuidePage;

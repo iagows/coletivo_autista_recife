@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 type Out = {
 	isMobile: boolean;
-	translate: (tag: string) => string;
+	translate: (tag: string, args?: { [a: string]: unknown }) => string;
 };
 const useUtils = (): Out => {
 	const { t } = useTranslation();
