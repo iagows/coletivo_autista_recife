@@ -1,7 +1,7 @@
 {
 	"name": "coletivo_autista_recife",
 	"private": true,
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"type": "module",
 	"homepage": "https://github.com/iagows/coletivo_autista_recife",
 	"scripts": {
@@ -17,7 +17,10 @@
 		"deploy": "gh-pages -d dist",
 		"incPatch": "bun predeploy.ts p",
 		"incMinor": "bun predeploy.ts m",
-		"incMajor": "bun predeploy.ts M"
+		"incMajor": "bun predeploy.ts M",
+		"deployPatch": "bun run buildPatch && bun run deploy",
+		"deployMinor": "bun run buildMinor && bun run deploy",
+		"deployMajor": "bun run buildMajor && bun run deploy"
 	},
 	"peerDependencies": {
 		"react": "^17.0.0 || ^18.0.0 || ^19.0.0",
