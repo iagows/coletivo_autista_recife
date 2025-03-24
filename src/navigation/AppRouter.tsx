@@ -1,17 +1,20 @@
+import { CircularProgress } from "@mui/material";
+import { Suspense, lazy } from "react";
 import {
 	Navigate,
 	RouterProvider,
 	createBrowserRouter,
 } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
-import GuidePage from "../pages/GuidesPage";
-import LinksPage from "../pages/LinksPage";
 import MainPage from "../pages/MainPage";
-import RulesPage from "../pages/RulesPage";
-import WhoAreWePage from "../pages/WhoAreWePage";
 import RouteNames from "./RouteNames";
-import IndicationsPage from "../pages/IndicationsPage";
-import EscolaPage from "../pages/EscolaPage";
+
+const GuidePage = lazy(() => import("../pages/GuidesPage"));
+const LinksPage = lazy(() => import("../pages/LinksPage"));
+const RulesPage = lazy(() => import("../pages/RulesPage"));
+const WhoAreWePage = lazy(() => import("../pages/WhoAreWePage"));
+const IndicationsPage = lazy(() => import("../pages/IndicationsPage"));
+const EscolaPage = lazy(() => import("../pages/EscolaPage"));
 
 const BASENAME = "/coletivo_autista_recife";
 
@@ -23,32 +26,56 @@ const router = createBrowserRouter(
 			errorElement: <ErrorPage />,
 			children: [
 				{
-					index: true, // Define a rota padrão
+					index: true,
 					element: <Navigate to={RouteNames.QUEM_SOMOS} replace />,
 				},
 				{
 					path: RouteNames.QUEM_SOMOS,
-					element: <WhoAreWePage />,
+					element: (
+						<Suspense fallback={<CircularProgress />}>
+							<WhoAreWePage />
+						</Suspense>
+					),
 				},
 				{
 					path: RouteNames.REGRAS,
-					element: <RulesPage />,
+					element: (
+						<Suspense fallback={<CircularProgress />}>
+							<RulesPage />
+						</Suspense>
+					),
 				},
 				{
 					path: RouteNames.INDICACOES,
-					element: <IndicationsPage />,
+					element: (
+						<Suspense fallback={<CircularProgress />}>
+							<IndicationsPage />
+						</Suspense>
+					),
 				},
 				{
 					path: RouteNames.CONSULTORIOS_ESCOLA,
-					element: <EscolaPage />,
+					element: (
+						<Suspense fallback={<CircularProgress />}>
+							<EscolaPage />
+						</Suspense>
+					),
 				},
 				{
 					path: RouteNames.LINKS,
-					element: <LinksPage />,
+					element: (
+						<Suspense fallback={<CircularProgress />}>
+							<LinksPage />
+						</Suspense>
+					),
 				},
 				{
 					path: RouteNames.GUIAS,
-					element: <GuidePage />,
+					element: (
+						<Suspense fallback={<CircularProgress />}>
+							<GuidePage />
+						</Suspense>
+					),
 				},
 				{
 					path: "*",
