@@ -15,9 +15,15 @@
 		"conteudo": "Aqui estão algumas indicações de profissionais. Não recebemos nada por indicação, apenas estamos indicando profissionais que nos atenderam bem.",
 		"tabela": {
 			"profissional": "Profissional",
+			"especialidade": "Especialidade",
+			"conselho": "Conselho",
+			"contato": "Contato(s)",
 			"endereco": "Endereço",
-			"telefone": "Telefone(s)"
-		}
+			"pagamento": "Pagamento",
+			"custo": "Custo (aproximado)",
+			"comentarios": "Comentários"
+		},
+		"updated": "Última atualização em {{date}}."
 	},
 	"escola": {
 		"conteudo": "Algumas faculdades fazem consulta com preços populares. A lista exibida aqui pode não estar atualizada, então recomendamos que ligue antes para confirmar endereço, preço, horário etc.",

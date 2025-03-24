@@ -1,0 +1,37 @@
+{
+    "especialidades": [
+        {
+            "id": 0,
+            "nome": "Psiquiatra"
+        }
+    ],
+    "profissionais": [
+        {
+            "id": 0,
+            "profissional": "Dr. João Carlos Leitão",
+            "especialidade": 0,
+            "conselho": [
+                "CRM-PE 19651",
+                "RQE 10486"
+            ],
+            "contato": {
+                "telefone": [
+                    {
+                        "numero": 81979047330,
+                        "isWhatsapp": true
+                    }
+                ],
+                "link": [
+                    {
+                        "nome": "Linktree",
+                        "url": "https://linktr.ee/leitao.joaocarlos"
+                    },
+                    {
+                        "nome": "Instagram",
+                        "url": "https://www.instagram.com/leitao.joaocarlos/"
+                    }
+                ]
+            }
+        }
+    ]
+}
