@@ -1,9 +1,9 @@
-import { CardContent, Divider, Stack, Typography } from "@mui/material";
+import { CardContent, Stack, Typography } from "@mui/material";
 import CardContainer from "../../components/CardContainer";
 import PaperCard from "../../components/PaperCard";
+import useUtils from "../../hooks/useUtils";
 import RuleModel, { type RulesType } from "../../models/RuleModel";
 import regras from "./rules.json";
-import useUtils from "../../hooks/useUtils";
 
 const rules: RulesType = RuleModel.parse(regras);
 
