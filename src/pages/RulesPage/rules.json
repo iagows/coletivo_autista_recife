@@ -1,7 +1,26 @@
-[
-	{
-		"id": 1,
-		"texto": "Lorem ipsum dolor",
-		"detalhamento": "ipsum"
-	}
-]
+{
+	"titulo": "Normas do Grupo: Autistas - Recife PE",
+	"texto": "Normas criadas por Alice. O grupo pertence ao Coletivo Autista de Recife. Olá! Você acaba de chegar no grupo de WhatsApp voltado para a interação e integração dos autistas jovens e adultos de Recife! Teremos algumas regras simples de convivência para que a nossa experiência seja sempre positiva.",
+	"atualizacao": "",
+	"regras": [
+		{
+			"id": 1,
+			"texto": "Proibido qualquer tipo de discriminação relacionada a: racismos, homofobia, transfobia e LGBTfobia de maneira geral.",
+			"detalhamento": "Além de ser essencial respeitar as identidades de gênero de todo mundo que participa. Se não tem conhecimento suficiente sobre esse tema, pode entrar em contato comigo (Alice) para que eu explique ou pergunte de maneira respeitosa aos próprios integrantes; além de discriminação por religião, crença, grupo ou classe social"
+		},
+		{
+			"id": 2,
+			"texto": "Proibido adicionar membros sem aviso prévio aos demais."
+		},
+		{
+			"id": 3,
+			"texto": "Proibido atacar, duvidar ou questionar os diagnósticos dos colegas.",
+			"detalhamento": "Vamos lembrar que o espectro é diverso e sendo assim várias pessoas podem não ter as mesmas características que você, e ainda assim também são autistas."
+		},
+		{
+			"id": 4,
+			"texto": "Acolher e entender os autistas que ainda estão sem diagnóstico oficial ou laudo.",
+			"detalhamento": "Esperamos inclusive que esse grupo seja uma maneira de trocar experiências para que quem não obteve ainda, consiga ir atrás de seus direitos."
+		}
+	]
+}

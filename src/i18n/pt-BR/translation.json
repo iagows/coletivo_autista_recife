@@ -30,5 +30,8 @@
 			"preco": "Preço (aproximado)"
 		},
 		"observacao": "Última atualização em {{date}}."
+	},
+	"regras": {
+		"updated": "Última atualização em {{date}}."
 	}
 }
