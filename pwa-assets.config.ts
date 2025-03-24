@@ -16,5 +16,5 @@ export default defineConfig({
 		},
 		['iPad Air 9.7"'],
 	),
-	images: ["public/lemniscate.jpg"],
+	images: ["public/coletivo.jpg"],
 });
