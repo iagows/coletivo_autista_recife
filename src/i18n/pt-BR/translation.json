@@ -1,11 +1,34 @@
 {
-    "page": {
-        "title": "Coletivo de Autistas Adultos de Recife"
-    },
-    "path": {
-        "root": "Coletivo",
-        "regras": "Regras",
-        "links": "Links",
-        "quem_somos": "Quem somos nós"
-    }
+	"page": {
+		"title": "Coletivo de Autistas Adultos de Recife"
+	},
+	"path": {
+		"root": "Coletivo",
+		"regras": "Regras do grupo",
+		"links": "Links",
+		"quem_somos": "Quem somos nós",
+		"guias": "Guias",
+		"indicacoes": "Indicações",
+		"escola": "Consultórios Escola"
+	},
+	"indicacoes": {
+		"conteudo": "Aqui estão algumas indicações de profissionais. Não recebemos nada por indicação, apenas estamos indicando profissionais que nos atenderam bem.",
+		"tabela": {
+			"profissional": "Profissional",
+			"endereco": "Endereço",
+			"telefone": "Telefone(s)"
+		}
+	},
+	"escola": {
+		"conteudo": "Algumas faculdades fazem consulta com preços populares. A lista exibida aqui pode não estar atualizada, então recomendamos que ligue antes para confirmar endereço, preço, horário etc.",
+		"tabela": {
+			"faculdade": "Faculdade",
+			"cidade": "Cidade",
+			"bairro": "Bairro",
+			"endereco": "Endereço",
+			"telefone": "Telefone(s)",
+			"preco": "Preço (aproximado)"
+		},
+		"observacao": "Última atualização em {{date}}."
+	}
 }

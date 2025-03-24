@@ -1,7 +1,10 @@
+import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 import Diversity3OutlinedIcon from "@mui/icons-material/Diversity3Outlined";
+import FormatListNumberedOutlinedIcon from "@mui/icons-material/FormatListNumberedOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import InsertLinkOutlinedIcon from "@mui/icons-material/InsertLinkOutlined";
 import RuleOutlinedIcon from "@mui/icons-material/RuleOutlined";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import type { SvgIconTypeMap } from "@mui/material";
 import type { OverridableComponent } from "@mui/material/OverridableComponent";
 
@@ -9,7 +12,10 @@ enum RouteNames {
 	ROOT = "/",
 	REGRAS = "/regras",
 	LINKS = "/links",
+	GUIAS = "/guias",
 	QUEM_SOMOS = "/quem_somos",
+	INDICACOES = "/indicacoes",
+	CONSULTORIOS_ESCOLA = "/consultorios_escola",
 }
 
 export default RouteNames;
@@ -29,6 +35,18 @@ const routeName: Map<RouteNames, RouteData> = new Map([
 	],
 	[RouteNames.ROOT, { title: "page.title", icon: HomeOutlinedIcon }],
 	[RouteNames.REGRAS, { title: "path.regras", icon: RuleOutlinedIcon }],
+	[
+		RouteNames.INDICACOES,
+		{ title: "path.indicacoes", icon: ArrowRightAltOutlinedIcon },
+	],
+	[
+		RouteNames.CONSULTORIOS_ESCOLA,
+		{ title: "path.escola", icon: SchoolOutlinedIcon },
+	],
+	[
+		RouteNames.GUIAS,
+		{ title: "path.guias", icon: FormatListNumberedOutlinedIcon },
+	],
 	[RouteNames.LINKS, { title: "path.links", icon: InsertLinkOutlinedIcon }],
 ]);
 
@@ -39,7 +57,6 @@ export const getRouteTitle = (route: RouteNames): string => {
 export const getRouteAsList = () => {
 	return [...routeName]
 		.filter((item) => item[0] !== RouteNames.ROOT)
-
 		.map((item) => ({
 			path: item[0],
 			title: item[1].title,
