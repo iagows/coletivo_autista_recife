@@ -1,65 +1,70 @@
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 import {
+	Avatar,
 	Box,
+	Button,
+	Card,
+	CardContent,
+	CardHeader,
 	type SxProps,
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableRow,
 	Typography,
 } from "@mui/material";
 import useUtils from "../../hooks/useUtils";
 import IndicationData, {
 	getEspecialidade,
 	type IndicationDataType,
+	type ProfissionalModelType,
 } from "../../models/IndicationModel";
-import list from "./indicacoes.json";
 import ContactInfo from "./Contato";
+import list from "./indicacoes.json";
+import AddressInfo from "../../components/AddressInfo";
+import PagamentoInfo from "../../components/PagamentoInfo";
 
-const tableBoxCss: SxProps = { marginTop: 4 };
+const tableBoxCss: SxProps = { marginTop: 4, maxWidth: 450 };
 
 const dados: IndicationDataType = IndicationData.parse(list);
+const getEspecialideById = getEspecialidade(dados);
+const getEspecialidadeEConselhoText = (i: ProfissionalModelType) =>
+	`${getEspecialideById(i.especialidade).nome} - ${i.conselho.join(" | ")}`;
+
+const addressCss: SxProps = { userSelect: "text" };
 
 const IndicationsPage = () => {
 	const { translate } = useUtils();
-	const getEspecData = getEspecialidade(dados);
 
 	return (
 		<Box>
 			<Typography>{translate("indicacoes.conteudo")}</Typography>
 			<Box sx={tableBoxCss}>
-				<Table size="small">
-					<TableHead>
-						<TableRow>
-							<TableCell>
-								{translate("indicacoes.tabela.profissional")}
-							</TableCell>
-							<TableCell>
-								{translate("indicacoes.tabela.especialidade")}
-							</TableCell>
-							<TableCell>{translate("indicacoes.tabela.conselho")}</TableCell>
-							<TableCell>{translate("indicacoes.tabela.contato")}</TableCell>
-							<TableCell>{translate("indicacoes.tabela.endereco")}</TableCell>
-							<TableCell>{translate("indicacoes.tabela.pagamento")}</TableCell>
-							<TableCell>{translate("indicacoes.tabela.custo")}</TableCell>
-							<TableCell>
-								{translate("indicacoes.tabela.comentarios")}
-							</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{dados.profissionais.map((i) => (
-							<TableRow key={i.id}>
-								<TableCell>{i.profissional}</TableCell>
-								<TableCell>{getEspecData(i.especialidade)?.nome}</TableCell>
-								<TableCell>{i.conselho.join(" | ")}</TableCell>
-								<TableCell>
-									{i.contato && <ContactInfo {...i.contato} />}
-								</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
+				{dados.profissionais.map((i) => (
+					<Card key={i.id} sx={{ marginBottom: 2 }}>
+						<CardHeader
+							avatar={
+								<Avatar aria-label="Profissional">{i.profissional[0]}</Avatar>
+							}
+							title={i.profissional}
+							subheader={getEspecialidadeEConselhoText(i)}
+						/>
+						<CardContent>
+							{i.pagamento && <PagamentoInfo {...i.pagamento} />}
+							{i.comentarios && (
+								<Typography variant="body2" color="textSecondary">
+									{translate("indicacoes.card.comentarios")}: {i.comentarios}
+								</Typography>
+							)}
+							{i.endereco?.map((e, i) => (
+								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+								<AddressInfo {...e} key={i} />
+							))}
+							{i.contato && <ContactInfo {...i.contato} />}
+							<Typography variant="caption" color="textSecondary">
+								{translate("indicacoes.card.atualizado", {
+									date: i.atualizado,
+								})}
+							</Typography>
+						</CardContent>
+					</Card>
+				))}
 			</Box>
 		</Box>
 	);

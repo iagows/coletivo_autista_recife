@@ -1,27 +1,41 @@
-import { Box, Button, Typography } from "@mui/material";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
+import { Box, Button, type SxProps, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import type { ContatoType } from "../../../models/IndicationModel";
+import type { ContatoModelType } from "../../../models/ContatoModel";
 import PhoneButton from "./Telefone";
 
-const ContactInfo = ({ email, link, telefone }: ContatoType) => {
+const boxGap: SxProps = { gap: 2, marginBottom: 2 };
+
+const ContactInfo = ({
+	email,
+	link,
+	telefone,
+	instagram,
+	linktree,
+}: ContatoModelType) => {
 	return (
-		<Box>
+		<Box sx={boxGap}>
 			{email && <Typography>{email}</Typography>}
-			{link?.length > 0 && (
-				<Box>
-					{link.map((link) => (
-						<Button component={RouterLink} to={link.url} key={link.nome}>
-							{link.nome}
-						</Button>
-					))}
-				</Box>
+			{link?.length > 0 &&
+				link.map((link) => (
+					<Button component={RouterLink} to={link.url} key={link.id}>
+						{link.texto}
+					</Button>
+				))}
+			{telefone?.length > 0 &&
+				telefone.map((telefone) => (
+					<PhoneButton key={telefone.numero} {...telefone} />
+				))}
+			{instagram && (
+				<Button>
+					<InstagramIcon />
+				</Button>
 			)}
-			{telefone?.length > 0 && (
-				<Box>
-					{telefone.map((telefone) => (
-						<PhoneButton key={telefone.numero} {...telefone} />
-					))}
-				</Box>
+			{linktree && (
+				<Button>
+					<ParkOutlinedIcon />
+				</Button>
 			)}
 		</Box>
 	);

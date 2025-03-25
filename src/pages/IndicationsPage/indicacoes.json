@@ -5,9 +5,20 @@
             "nome": "Psiquiatra"
         }
     ],
+    "planos": [
+        {
+            "id": 0,
+            "nome": "Sulamerica"
+        },
+        {
+            "id": 1,
+            "nome": "Bradesco Saúde"
+        }
+    ],
     "profissionais": [
         {
             "id": 0,
+            "atualizado": "25-03-2025",
             "profissional": "Dr. João Carlos Leitão",
             "especialidade": 0,
             "conselho": [
@@ -18,20 +29,25 @@
                 "telefone": [
                     {
                         "numero": 81979047330,
-                        "isWhatsapp": true
+                        "isWhatsapp": true,
+                        "isTelegram": false
                     }
                 ],
-                "link": [
-                    {
-                        "nome": "Linktree",
-                        "url": "https://linktr.ee/leitao.joaocarlos"
-                    },
-                    {
-                        "nome": "Instagram",
-                        "url": "https://www.instagram.com/leitao.joaocarlos/"
-                    }
-                ]
-            }
+                "instagram": "https://www.instagram.com/leitao.joaocarlos/",
+                "linktree": "https://linktr.ee/leitao.joaocarlos",
+                "link": []
+            },
+            "endereco": [
+                {
+                    "cidade": "Recife",
+                    "logradouro": "Avenida Rui Barbosa",
+                    "numero": 715
+                }
+            ],
+            "pagamento": {
+                "particular": true
+            },
+            "comentarios": "Atende adultos, é autista e TDAH"
         }
     ]
 }

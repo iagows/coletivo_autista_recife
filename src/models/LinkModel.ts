@@ -1,12 +1,12 @@
 import { z } from "zod";
 import GenericModel from "./GenericModel";
 
-const LinksModel = GenericModel.extend({
+const LinkModel = GenericModel.extend({
 	url: z.string(),
 	titulo: z.string(),
 });
 
-type LinksModelType = z.infer<typeof LinksModel>;
+type LinksModelType = z.infer<typeof LinkModel>;
 
-export default LinksModel;
+export default LinkModel;
 export type { LinksModelType };

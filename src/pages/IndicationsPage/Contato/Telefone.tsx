@@ -1,12 +1,16 @@
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { Box, Button, type SxProps } from "@mui/material";
+import { Button, type SxProps } from "@mui/material";
 import type { TelefoneType } from "../../../models/IndicationModel";
 
-const boxCss: SxProps = { gap: 1 };
+const telegramCss: SxProps = {
+	transform: "rotate(-40deg)",
+};
 
-const PhoneButton = ({ numero, isWhatsapp }: TelefoneType) => {
+const PhoneButton = ({ numero, isWhatsapp, isTelegram }: TelefoneType) => {
 	return (
-		<Box display="flex" alignItems="center" sx={boxCss}>
+		<>
 			{isWhatsapp && (
 				<Button
 					component="a"
@@ -17,10 +21,21 @@ const PhoneButton = ({ numero, isWhatsapp }: TelefoneType) => {
 					<WhatsAppIcon />
 				</Button>
 			)}
+			{isTelegram && (
+				<Button
+					component="a"
+					target="_blank"
+					rel="noopener noreferrer"
+					href={`https://t.me/${numero}`}
+				>
+					<SendOutlinedIcon sx={telegramCss} />
+				</Button>
+			)}
+
 			<Button component="a" href={`tel:${numero}`}>
-				{numero}
+				<PhoneOutlinedIcon />
 			</Button>
-		</Box>
+		</>
 	);
 };
 

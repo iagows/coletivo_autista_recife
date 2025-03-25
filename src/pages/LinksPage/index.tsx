@@ -3,12 +3,12 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import CardContainer from "../../components/CardContainer";
 import PaperCard from "../../components/PaperCard";
-import LinksModel, { type LinksModelType } from "../../models/LinksModel";
+import LinkModel, { type LinksModelType } from "../../models/LinkModel";
 import list from "./links.json";
 
 const linkCss: CSSProperties = { textDecoration: "none" };
 
-const links: LinksModelType[] = list.map((i) => LinksModel.parse(i));
+const links: LinksModelType[] = list.map((i) => LinkModel.parse(i));
 
 const LinksPage = () => {
 	return (
