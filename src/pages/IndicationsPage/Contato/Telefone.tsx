@@ -2,7 +2,7 @@ import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { Button, type SxProps } from "@mui/material";
-import type { TelefoneType } from "../../../models/IndicationModel";
+import type { TelefoneType } from "../../../models/TelefoneModel";
 
 const telegramCss: SxProps = {
 	transform: "rotate(-40deg)",

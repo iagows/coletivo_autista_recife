@@ -1,14 +1,14 @@
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import {
 	Avatar,
 	Box,
-	Button,
 	Card,
 	CardContent,
 	CardHeader,
 	type SxProps,
 	Typography,
 } from "@mui/material";
+import AddressInfo from "../../components/AddressInfo";
+import PagamentoInfo from "../../components/PagamentoInfo";
 import useUtils from "../../hooks/useUtils";
 import IndicationData, {
 	getEspecialidade,
@@ -17,8 +17,6 @@ import IndicationData, {
 } from "../../models/IndicationModel";
 import ContactInfo from "./Contato";
 import list from "./indicacoes.json";
-import AddressInfo from "../../components/AddressInfo";
-import PagamentoInfo from "../../components/PagamentoInfo";
 
 const tableBoxCss: SxProps = { marginTop: 4, maxWidth: 450 };
 
@@ -26,8 +24,6 @@ const dados: IndicationDataType = IndicationData.parse(list);
 const getEspecialideById = getEspecialidade(dados);
 const getEspecialidadeEConselhoText = (i: ProfissionalModelType) =>
 	`${getEspecialideById(i.especialidade).nome} - ${i.conselho.join(" | ")}`;
-
-const addressCss: SxProps = { userSelect: "text" };
 
 const IndicationsPage = () => {
 	const { translate } = useUtils();
