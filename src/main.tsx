@@ -9,6 +9,15 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App.tsx";
 import { store } from "./stores/index.ts";
+import { registerSW } from "virtual:pwa-register";
+
+const updateSW = registerSW({
+	onNeedRefresh() {
+		if (confirm("Novo conteúdo disponível. Recarregar?")) {
+			updateSW(true);
+		}
+	},
+});
 
 const doc = document.getElementById("root");
 
