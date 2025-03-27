@@ -1,9 +1,12 @@
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
-import { Box, Button, type SxProps, Typography } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Box, type SxProps, Typography } from "@mui/material";
 import type { ContatoModelType } from "../../models/ContatoModel";
+import NoReferrerButton from "../NoReferrerButton";
+import AddressButton from "./AddressButton";
 import PhoneButton from "./PhoneButton";
+import useUtils from "../../hooks/useUtils";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 const boxGap: SxProps = { gap: 2, marginBottom: 2 };
 
@@ -13,30 +16,47 @@ const ContactButton = ({
 	telefone,
 	instagram,
 	linktree,
+	endereco,
 }: ContatoModelType) => {
+	const { translate } = useUtils();
+	const subject = translate("indicacoes.email.assunto");
+	const body = translate("indicacoes.email.corpo");
+
 	return (
 		<Box sx={boxGap}>
-			{email && <Typography>{email}</Typography>}
-			{link?.length > 0 &&
-				link.map((link) => (
-					<Button component={RouterLink} to={link.url} key={link.id}>
-						{link.texto}
-					</Button>
-				))}
-			{telefone?.length > 0 &&
-				telefone.map((telefone) => (
-					<PhoneButton key={telefone.numero} {...telefone} />
-				))}
-			{instagram && (
-				<Button>
-					<InstagramIcon />
-				</Button>
-			)}
-			{linktree && (
-				<Button>
-					<ParkOutlinedIcon />
-				</Button>
-			)}
+			{endereco?.map((e, i) => (
+				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+				<AddressButton {...e} key={i} />
+			))}
+			<Box display={"flex"}>
+				{email && (
+					<NoReferrerButton
+						href={`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
+					>
+						<EmailOutlinedIcon />
+					</NoReferrerButton>
+				)}
+				{link?.length > 0 &&
+					link.map((link) => (
+						<NoReferrerButton key={link.id} href={link.url}>
+							{link.texto}
+						</NoReferrerButton>
+					))}
+				{telefone?.length > 0 &&
+					telefone.map((telefone) => (
+						<PhoneButton key={telefone.numero} {...telefone} />
+					))}
+				{instagram && (
+					<NoReferrerButton href={instagram}>
+						<InstagramIcon />
+					</NoReferrerButton>
+				)}
+				{linktree && (
+					<NoReferrerButton href={linktree}>
+						<ParkOutlinedIcon />
+					</NoReferrerButton>
+				)}
+			</Box>
 		</Box>
 	);
 };

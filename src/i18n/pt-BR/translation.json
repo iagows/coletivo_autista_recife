@@ -2,6 +2,12 @@
 	"page": {
 		"title": "Coletivo de Autistas Adultos de Recife"
 	},
+	"snack": {
+		"copia": {
+			"sucesso": "Texto copiado",
+			"falha": "Erro ao copiar texto"
+		}
+	},
 	"path": {
 		"root": "Coletivo",
 		"regras": "Regras do grupo",
@@ -16,6 +22,10 @@
 		"card": {
 			"atualizado": "Atualizado em: {{date}}",
 			"comentarios": "Comentários"
+		},
+		"email": {
+			"assunto": "Contato por meio do site do Coletivo de Autistas Adultos de Recife",
+			"corpo": "Olá,\nConsegui seu contato por meio do site do Coletivo de Autistas Adultos de Recife\n"
 		}
 	},
 	"escola": {

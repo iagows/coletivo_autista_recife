@@ -3,7 +3,6 @@ import GenericModel from "./GenericModel";
 
 const LinkModel = GenericModel.extend({
 	url: z.string(),
-	titulo: z.string(),
 });
 
 type LinksModelType = z.infer<typeof LinkModel>;

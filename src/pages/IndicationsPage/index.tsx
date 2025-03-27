@@ -8,7 +8,6 @@ import {
 	Typography,
 } from "@mui/material";
 import ContactButton from "../../components/ContactButton";
-import AddressButton from "../../components/ContactButton/AddressButton";
 import PagamentoInfo from "../../components/PagamentoInfo";
 import useUtils from "../../hooks/useUtils";
 import IndicationData, {
@@ -48,10 +47,6 @@ const IndicationsPage = () => {
 									{translate("indicacoes.card.comentarios")}: {i.comentarios}
 								</Typography>
 							)}
-							{i.contato?.endereco?.map((e, i) => (
-								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-								<AddressButton {...e} key={i} />
-							))}
 							{i.contato && <ContactButton {...i.contato} />}
 							<Typography variant="caption" color="textSecondary">
 								{translate("indicacoes.card.atualizado", {

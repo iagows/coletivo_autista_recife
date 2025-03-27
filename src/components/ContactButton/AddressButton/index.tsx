@@ -1,8 +1,6 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { Button, type SxProps, Typography } from "@mui/material";
 import type { AddressModelType } from "../../../models/AddressModel";
-
-const addressCss: SxProps = { userSelect: "text" };
+import NoReferrerButton from "../../NoReferrerButton";
 
 const AddressButton = ({
 	bairro,
@@ -12,17 +10,12 @@ const AddressButton = ({
 }: AddressModelType) => {
 	const local = `${logradouro}, ${numero}${bairro ? ` - ${bairro}` : ""}, ${cidade}`;
 	return (
-		<Typography variant="body2" sx={addressCss}>
-			<Button
-				component="a"
-				target="_blank"
-				rel="noopener noreferrer"
-				href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(local)}`}
-			>
-				<LocationOnIcon />
-			</Button>
-			{local}
-		</Typography>
+		<NoReferrerButton
+			href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(local)}`}
+			text={local}
+		>
+			<LocationOnIcon />
+		</NoReferrerButton>
 	);
 };
 
