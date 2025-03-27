@@ -1,5 +1,4 @@
 import { z } from "zod";
-import AddressModel from "./AddressModel";
 import ContatoModel from "./ContatoModel";
 import IdNomeModel, { type IdNomeModelType } from "./IdNomeModel";
 import PagamentoModel from "./PagamentoModel";

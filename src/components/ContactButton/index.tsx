@@ -1,12 +1,12 @@
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
-import { Box, type SxProps, Typography } from "@mui/material";
+import { Box, type SxProps } from "@mui/material";
+import useUtils from "../../hooks/useUtils";
 import type { ContatoModelType } from "../../models/ContatoModel";
 import NoReferrerButton from "../NoReferrerButton";
 import AddressButton from "./AddressButton";
 import PhoneButton from "./PhoneButton";
-import useUtils from "../../hooks/useUtils";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 
 const boxGap: SxProps = { gap: 2, marginBottom: 2 };
 

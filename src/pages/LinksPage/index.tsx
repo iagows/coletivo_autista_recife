@@ -16,9 +16,6 @@ const LinksPage = () => {
 			{links.map((l) => (
 				<PaperCard key={l.id}>
 					<CardContent>
-						<Typography gutterBottom color="text.secondary">
-							{l.titulo}
-						</Typography>
 						<Typography variant="h5" component="div">
 							{l.texto}
 						</Typography>
