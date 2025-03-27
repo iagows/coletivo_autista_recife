@@ -2,12 +2,12 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
 import { Box, Button, type SxProps, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import type { ContatoModelType } from "../../../models/ContatoModel";
-import PhoneButton from "./Telefone";
+import type { ContatoModelType } from "../../models/ContatoModel";
+import PhoneButton from "./PhoneButton";
 
 const boxGap: SxProps = { gap: 2, marginBottom: 2 };
 
-const ContactInfo = ({
+const ContactButton = ({
 	email,
 	link,
 	telefone,
@@ -41,4 +41,4 @@ const ContactInfo = ({
 	);
 };
 
-export default ContactInfo;
+export default ContactButton;

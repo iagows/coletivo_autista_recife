@@ -1,10 +1,10 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { Button, type SxProps, Typography } from "@mui/material";
-import type { AddressModelType } from "../models/AddressModel";
+import type { AddressModelType } from "../../../models/AddressModel";
 
 const addressCss: SxProps = { userSelect: "text" };
 
-const AddressInfo = ({
+const AddressButton = ({
 	bairro,
 	cidade,
 	logradouro,
@@ -26,4 +26,4 @@ const AddressInfo = ({
 	);
 };
 
-export default AddressInfo;
+export default AddressButton;

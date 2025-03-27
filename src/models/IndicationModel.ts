@@ -11,7 +11,6 @@ export const ProfissionalModel = z.object({
 	especialidade: z.number(),
 	contato: ContatoModel.optional(),
 	conselho: z.string().array().optional().default([]),
-	endereco: AddressModel.array().optional(),
 	pagamento: PagamentoModel.optional(),
 	comentarios: z.string().optional(),
 });

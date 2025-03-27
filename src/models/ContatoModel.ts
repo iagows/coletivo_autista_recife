@@ -1,6 +1,7 @@
 import { z } from "zod";
-import TelefoneModel from "./TelefoneModel";
+import AddressModel from "./AddressModel";
 import LinkModel from "./LinkModel";
+import TelefoneModel from "./TelefoneModel";
 
 const ContatoModel = z.object({
 	telefone: TelefoneModel.array().optional().default([]),
@@ -8,6 +9,7 @@ const ContatoModel = z.object({
 	instagram: z.string().optional(),
 	linktree: z.string().optional(),
 	link: LinkModel.array().optional().default([]),
+	endereco: AddressModel.array().optional(),
 });
 
 type ContatoModelType = z.infer<typeof ContatoModel>;

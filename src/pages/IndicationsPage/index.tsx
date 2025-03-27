@@ -7,7 +7,8 @@ import {
 	type SxProps,
 	Typography,
 } from "@mui/material";
-import AddressInfo from "../../components/AddressInfo";
+import ContactButton from "../../components/ContactButton";
+import AddressButton from "../../components/ContactButton/AddressButton";
 import PagamentoInfo from "../../components/PagamentoInfo";
 import useUtils from "../../hooks/useUtils";
 import IndicationData, {
@@ -15,7 +16,6 @@ import IndicationData, {
 	type IndicationDataType,
 	type ProfissionalModelType,
 } from "../../models/IndicationModel";
-import ContactInfo from "./Contato";
 import list from "./indicacoes.json";
 
 const tableBoxCss: SxProps = { marginTop: 4, maxWidth: 450 };
@@ -48,11 +48,11 @@ const IndicationsPage = () => {
 									{translate("indicacoes.card.comentarios")}: {i.comentarios}
 								</Typography>
 							)}
-							{i.endereco?.map((e, i) => (
+							{i.contato?.endereco?.map((e, i) => (
 								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-								<AddressInfo {...e} key={i} />
+								<AddressButton {...e} key={i} />
 							))}
-							{i.contato && <ContactInfo {...i.contato} />}
+							{i.contato && <ContactButton {...i.contato} />}
 							<Typography variant="caption" color="textSecondary">
 								{translate("indicacoes.card.atualizado", {
 									date: i.atualizado,

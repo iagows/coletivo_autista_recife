@@ -33,21 +33,22 @@
                         "isTelegram": false
                     }
                 ],
+                "email": "eu@eu.com",
                 "instagram": "https://www.instagram.com/leitao.joaocarlos/",
                 "linktree": "https://linktr.ee/leitao.joaocarlos",
-                "link": []
+                "link": [],
+                "endereco": [
+                    {
+                        "cidade": "Recife",
+                        "logradouro": "Avenida Rui Barbosa",
+                        "numero": 715
+                    }
+                ]
             },
-            "endereco": [
-                {
-                    "cidade": "Recife",
-                    "logradouro": "Avenida Rui Barbosa",
-                    "numero": 715
-                }
-            ],
             "pagamento": {
                 "particular": true
             },
-            "comentarios": "Atende adultos, é autista e TDAH"
+            "comentarios": "Atende adultos. É autista e TDAH."
         }
     ]
 }
