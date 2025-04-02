@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import settings from "./slices/settings";
+import rules from "./slices/regras";
 
 export const store = configureStore({
-    reducer: combineReducers({
-        settings,
-    }),
+	reducer: combineReducers({
+		settings,
+		rules,
+	}),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

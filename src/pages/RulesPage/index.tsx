@@ -1,50 +1,68 @@
-import { CardContent, Stack, Typography } from "@mui/material";
+import { CardContent, Skeleton, Stack, Typography } from "@mui/material";
 import CardContainer from "../../components/CardContainer";
 import PaperCard from "../../components/PaperCard";
 import useUtils from "../../hooks/useUtils";
-import RuleModel, { type RulesType } from "../../models/RuleModel";
-import regras from "./rules.json";
+import { useRulesSlice } from "../../stores/slices/regras/useRulesSlice";
 
 // const rules: RulesType = RuleModel.parse(regras);
 
 const RulesPage = () => {
 	const { translate } = useUtils();
+	const { data, error, loading } = useRulesSlice();
+
 	return (
 		<CardContainer>
-			{/* <Typography variant="h5" component="p">
-				{rules.titulo}
+			<Typography variant="h5" component="p">
+				Normas do Grupo: Autistas - Recife PE
 			</Typography>
 			<Typography variant="h6" component="p">
-				{rules.texto}
-			</Typography> */}
+				Normas criadas por Alice. O grupo pertence ao Coletivo Autista de
+				Recife. Olá! Você acaba de chegar no grupo de WhatsApp voltado para a
+				interação e integração dos autistas jovens e adultos de Recife! Teremos
+				algumas regras simples de convivência para que a nossa experiência seja
+				sempre positiva.
+			</Typography>
 			<Stack direction="column" spacing={2}>
-				{/* {rules.regras.map((r) => (
-					<PaperCard key={r.id}>
-						<CardContent>
-							<Typography variant="body1" component="p">
-								{r.texto}
-							</Typography>
-							{r.detalhamento && (
-								<Typography
-									gutterBottom
-									component="p"
-									variant="body2"
-									color="text.secondary"
-								>
-									{r.detalhamento}
-								</Typography>
-							)}
-						</CardContent>
-					</PaperCard>
-				))} */}
+				{error ? (
+					<div>erro</div>
+				) : (
+					<>
+						{loading ? (
+							<>
+								<Skeleton variant="rectangular" height={118} animation="wave" />
+								<Skeleton variant="rectangular" height={118} animation="wave" />
+								<Skeleton variant="rectangular" height={118} animation="wave" />
+								<Skeleton variant="rectangular" height={118} animation="wave" />
+							</>
+						) : (
+							data.map((r) => (
+								<PaperCard key={r.id}>
+									<CardContent>
+										<Typography variant="body1" component="p">
+											{r.texto}
+										</Typography>
+										{r.detalhamento && (
+											<Typography
+												gutterBottom
+												component="p"
+												variant="body2"
+												color="text.secondary"
+											>
+												{r.detalhamento}
+											</Typography>
+										)}
+										{/* <Typography variant="overline">
+									{translate("regras.updated", {
+										date: r.atualizado,
+									})}
+								</Typography> */}
+									</CardContent>
+								</PaperCard>
+							))
+						)}
+					</>
+				)}
 			</Stack>
-			{/* {rules.atualizacao && (
-				<Typography variant="overline">
-					{translate("regras.updated", {
-						date: rules.atualizacao,
-					})}
-				</Typography>
-			)} */}
 		</CardContainer>
 	);
 };
