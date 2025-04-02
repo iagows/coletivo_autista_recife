@@ -17,7 +17,13 @@ import IndicationData, {
 } from "../../models/IndicationModel";
 import list from "./indicacoes.json";
 
-const tableBoxCss: SxProps = { marginTop: 4, maxWidth: 450 };
+const tableBoxCss: SxProps = {
+	marginTop: 4,
+	maxWidth: 450,
+	minWidth: 300,
+	width: "fit-content",
+};
+const cardCss: SxProps = { marginBottom: 2 };
 
 const dados: IndicationDataType = IndicationData.parse(list);
 const getEspecialideById = getEspecialidade(dados);
@@ -32,7 +38,7 @@ const IndicationsPage = () => {
 			<Typography>{translate("indicacoes.conteudo")}</Typography>
 			<Box sx={tableBoxCss}>
 				{dados.profissionais.map((i) => (
-					<Card key={i.id} sx={{ marginBottom: 2 }}>
+					<Card key={i.id} sx={cardCss}>
 						<CardHeader
 							avatar={
 								<Avatar aria-label="Profissional">{i.profissional[0]}</Avatar>
