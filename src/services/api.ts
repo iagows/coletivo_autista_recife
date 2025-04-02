@@ -35,11 +35,15 @@ const getURL = (sheetId: string, sheetName: string) =>
 const ID = "1aCvDAKDmHYUvOHos4bh4GdDr1Yf7yx70q-f4L88Qg48";
 
 export enum Pages {
-	PLANOS = "planos",
-	CONTATOS = "contatos",
-	ENDERECOS = "enderecos",
-	PROFISSIONAIS = "indic_prof",
 	ESPECIALIDADES = "especialidade",
+	PLANOS = "planos",
+	PROFISSIONAIS = "indic_prof",
+	REGRAS = "regras",
+	CONSELHOS = "conselhos",
+	ENDERECOS = "enderecos",
+	TELEFONE = "telefone",
+	CONTATOS = "contatos",
+	LINKS = "links",
 }
 
 // Cache para armazenar respostas já obtidas

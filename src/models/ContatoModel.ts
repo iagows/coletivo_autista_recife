@@ -1,16 +1,22 @@
 import { z } from "zod";
-import AddressModel from "./AddressModel";
-import LinkModel from "./LinkModel";
-import TelefoneModel from "./TelefoneModel";
 
-const ContatoModel = z.object({
-	telefone: TelefoneModel.array().optional().default([]),
-	email: z.string().email().optional(),
-	instagram: z.string().optional(),
-	linktree: z.string().optional(),
-	link: LinkModel.array().optional().default([]),
-	endereco: AddressModel.array().optional(),
-});
+const ContatoModel = z
+	.object({
+		id: z.number(),
+		telefones: z.string().default(""),
+		email: z.string().default(""),
+		instagram: z.string().default(""),
+		link_tree: z.string().default(""),
+		enderecos: z.string().default(""),
+	})
+	.transform((data) => ({
+		id: data.id,
+		telefones: data.telefones.split(",").map((t) => Number.parseInt(t)),
+		email: data.email,
+		instagram: data.instagram,
+		linkTree: data.link_tree,
+		enderecos: data.enderecos.split(",").map((t) => Number.parseInt(t)),
+	}));
 
 type ContatoModelType = z.infer<typeof ContatoModel>;
 

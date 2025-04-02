@@ -1,15 +1,15 @@
 import { CardContent, Typography } from "@mui/material";
 import CardContainer from "../../components/CardContainer";
 import PaperCard from "../../components/PaperCard";
-import { GuideModel, type GuideType } from "../../models/GuideModel";
+// import { GuideModel, type GuideType } from "../../models/GuideModel";
 import list from "./guias.json";
 
-const guides: GuideType[] = list.map((i) => GuideModel.parse(i));
+// const guides: GuideType[] = list.map((i) => GuideModel.parse(i));
 
 const GuidePage = () => {
 	return (
 		<CardContainer>
-			{guides.map((g) => (
+			{/* {guides.map((g) => (
 				<PaperCard key={g.id}>
 					<CardContent>
 						<Typography gutterBottom color="text.secondary">
@@ -23,7 +23,7 @@ const GuidePage = () => {
 						))}
 					</CardContent>
 				</PaperCard>
-			))}
+			))} */}
 		</CardContainer>
 	);
 };

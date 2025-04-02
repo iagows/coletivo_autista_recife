@@ -3,17 +3,17 @@ import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import CardContainer from "../../components/CardContainer";
 import PaperCard from "../../components/PaperCard";
-import LinkModel, { type LinksModelType } from "../../models/LinkModel";
+// import LinkModel, { type LinksModelType } from "../../models/LinkModel";
 import list from "./links.json";
 
 const linkCss: CSSProperties = { textDecoration: "none" };
 
-const links: LinksModelType[] = list.map((i) => LinkModel.parse(i));
+// const links: LinksModelType[] = list.map((i) => LinkModel.parse(i));
 
 const LinksPage = () => {
 	return (
 		<CardContainer>
-			{links.map((l) => (
+			{/* {links.map((l) => (
 				<PaperCard key={l.id}>
 					<CardContent>
 						<Typography variant="h5" component="div">
@@ -26,7 +26,7 @@ const LinksPage = () => {
 						</Link>
 					</CardActions>
 				</PaperCard>
-			))}
+			))} */}
 		</CardContainer>
 	);
 };

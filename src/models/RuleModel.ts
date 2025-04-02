@@ -1,15 +1,10 @@
 import { z } from "zod";
-import GenericModel from "./GenericModel";
-
-const RuleModel = GenericModel.extend({
-	detalhamento: z.string().optional(),
-});
 
 const RulesModel = z.object({
+	id: z.number(),
 	texto: z.string(),
-	titulo: z.string(),
 	atualizacao: z.string(),
-	regras: RuleModel.array(),
+	detalhamento: z.string().optional(),
 });
 
 type RulesType = z.infer<typeof RulesModel>;

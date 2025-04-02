@@ -1,21 +1,11 @@
-import {
-	Avatar,
-	Box,
-	Card,
-	CardContent,
-	CardHeader,
-	type SxProps,
-	Typography,
-} from "@mui/material";
-import ContactButton from "../../components/ContactButton";
-import PagamentoInfo from "../../components/PagamentoInfo";
+import { Box, type SxProps, Typography } from "@mui/material";
 import useUtils from "../../hooks/useUtils";
-import IndicationData, {
-	getEspecialidade,
-	type IndicationDataType,
-	type ProfissionalModelType,
-} from "../../models/IndicationModel";
-import list from "./indicacoes.json";
+// import IndicationData, {
+// 	getEspecialidade,
+// 	type IndicationDataType,
+// 	type ProfissionalModelType,
+// } from "../../models/IndicationModel";
+// import list from "./indicacoes.json";
 
 const tableBoxCss: SxProps = {
 	marginTop: 4,
@@ -25,10 +15,10 @@ const tableBoxCss: SxProps = {
 };
 const cardCss: SxProps = { marginBottom: 2 };
 
-const dados: IndicationDataType = IndicationData.parse(list);
-const getEspecialideById = getEspecialidade(dados);
-const getEspecialidadeEConselhoText = (i: ProfissionalModelType) =>
-	`${getEspecialideById(i.especialidade).nome} - ${i.conselho.join(" | ")}`;
+// const dados: IndicationDataType = IndicationData.parse(list);
+// const getEspecialideById = getEspecialidade(dados);
+// const getEspecialidadeEConselhoText = (i: ProfissionalModelType) =>
+// 	`${getEspecialideById(i.especialidade).nome} - ${i.conselho.join(" | ")}`;
 
 const IndicationsPage = () => {
 	const { translate } = useUtils();
@@ -37,7 +27,7 @@ const IndicationsPage = () => {
 		<Box>
 			<Typography>{translate("indicacoes.conteudo")}</Typography>
 			<Box sx={tableBoxCss}>
-				{dados.profissionais.map((i) => (
+				{/* {dados.profissionais.map((i) => (
 					<Card key={i.id} sx={cardCss}>
 						<CardHeader
 							avatar={
@@ -61,7 +51,7 @@ const IndicationsPage = () => {
 							</Typography>
 						</CardContent>
 					</Card>
-				))}
+				))} */}
 			</Box>
 		</Box>
 	);

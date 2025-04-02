@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const AddressModel = z.object({
+	id: z.number(),
 	logradouro: z.string(),
 	numero: z.number().optional(),
 	bairro: z.string().optional(),
