@@ -1,0 +1,1 @@
+import{q as e,t as a,C as t,j as o}from"./index-CrPihqFz.js";const r=e("MuiBox",["root"]),n=a({defaultClassName:r.root,generateClassName:t.generate}),x={p:3,gap:2,display:"flex",flexDirection:"column"},C=({children:s})=>o.jsx(n,{sx:x,children:s});export{C};
