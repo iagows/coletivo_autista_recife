@@ -4,21 +4,17 @@ import {
 	Card,
 	CardContent,
 	CardHeader,
-	Skeleton,
+	Grid2,
 	type SxProps,
 	Typography,
 } from "@mui/material";
+import ContactButton from "../../components/ContactButton";
+import LoadingSkeleton from "../../components/LoadingSkeleton";
+import PagamentoInfo from "../../components/PagamentoInfo";
 import useUtils from "../../hooks/useUtils";
 import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
-import PagamentoInfo from "../../components/PagamentoInfo";
-import ContactButton from "../../components/ContactButton";
+import { gridSizeCss } from "../../util/constants";
 
-const tableBoxCss: SxProps = {
-	marginTop: 4,
-	maxWidth: 450,
-	minWidth: 300,
-	width: "fit-content",
-};
 const cardCss: SxProps = { marginBottom: 2 };
 
 const IndicationsPage = () => {
@@ -27,13 +23,13 @@ const IndicationsPage = () => {
 	return (
 		<Box>
 			<Typography>{translate("indicacoes.conteudo")}</Typography>
-			<Box sx={tableBoxCss}>
+			<Grid2 container spacing={2}>
 				{error ? (
 					<div>{`Erro: ${error}`}</div>
 				) : (
 					<>
 						{loading ? (
-							<Skeleton variant="rectangular" height={118} animation="wave" />
+							<LoadingSkeleton w={450} h={250} amount={6} />
 						) : (
 							<>
 								{data.map(
@@ -60,34 +56,38 @@ const IndicationsPage = () => {
 											.join(", ");
 										const CrmRqeText = crmRqe ? ` - ${crmRqe}` : "";
 										return (
-											<Card key={id} sx={cardCss}>
-												<CardHeader
-													avatar={
-														<Avatar aria-label="Profissional">{nome[0]}</Avatar>
-													}
-													title={nome}
-													subheader={`${espcs}${CrmRqeText}`}
-												/>
-												<CardContent>
-													<PagamentoInfo
-														preco={preco}
-														planos={planos}
-														isPublico={isPublico}
-														isParticular={isParticular}
+											<Grid2 size={gridSizeCss} key={id}>
+												<Card sx={cardCss}>
+													<CardHeader
+														avatar={
+															<Avatar aria-label="Profissional">
+																{nome[0]}
+															</Avatar>
+														}
+														title={nome}
+														subheader={`${espcs}${CrmRqeText}`}
 													/>
-													{comentario && (
-														<Typography variant="body2" color="textSecondary">
-															{translate("indicacoes.card.comentarios")}:{" "}
-															{comentario}
-														</Typography>
-													)}
-													<ContactButton
-														links={links}
-														addresses={enderecos}
-														telephones={telefones}
-													/>
-												</CardContent>
-											</Card>
+													<CardContent>
+														<PagamentoInfo
+															preco={preco}
+															planos={planos}
+															isPublico={isPublico}
+															isParticular={isParticular}
+														/>
+														{comentario && (
+															<Typography variant="body2" color="textSecondary">
+																{translate("indicacoes.card.comentarios")}:{" "}
+																{comentario}
+															</Typography>
+														)}
+														<ContactButton
+															links={links}
+															addresses={enderecos}
+															telephones={telefones}
+														/>
+													</CardContent>
+												</Card>
+											</Grid2>
 										);
 									},
 								)}
@@ -95,7 +95,7 @@ const IndicationsPage = () => {
 						)}
 					</>
 				)}
-			</Box>
+			</Grid2>
 		</Box>
 	);
 };

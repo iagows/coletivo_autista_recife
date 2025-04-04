@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import type { PlanoModelType } from "../models/PlanoModel";
 
 type Props = {
@@ -8,13 +8,15 @@ type Props = {
 	planos: PlanoModelType[];
 };
 const PagamentoInfo = ({ isParticular, planos, isPublico, preco }: Props) => {
+	const precoText = preco ? `: R$ ${preco} (valor aproximado)` : "";
 	return (
-		<>
-			{isParticular && preco !== undefined && (
+		<Box>
+			{isParticular && (
 				<Typography variant="body2" color="textSecondary">
-					Particular {preco ? `(+- R$ ${preco})` : ""}
+					Particular{precoText}
 				</Typography>
 			)}
+
 			{planos.length > 0 && (
 				<Typography variant="body2" color="textSecondary">
 					Planos: {planos.map((p) => p.nome).join(", ")}
@@ -25,7 +27,7 @@ const PagamentoInfo = ({ isParticular, planos, isPublico, preco }: Props) => {
 					Público
 				</Typography>
 			)}
-		</>
+		</Box>
 	);
 };
 

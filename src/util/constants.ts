@@ -1,3 +1,4 @@
+import type { GridBaseProps } from "@mui/material";
 import packageJson from "../../package.json";
 
 export const PROJECT_VERSION = packageJson.version;
@@ -25,3 +26,12 @@ export const BASIC_CSS = {
 };
 
 export const DRAWER_WIDTH = 300;
+
+const gridSize: GridBaseProps = {
+	size: {
+		xs: 12,
+		md: 6,
+		lg: 4,
+	},
+};
+export const gridSizeCss = gridSize.size;
