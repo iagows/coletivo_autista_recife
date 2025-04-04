@@ -1,8 +1,8 @@
-import { CardContent, Typography } from "@mui/material";
+// import { CardContent, Typography } from "@mui/material";
 import CardContainer from "../../components/CardContainer";
-import PaperCard from "../../components/PaperCard";
+// import PaperCard from "../../components/PaperCard";
 // import { GuideModel, type GuideType } from "../../models/GuideModel";
-import list from "./guias.json";
+// import list from "./guias.json";
 
 // const guides: GuideType[] = list.map((i) => GuideModel.parse(i));
 

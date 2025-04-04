@@ -1,4 +1,4 @@
-import { Box, Button, type SxProps, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import type { PropsWithChildren } from "react";
 import CopyButton from "../CopyButton";
 
