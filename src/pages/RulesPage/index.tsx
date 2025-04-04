@@ -13,18 +13,14 @@ const RulesPage = () => {
 	return (
 		<CardContainer>
 			<Typography variant="h5" component="p">
-				Normas do Grupo: Autistas - Recife PE
+				{translate("regras.titulo")}
 			</Typography>
 			<Typography variant="h6" component="p">
-				Normas criadas por Alice. O grupo pertence ao Coletivo Autista de
-				Recife. Olá! Você acaba de chegar no grupo de WhatsApp voltado para a
-				interação e integração dos autistas jovens e adultos de Recife! Teremos
-				algumas regras simples de convivência para que a nossa experiência seja
-				sempre positiva.
+				{translate("regras.descricao")}
 			</Typography>
 			<Stack direction="column" spacing={2}>
 				{error ? (
-					<div>erro</div>
+					<div>Erro: {error}</div>
 				) : (
 					<>
 						{loading ? (
@@ -51,11 +47,11 @@ const RulesPage = () => {
 												{r.detalhamento}
 											</Typography>
 										)}
-										{/* <Typography variant="overline">
-									{translate("regras.updated", {
-										date: r.atualizado,
-									})}
-								</Typography> */}
+										<Typography variant="overline">
+											{/* {translate("regras.updated", {
+										date: r.,
+									})} */}
+										</Typography>
 									</CardContent>
 								</PaperCard>
 							))

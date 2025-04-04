@@ -3,59 +3,86 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
 import { Box, type SxProps } from "@mui/material";
 import useUtils from "../../hooks/useUtils";
-import type { ContatoModelType } from "../../models/ContatoModel";
+import type { EnderecoModelType } from "../../models/EnderecoModel";
+import type { LinkModelType } from "../../models/LinkModel";
+import type { TelefoneModelType } from "../../models/TelefoneModel";
 import NoReferrerButton from "../NoReferrerButton";
 import AddressButton from "./AddressButton";
 import PhoneButton from "./PhoneButton";
 
+const isolatedLinks = (links: LinkModelType[] = []) =>
+	links.reduce(
+		(acc, link) => {
+			if (link.isEmail) {
+				acc.emailList.push(link);
+			} else if (link.url.includes("instagram.com")) {
+				acc.instagramList.push(link);
+			} else if (link.url.includes("linktr.ee")) {
+				acc.linktreeList.push(link);
+			} else {
+				acc.otherLinksList.push(link);
+			}
+			return acc;
+		},
+		{
+			emailList: [] as LinkModelType[],
+			instagramList: [] as LinkModelType[],
+			linktreeList: [] as LinkModelType[],
+			otherLinksList: [] as LinkModelType[],
+		},
+	);
+
 const boxGap: SxProps = { gap: 2, marginBottom: 2 };
 
+type Props = {
+	links?: LinkModelType[];
+	telephones?: TelefoneModelType[];
+	addresses?: EnderecoModelType[];
+};
 const ContactButton = ({
-	email,
-	link,
-	telefone,
-	instagram,
-	linktree,
-	endereco,
-}: ContatoModelType) => {
+	links = [],
+	telephones = [],
+	addresses = [],
+}: Props) => {
 	const { translate } = useUtils();
 	const subject = translate("indicacoes.email.assunto");
 	const body = translate("indicacoes.email.corpo");
 
+	const { emailList, instagramList, linktreeList, otherLinksList } =
+		isolatedLinks(links);
+
 	return (
 		<Box sx={boxGap}>
-			{endereco?.map((e, i) => (
-				// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-				<AddressButton {...e} key={i} />
+			{addresses?.map((e) => (
+				<AddressButton {...e} key={e.id} />
 			))}
 			<Box display={"flex"}>
-				{email && (
+				{emailList?.map((email) => (
 					<NoReferrerButton
-						href={`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
+						href={`mailto:${email.url}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
+						key={email.id}
 					>
 						<EmailOutlinedIcon />
 					</NoReferrerButton>
-				)}
-				{link?.length > 0 &&
-					link.map((link) => (
-						<NoReferrerButton key={link.id} href={link.url}>
-							{link.texto}
-						</NoReferrerButton>
-					))}
-				{telefone?.length > 0 &&
-					telefone.map((telefone) => (
-						<PhoneButton key={telefone.numero} {...telefone} />
-					))}
-				{instagram && (
-					<NoReferrerButton href={instagram}>
+				))}
+				{otherLinksList?.map((link) => (
+					<NoReferrerButton key={link.id} href={link.url}>
+						{link.texto}
+					</NoReferrerButton>
+				))}
+				{telephones.map((telephone) => (
+					<PhoneButton key={telephone.numero} {...telephone} />
+				))}
+				{instagramList?.map((inst) => (
+					<NoReferrerButton href={inst.url} key={inst.id}>
 						<InstagramIcon />
 					</NoReferrerButton>
-				)}
-				{linktree && (
-					<NoReferrerButton href={linktree}>
+				))}
+				{linktreeList?.map((tree) => (
+					<NoReferrerButton href={tree.url} key={tree.id}>
 						<ParkOutlinedIcon />
 					</NoReferrerButton>
-				)}
+				))}
 			</Box>
 		</Box>
 	);

@@ -3,6 +3,7 @@ type StringNumber = string | number;
 interface RawHeader {
 	label: string;
 	id: string;
+	type?: string;
 }
 
 interface RawRow {
@@ -27,6 +28,7 @@ interface Sheet {
 interface Column {
 	index: number;
 	label: string;
+	type?: string;
 }
 
 const getURL = (sheetId: string, sheetName: string) =>
@@ -35,15 +37,16 @@ const getURL = (sheetId: string, sheetName: string) =>
 const ID = "1aCvDAKDmHYUvOHos4bh4GdDr1Yf7yx70q-f4L88Qg48";
 
 export enum Pages {
-	ESPECIALIDADES = "especialidade",
-	PLANOS = "planos",
-	PROFISSIONAIS = "indic_prof",
 	REGRAS = "regras",
+	ESPECIALIDADES = "especialidades",
+	PROFISSIONAIS = "profissionais",
+	PLANOS = "planos",
 	CONSELHOS = "conselhos",
 	ENDERECOS = "enderecos",
-	TELEFONE = "telefone",
-	CONTATOS = "contatos",
+	TELEFONE = "telefones",
 	LINKS = "links",
+	PLAN_PROF = "plano_prof",
+	ESPEC_PROF = "espec_prof",
 }
 
 // Cache para armazenar respostas já obtidas
@@ -61,6 +64,7 @@ const getColumns = (json: Sheet): Column[] =>
 	json.table.cols.map((c, i) => ({
 		index: i,
 		label: c.label,
+		type: c.type,
 	}));
 
 const getRows =
@@ -100,6 +104,10 @@ export const getSheet = async <T>(
 		const json = parseSheet(text);
 		const columns = getColumns(json);
 		const rows = getRows(columns)(json);
+
+		if (pageName === Pages.PROFISSIONAIS) {
+			console.log({ rows });
+		}
 		const result = rows.map(parser);
 
 		// Armazenar no cache

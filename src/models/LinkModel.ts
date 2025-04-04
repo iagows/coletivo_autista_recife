@@ -1,9 +1,20 @@
-import { number, string, z } from "zod";
+import { z } from "zod";
 
-const LinkModel = z.object({
-	id: number(),
-	url: string(),
-});
+const LinkModel = z
+	.object({
+		id: z.number(),
+		url: z.string(),
+		email: z.string(),
+		id_profissional: z.number(),
+		texto: z.string().optional().nullable(),
+	})
+	.transform((data) => ({
+		id: data.id,
+		url: data.url,
+		isEmail: data.email === "s",
+		idProfissional: data.id_profissional,
+		texto: data.texto,
+	}));
 
 type LinkModelType = z.infer<typeof LinkModel>;
 

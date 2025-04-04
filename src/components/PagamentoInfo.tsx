@@ -1,25 +1,26 @@
 import { Typography } from "@mui/material";
-import type { PagamentoModelType } from "../models/PagamentoModel";
+import type { PlanoModelType } from "../models/PlanoModel";
 
-const PagamentoInfo = ({
-	particular,
-	planos,
-	publico,
-	preco,
-}: PagamentoModelType) => {
+type Props = {
+	isParticular: boolean;
+	isPublico: boolean;
+	preco?: number;
+	planos: PlanoModelType[];
+};
+const PagamentoInfo = ({ isParticular, planos, isPublico, preco }: Props) => {
 	return (
 		<>
-			{particular && (
+			{isParticular && preco !== undefined && (
 				<Typography variant="body2" color="textSecondary">
 					Particular {preco ? `(+- R$ ${preco})` : ""}
 				</Typography>
 			)}
-			{planos?.length > 0 && (
+			{planos.length > 0 && (
 				<Typography variant="body2" color="textSecondary">
-					Planos
+					Planos: {planos.map((p) => p.nome).join(", ")}
 				</Typography>
 			)}
-			{publico && (
+			{isPublico && (
 				<Typography variant="body2" color="textSecondary">
 					Público
 				</Typography>

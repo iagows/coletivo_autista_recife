@@ -5,6 +5,7 @@ const TelefoneModel = z
 	.object({
 		id: z.number(),
 		numero: z.number(),
+		id_profissional: z.number(),
 		whatsapp: z.enum(SimNaoEnum),
 		telegram: z.enum(SimNaoEnum),
 	})
@@ -13,9 +14,10 @@ const TelefoneModel = z
 		numero: data.numero,
 		isWhatsapp: data.whatsapp === "s",
 		isTelegram: data.telegram === "s",
+		idProfissional: data.id_profissional,
 	}));
 
-type TelefoneType = z.infer<typeof TelefoneModel>;
+type TelefoneModelType = z.infer<typeof TelefoneModel>;
 
 export default TelefoneModel;
-export type { TelefoneType };
+export type { TelefoneModelType };

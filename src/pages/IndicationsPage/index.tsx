@@ -1,11 +1,17 @@
-import { Box, type SxProps, Typography } from "@mui/material";
+import {
+	Avatar,
+	Box,
+	Card,
+	CardContent,
+	CardHeader,
+	Skeleton,
+	type SxProps,
+	Typography,
+} from "@mui/material";
 import useUtils from "../../hooks/useUtils";
-// import IndicationData, {
-// 	getEspecialidade,
-// 	type IndicationDataType,
-// 	type ProfissionalModelType,
-// } from "../../models/IndicationModel";
-// import list from "./indicacoes.json";
+import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
+import PagamentoInfo from "../../components/PagamentoInfo";
+import ContactButton from "../../components/ContactButton";
 
 const tableBoxCss: SxProps = {
 	marginTop: 4,
@@ -15,43 +21,80 @@ const tableBoxCss: SxProps = {
 };
 const cardCss: SxProps = { marginBottom: 2 };
 
-// const dados: IndicationDataType = IndicationData.parse(list);
-// const getEspecialideById = getEspecialidade(dados);
-// const getEspecialidadeEConselhoText = (i: ProfissionalModelType) =>
-// 	`${getEspecialideById(i.especialidade).nome} - ${i.conselho.join(" | ")}`;
-
 const IndicationsPage = () => {
 	const { translate } = useUtils();
-
+	const { data, error, loading } = useProfissionalSlice();
 	return (
 		<Box>
 			<Typography>{translate("indicacoes.conteudo")}</Typography>
 			<Box sx={tableBoxCss}>
-				{/* {dados.profissionais.map((i) => (
-					<Card key={i.id} sx={cardCss}>
-						<CardHeader
-							avatar={
-								<Avatar aria-label="Profissional">{i.profissional[0]}</Avatar>
-							}
-							title={i.profissional}
-							subheader={getEspecialidadeEConselhoText(i)}
-						/>
-						<CardContent>
-							{i.pagamento && <PagamentoInfo {...i.pagamento} />}
-							{i.comentarios && (
-								<Typography variant="body2" color="textSecondary">
-									{translate("indicacoes.card.comentarios")}: {i.comentarios}
-								</Typography>
-							)}
-							{i.contato && <ContactButton {...i.contato} />}
-							<Typography variant="caption" color="textSecondary">
-								{translate("indicacoes.card.atualizado", {
-									date: i.atualizado,
-								})}
-							</Typography>
-						</CardContent>
-					</Card>
-				))} */}
+				{error ? (
+					<div>{`Erro: ${error}`}</div>
+				) : (
+					<>
+						{loading ? (
+							<Skeleton variant="rectangular" height={118} animation="wave" />
+						) : (
+							<>
+								{data.map(
+									({
+										links,
+										planos,
+										telefones,
+										enderecos,
+										especialidades,
+										profissional: {
+											id,
+											rqe,
+											crm,
+											nome,
+											preco,
+											isPublico,
+											comentario,
+											isParticular,
+										},
+									}) => {
+										const espcs = especialidades.map((e) => e.nome).join(", ");
+										const crmRqe = [crm, rqe]
+											.filter((i) => i !== "")
+											.join(", ");
+										const CrmRqeText = crmRqe ? ` - ${crmRqe}` : "";
+										return (
+											<Card key={id} sx={cardCss}>
+												<CardHeader
+													avatar={
+														<Avatar aria-label="Profissional">{nome[0]}</Avatar>
+													}
+													title={nome}
+													subheader={`${espcs}${CrmRqeText}`}
+												/>
+												<CardContent>
+													<PagamentoInfo
+														preco={preco}
+														planos={planos}
+														isPublico={isPublico}
+														isParticular={isParticular}
+													/>
+													{comentario && (
+														<Typography variant="body2" color="textSecondary">
+															{translate("indicacoes.card.comentarios")}:{" "}
+															{comentario}
+														</Typography>
+													)}
+													<ContactButton
+														links={links}
+														addresses={enderecos}
+														telephones={telefones}
+													/>
+												</CardContent>
+											</Card>
+										);
+									},
+								)}
+							</>
+						)}
+					</>
+				)}
 			</Box>
 		</Box>
 	);

@@ -1,11 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import settings from "./slices/settings";
+import professionals from "./slices/profissional";
 import rules from "./slices/regras";
+import settings from "./slices/settings";
 
 export const store = configureStore({
 	reducer: combineReducers({
 		settings,
 		rules,
+		professionals,
 	}),
 });
 

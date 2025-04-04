@@ -1,38 +1,26 @@
 import { z } from "zod";
-import { SimNaoEnum } from "./HelpTypes";
 
 const ProfissionalModel = z
 	.object({
 		id: z.number(),
 		nome: z.string(),
-		atualizado: z.string(),
-		especialidades: z.string(),
-		conselhos: z.string(),
-		contato: z.string().default(""),
-		endereco: z.string().default(""),
-		particular: z.enum(SimNaoEnum),
-		publico: z.enum(SimNaoEnum),
+		publico: z.string(),
+		particular: z.string(),
 		comentario: z.string(),
+		crm: z.string().optional().default(""),
+		rqe: z.string().optional().default(""),
+		preco: z.number().optional().nullable(),
 	})
-	.transform((data) => {
-		const [day, month, year] = data.atualizado.split("/").map(Number);
-		const atualizacao = new Date(year, month - 1, day);
-
-		return {
-			id: data.id,
-			nome: data.nome,
-			atualizacao,
-			especialidades: data.especialidades
-				.split(",")
-				.map((n) => Number.parseInt(n)),
-			conselhos: data.conselhos.split(",").map((n) => Number.parseInt(n)),
-			contato: data.contato.split(",").map((n) => Number.parseInt(n)),
-			endereco: data.endereco.split(",").map((n) => Number.parseInt(n)),
-			particular: data.particular === "s",
-			publico: data.publico === "s",
-			comentario: data.comentario,
-		};
-	});
+	.transform((data) => ({
+		id: data.id,
+		nome: data.nome,
+		isParticular: data.particular === "s",
+		isPublico: data.publico === "s",
+		crm: data.crm,
+		rqe: data.rqe,
+		comentario: data.comentario,
+		preco: data.preco ?? undefined,
+	}));
 
 type ProfissionalModelType = z.infer<typeof ProfissionalModel>;
 

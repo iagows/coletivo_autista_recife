@@ -1,13 +1,13 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import type { AddressModelType } from "../../../models/AddressModel";
 import NoReferrerButton from "../../NoReferrerButton";
+import type { EnderecoModelType } from "../../../models/EnderecoModel";
 
 const AddressButton = ({
 	bairro,
 	cidade,
-	logradouro,
 	numero,
-}: AddressModelType) => {
+	logradouro,
+}: EnderecoModelType) => {
 	const local = `${logradouro}, ${numero}${bairro ? ` - ${bairro}` : ""}, ${cidade}`;
 	return (
 		<NoReferrerButton
