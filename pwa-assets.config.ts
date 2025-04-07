@@ -10,7 +10,7 @@ export default defineConfig({
 		minimal2023Preset,
 		{
 			// dark splash screens using black background (the default)
-			darkResizeOptions: { background: "#8f2f2f", fit: "contain" },
+			darkResizeOptions: { background: "#7f1f1f", fit: "contain" },
 			// or using a custom background color
 			// darkResizeOptions: { background: '#1f1f1f' },
 		},

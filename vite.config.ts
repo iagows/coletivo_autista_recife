@@ -14,7 +14,7 @@ export default defineConfig({
 				name: "Coletivo de Autistas Adultos de Recife",
 				short_name: "Autistas de Recife",
 				description: "Aplicativo para o coletivo de autistas adultos de Recife",
-				theme_color: "#3b6480",
+				theme_color: "#7f1f1f",
 				display: "standalone",
 				icons: [
 					{
