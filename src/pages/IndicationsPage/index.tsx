@@ -2,6 +2,7 @@ import {
 	Avatar,
 	Box,
 	Card,
+	CardActions,
 	CardContent,
 	CardHeader,
 	Grid2,
@@ -88,12 +89,14 @@ const IndicationsPage = () => {
 																{comentario}
 															</Typography>
 														)}
+													</CardContent>
+													<CardActions>
 														<ContactButton
 															links={links}
 															addresses={enderecos}
 															telephones={telefones}
 														/>
-													</CardContent>
+													</CardActions>
 												</Card>
 											</Grid2>
 										);
