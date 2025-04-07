@@ -50,11 +50,19 @@ const IndicationsPage = () => {
 											isParticular,
 										},
 									}) => {
-										const espcs = especialidades.map((e) => e.nome).join(", ");
+										const drName = `Dr(a) ${nome}`;
+										const espcs = especialidades
+											.map(
+												(e) =>
+													e.nome.charAt(0).toUpperCase() +
+													e.nome.slice(1).toLowerCase(),
+											)
+											.join(", ");
+										const nameSpecs = `${drName} - ${espcs}`;
 										const crmRqe = [crm, rqe]
 											.filter((i) => i !== "")
 											.join(", ");
-										const CrmRqeText = crmRqe ? ` - ${crmRqe}` : "";
+
 										return (
 											<Grid2 size={gridSizeCss} key={id}>
 												<Card sx={cardCss}>
@@ -64,8 +72,8 @@ const IndicationsPage = () => {
 																{nome[0]}
 															</Avatar>
 														}
-														title={nome}
-														subheader={`${espcs}${CrmRqeText}`}
+														title={nameSpecs}
+														subheader={crmRqe}
 													/>
 													<CardContent>
 														<PagamentoInfo

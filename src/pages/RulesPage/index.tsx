@@ -4,8 +4,6 @@ import PaperCard from "../../components/PaperCard";
 import useUtils from "../../hooks/useUtils";
 import { useRulesSlice } from "../../stores/slices/regras/useRulesSlice";
 
-// const rules: RulesType = RuleModel.parse(regras);
-
 const RulesPage = () => {
 	const { translate } = useUtils();
 	const { data, error, loading } = useRulesSlice();
@@ -47,11 +45,6 @@ const RulesPage = () => {
 												{r.detalhamento}
 											</Typography>
 										)}
-										<Typography variant="overline">
-											{/* {translate("regras.updated", {
-										date: r.,
-									})} */}
-										</Typography>
 									</CardContent>
 								</PaperCard>
 							))

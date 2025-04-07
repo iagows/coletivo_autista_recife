@@ -105,9 +105,6 @@ export const getSheet = async <T>(
 		const columns = getColumns(json);
 		const rows = getRows(columns)(json);
 
-		if (pageName === Pages.PROFISSIONAIS) {
-			console.log({ rows });
-		}
 		const result = rows.map(parser);
 
 		// Armazenar no cache

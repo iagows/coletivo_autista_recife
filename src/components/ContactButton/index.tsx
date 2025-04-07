@@ -1,4 +1,5 @@
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import InsertLinkOutlinedIcon from "@mui/icons-material/InsertLinkOutlined";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import ParkOutlinedIcon from "@mui/icons-material/ParkOutlined";
 import { Box, type SxProps } from "@mui/material";
@@ -56,7 +57,7 @@ const ContactButton = ({
 			{addresses?.map((e) => (
 				<AddressButton {...e} key={e.id} />
 			))}
-			<Box display={"flex"}>
+			<Box display={"flex"} flexWrap={"wrap"}>
 				{emailList?.map((email) => (
 					<NoReferrerButton
 						href={`mailto:${email.url}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
@@ -67,7 +68,7 @@ const ContactButton = ({
 				))}
 				{otherLinksList?.map((link) => (
 					<NoReferrerButton key={link.id} href={link.url}>
-						{link.texto}
+						<InsertLinkOutlinedIcon />
 					</NoReferrerButton>
 				))}
 				{telephones.map((telephone) => (

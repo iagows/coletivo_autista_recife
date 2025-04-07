@@ -9,12 +9,11 @@ type Props = {
 };
 const LoadingSkeleton = ({ amount, h, w }: Props) => (
 	<>
-		{clone(
-			amount,
-			<Grid2 size={gridSizeCss}>
+		{clone(amount, (i) => (
+			<Grid2 size={gridSizeCss} key={i}>
 				<Skeleton width={w} height={h} animation="wave" variant="rectangular" />
-			</Grid2>,
-		)}
+			</Grid2>
+		))}
 	</>
 );
 

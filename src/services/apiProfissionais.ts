@@ -61,12 +61,18 @@ export const getApiProfissionais = async () => {
 	const filtroLinks = getFromListBySomeId(links, "idProfissional");
 	const filtroTelefones = getFromListBySomeId(telefones, "idProfissional");
 
-	return profissionais.map((p) => ({
-		profissional: p,
-		planos: filtroPlano(p.id) as PlanoModelType[],
-		especialidades: filtroEspec(p.id) as EspecialidadeModelType[],
-		enderecos: filtroEnderecos(p.id) as EnderecoModelType[],
-		links: filtroLinks(p.id) as LinkModelType[],
-		telefones: filtroTelefones(p.id) as TelefoneModelType[],
-	}));
+	const output = [
+		...profissionais.map((p) => ({
+			profissional: p,
+			planos: filtroPlano(p.id) as PlanoModelType[],
+			especialidades: filtroEspec(p.id) as EspecialidadeModelType[],
+			enderecos: filtroEnderecos(p.id) as EnderecoModelType[],
+			links: filtroLinks(p.id) as LinkModelType[],
+			telefones: filtroTelefones(p.id) as TelefoneModelType[],
+		})),
+	];
+
+	output.sort((a, b) => a.profissional.nome.localeCompare(b.profissional.nome));
+
+	return output;
 };

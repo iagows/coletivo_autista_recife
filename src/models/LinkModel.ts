@@ -4,7 +4,7 @@ const LinkModel = z
 	.object({
 		id: z.number(),
 		url: z.string(),
-		email: z.string(),
+		email: z.string().nullable().default(""),
 		id_profissional: z.number(),
 		texto: z.string().optional().nullable(),
 	})

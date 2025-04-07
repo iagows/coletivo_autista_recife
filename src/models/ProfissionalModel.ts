@@ -6,7 +6,7 @@ const ProfissionalModel = z
 		nome: z.string(),
 		publico: z.string(),
 		particular: z.string(),
-		comentario: z.string(),
+		comentario: z.string().nullable().default(""),
 		crm: z.string().optional().default(""),
 		rqe: z.string().optional().default(""),
 		preco: z.number().optional().nullable(),

@@ -7,12 +7,14 @@ const AddressButton = ({
 	cidade,
 	numero,
 	logradouro,
+	complemento,
 }: EnderecoModelType) => {
 	const local = `${logradouro}, ${numero}${bairro ? ` - ${bairro}` : ""}, ${cidade}`;
+	const localComplement = complemento ? `${local} - ${complemento}` : local;
 	return (
 		<NoReferrerButton
 			href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(local)}`}
-			text={local}
+			text={localComplement}
 		>
 			<LocationOnIcon />
 		</NoReferrerButton>

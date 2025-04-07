@@ -18,14 +18,12 @@ interface ProfState {
 	}[];
 	loading: boolean;
 	error: string | null;
-	lastUpdated: string | null;
 }
 
 const initialState: ProfState = {
 	data: [],
 	loading: false,
 	error: null,
-	lastUpdated: null,
 };
 
 export const fetchProfissionais = createAsyncThunk(
@@ -52,7 +50,6 @@ const profissionaisSlice = createSlice({
 			.addCase(fetchProfissionais.fulfilled, (state, action) => {
 				state.loading = false;
 				state.data = action.payload;
-				state.lastUpdated = new Date().toISOString();
 			})
 			.addCase(fetchProfissionais.rejected, (state, action) => {
 				state.loading = false;
