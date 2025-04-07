@@ -1,4 +1,10 @@
-import { CardContent, Skeleton, Stack, Typography } from "@mui/material";
+import {
+	CardContent,
+	CardHeader,
+	Skeleton,
+	Stack,
+	Typography,
+} from "@mui/material";
 import CardContainer from "../../components/CardContainer";
 import PaperCard from "../../components/PaperCard";
 import useUtils from "../../hooks/useUtils";
@@ -31,10 +37,8 @@ const RulesPage = () => {
 						) : (
 							data.map((r) => (
 								<PaperCard key={r.id}>
+									<CardHeader title={r.texto} />
 									<CardContent>
-										<Typography variant="body1" component="p">
-											{r.texto}
-										</Typography>
 										{r.detalhamento && (
 											<Typography
 												gutterBottom

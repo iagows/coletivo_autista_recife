@@ -8,7 +8,7 @@ const paperCss: SxProps = {
 const PaperCard = ({ children }: PropsWithChildren) => {
 	return (
 		<Paper sx={paperCss} elevation={3}>
-			<Card>{children}</Card>
+			<Card variant="elevation">{children}</Card>
 		</Paper>
 	);
 };

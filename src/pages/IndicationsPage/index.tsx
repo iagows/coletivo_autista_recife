@@ -1,22 +1,19 @@
 import {
 	Avatar,
 	Box,
-	Card,
 	CardActions,
 	CardContent,
 	CardHeader,
 	Grid2,
-	type SxProps,
 	Typography,
 } from "@mui/material";
 import ContactButton from "../../components/ContactButton";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PagamentoInfo from "../../components/PagamentoInfo";
+import PaperCard from "../../components/PaperCard";
 import useUtils from "../../hooks/useUtils";
 import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
 import { gridSizeCss } from "../../util/constants";
-
-const cardCss: SxProps = { marginBottom: 2 };
 
 const IndicationsPage = () => {
 	const { translate } = useUtils();
@@ -66,7 +63,7 @@ const IndicationsPage = () => {
 
 										return (
 											<Grid2 size={gridSizeCss} key={id}>
-												<Card sx={cardCss}>
+												<PaperCard>
 													<CardHeader
 														avatar={
 															<Avatar aria-label="Profissional">
@@ -97,7 +94,7 @@ const IndicationsPage = () => {
 															telephones={telefones}
 														/>
 													</CardActions>
-												</Card>
+												</PaperCard>
 											</Grid2>
 										);
 									},
