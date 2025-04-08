@@ -1,19 +1,9 @@
-import {
-	Avatar,
-	Box,
-	CardActions,
-	CardContent,
-	CardHeader,
-	Grid2,
-	Typography,
-} from "@mui/material";
-import ContactButton from "../../components/ContactButton";
+import { Box, Grid2, Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
-import PagamentoInfo from "../../components/PagamentoInfo";
-import PaperCard from "../../components/PaperCard";
+import PrepareDisplay from "../../components/PrepareDisplay";
 import useUtils from "../../hooks/useUtils";
 import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
-import { gridSizeCss } from "../../util/constants";
+import IndicationItem from "./IndicationItem";
 
 const IndicationsPage = () => {
 	const { translate } = useUtils();
@@ -22,87 +12,15 @@ const IndicationsPage = () => {
 		<Box>
 			<Typography>{translate("indicacoes.conteudo")}</Typography>
 			<Grid2 container spacing={2}>
-				{error ? (
-					<div>{`Erro: ${error}`}</div>
-				) : (
-					<>
-						{loading ? (
-							<LoadingSkeleton w={450} h={250} amount={6} />
-						) : (
-							<>
-								{data.map(
-									({
-										links,
-										planos,
-										telefones,
-										enderecos,
-										especialidades,
-										profissional: {
-											id,
-											rqe,
-											crm,
-											nome,
-											preco,
-											isPublico,
-											comentario,
-											isParticular,
-										},
-									}) => {
-										const drName = `Dr(a) ${nome}`;
-										const espcs = especialidades
-											.map(
-												(e) =>
-													e.nome.charAt(0).toUpperCase() +
-													e.nome.slice(1).toLowerCase(),
-											)
-											.join(", ");
-										const nameSpecs = `${drName} - ${espcs}`;
-										const crmRqe = [crm, rqe]
-											.filter((i) => i !== "")
-											.join(", ");
-
-										return (
-											<Grid2 size={gridSizeCss} key={id}>
-												<PaperCard>
-													<CardHeader
-														avatar={
-															<Avatar aria-label="Profissional">
-																{nome[0]}
-															</Avatar>
-														}
-														title={nameSpecs}
-														subheader={crmRqe}
-													/>
-													<CardContent>
-														<PagamentoInfo
-															preco={preco}
-															planos={planos}
-															isPublico={isPublico}
-															isParticular={isParticular}
-														/>
-														{comentario && (
-															<Typography variant="body2" color="textSecondary">
-																{translate("indicacoes.card.comentarios")}:{" "}
-																{comentario}
-															</Typography>
-														)}
-													</CardContent>
-													<CardActions>
-														<ContactButton
-															links={links}
-															addresses={enderecos}
-															telephones={telefones}
-														/>
-													</CardActions>
-												</PaperCard>
-											</Grid2>
-										);
-									},
-								)}
-							</>
-						)}
-					</>
-				)}
+				<PrepareDisplay
+					error={error}
+					isLoading={loading}
+					loadingComponent={<LoadingSkeleton w={450} h={250} amount={6} />}
+				>
+					{data.map((d) => (
+						<IndicationItem {...d} key={d.profissional.id} />
+					))}
+				</PrepareDisplay>
 			</Grid2>
 		</Box>
 	);
