@@ -1,5 +1,4 @@
-import { Stack, Typography } from "@mui/material";
-import CardContainer from "../../components/CardContainer";
+import DataDisplay from "../../components/DataDisplay";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PrepareDisplay from "../../components/PrepareDisplay";
 import { TextIds } from "../../models/TextoModel";
@@ -8,41 +7,21 @@ import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import RuleItem from "./RuleItem";
 
 const RulesPage = () => {
-	const {
-		error: textError,
-		loading: textLoading,
-		getByTextId,
-	} = useTextosSlice();
-	const {
-		data: rulesData,
-		error: rulesError,
-		loading: rulesLoading,
-	} = useRulesSlice();
+	const textoData = useTextosSlice();
+	const { data, error, loading } = useRulesSlice();
 
 	return (
-		<CardContainer>
+		<DataDisplay id={TextIds.REGRAS_DESC} data={textoData}>
 			<PrepareDisplay
-				error={textError}
-				isLoading={textLoading}
-				loadingComponent={<LoadingSkeleton />}
+				error={error}
+				isLoading={loading}
+				loadingComponent={<LoadingSkeleton amount={4} h={118} />}
 			>
-				<Typography variant="h6" component="p">
-					{getByTextId(TextIds.REGRAS_DESC)}
-				</Typography>
+				{data.map((r) => (
+					<RuleItem rule={r} key={r.id} />
+				))}
 			</PrepareDisplay>
-
-			<Stack direction="column" spacing={2}>
-				<PrepareDisplay
-					error={rulesError}
-					isLoading={rulesLoading}
-					loadingComponent={<LoadingSkeleton amount={4} h={118} />}
-				>
-					{rulesData.map((r) => (
-						<RuleItem rule={r} key={r.id} />
-					))}
-				</PrepareDisplay>
-			</Stack>
-		</CardContainer>
+		</DataDisplay>
 	);
 };
 
