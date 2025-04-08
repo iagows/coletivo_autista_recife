@@ -3,6 +3,7 @@ import { z } from "zod";
 export enum TextIds {
 	QUEM_SOMOS = 1,
 	REGRAS_DESC = 2,
+	INDICACOES_DESC = 3,
 }
 
 const TextoModel = z.object({

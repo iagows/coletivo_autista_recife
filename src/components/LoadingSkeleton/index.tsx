@@ -4,10 +4,10 @@ import { gridSizeCss } from "../../util/constants";
 
 type Props = {
 	w?: number;
-	h: number;
-	amount: number;
+	h?: number;
+	amount?: number;
 };
-const LoadingSkeleton = ({ amount, h, w }: Props) => (
+const LoadingSkeleton = ({ amount = 1, h, w }: Props) => (
 	<>
 		{clone(amount, (i) => (
 			<Grid2 size={gridSizeCss} key={i}>

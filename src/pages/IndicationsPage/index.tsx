@@ -1,16 +1,30 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PrepareDisplay from "../../components/PrepareDisplay";
-import useUtils from "../../hooks/useUtils";
+import { TextIds } from "../../models/TextoModel";
 import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
+import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import IndicationItem from "./IndicationItem";
 
 const IndicationsPage = () => {
-	const { translate } = useUtils();
 	const { data, error, loading } = useProfissionalSlice();
+	const {
+		error: textoError,
+		loading: textoLoading,
+		getByTextId,
+	} = useTextosSlice();
+
 	return (
 		<Box>
-			<Typography>{translate("indicacoes.conteudo")}</Typography>
+			<PrepareDisplay
+				error={textoError}
+				isLoading={textoLoading}
+				loadingComponent={<LoadingSkeleton />}
+			>
+				<Typography variant="h6" component="p">
+					{getByTextId(TextIds.INDICACOES_DESC)}
+				</Typography>
+			</PrepareDisplay>
 			<Grid2 container spacing={2}>
 				<PrepareDisplay
 					error={error}

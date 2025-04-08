@@ -1,4 +1,4 @@
-import { Skeleton, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import CardContainer from "../../components/CardContainer";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PrepareDisplay from "../../components/PrepareDisplay";
@@ -6,17 +6,6 @@ import { TextIds } from "../../models/TextoModel";
 import { useRulesSlice } from "../../stores/slices/regras/useRulesSlice";
 import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import RuleItem from "./RuleItem";
-
-const Loading = () => (
-	<>
-		<Typography variant="h5" component="p">
-			<Skeleton variant="rectangular" animation="wave" />
-		</Typography>
-		<Typography variant="h6" component="p">
-			<Skeleton variant="rectangular" animation="wave" />
-		</Typography>
-	</>
-);
 
 const RulesPage = () => {
 	const {
@@ -35,7 +24,7 @@ const RulesPage = () => {
 			<PrepareDisplay
 				error={textError}
 				isLoading={textLoading}
-				loadingComponent={<Loading />}
+				loadingComponent={<LoadingSkeleton />}
 			>
 				<Typography variant="h6" component="p">
 					{getByTextId(TextIds.REGRAS_DESC)}
