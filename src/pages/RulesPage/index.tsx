@@ -37,9 +37,6 @@ const RulesPage = () => {
 				isLoading={textLoading}
 				loadingComponent={<Loading />}
 			>
-				<Typography variant="h5" component="p">
-					{getByTextId(TextIds.REGRAS_TITULO)}
-				</Typography>
 				<Typography variant="h6" component="p">
 					{getByTextId(TextIds.REGRAS_DESC)}
 				</Typography>

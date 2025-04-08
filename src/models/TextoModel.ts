@@ -2,8 +2,7 @@ import { z } from "zod";
 
 export enum TextIds {
 	QUEM_SOMOS = 1,
-	REGRAS_TITULO = 2,
-	REGRAS_DESC = 3,
+	REGRAS_DESC = 2,
 }
 
 const TextoModel = z.object({
