@@ -30,9 +30,6 @@ const EscolaPage = () => {
 					</TableHead>
 				</Table>
 			</Box>
-			<Typography>
-				{translate("escola.observacao", { date: "22-03-2025" })}
-			</Typography>
 		</Box>
 	);
 };

@@ -47,6 +47,7 @@ export enum Pages {
 	LINKS = "links",
 	PLAN_PROF = "plano_prof",
 	ESPEC_PROF = "espec_prof",
+	TEXTOS = "textos",
 }
 
 // Cache para armazenar respostas já obtidas

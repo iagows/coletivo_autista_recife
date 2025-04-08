@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import professionals from "./slices/profissional";
 import rules from "./slices/regras";
 import settings from "./slices/settings";
+import textos from "./slices/textos";
 
 export const store = configureStore({
 	reducer: combineReducers({
 		settings,
 		rules,
 		professionals,
+		textos,
 	}),
 });
 

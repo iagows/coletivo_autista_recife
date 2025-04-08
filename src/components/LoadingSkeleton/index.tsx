@@ -3,7 +3,7 @@ import { clone } from "../../util/clone";
 import { gridSizeCss } from "../../util/constants";
 
 type Props = {
-	w: number;
+	w?: number;
 	h: number;
 	amount: number;
 };
