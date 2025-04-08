@@ -1,35 +1,23 @@
-import {
-	Box,
-	type SxProps,
-	Table,
-	TableCell,
-	TableHead,
-	TableRow,
-	Typography,
-} from "@mui/material";
-import useUtils from "../../hooks/useUtils";
-
-const tableBoxCss: SxProps = { marginTop: 4, marginBottom: 4 };
+import { Box, Typography } from "@mui/material";
+import LoadingSkeleton from "../../components/LoadingSkeleton";
+import PrepareDisplay from "../../components/PrepareDisplay";
+import { TextIds } from "../../models/TextoModel";
+import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 
 const EscolaPage = () => {
-	const { translate } = useUtils();
+	const { error, getByTextId, loading } = useTextosSlice();
+
 	return (
 		<Box>
-			<Typography>{translate("escola.conteudo")}</Typography>
-			<Box sx={tableBoxCss}>
-				<Table size="small">
-					<TableHead>
-						<TableRow>
-							<TableCell>{translate("escola.tabela.faculdade")}</TableCell>
-							<TableCell>{translate("escola.tabela.cidade")}</TableCell>
-							<TableCell>{translate("escola.tabela.bairro")}</TableCell>
-							<TableCell>{translate("escola.tabela.endereco")}</TableCell>
-							<TableCell>{translate("escola.tabela.telefone")}</TableCell>
-							<TableCell>{translate("escola.tabela.preco")}</TableCell>
-						</TableRow>
-					</TableHead>
-				</Table>
-			</Box>
+			<PrepareDisplay
+				error={error}
+				isLoading={loading}
+				loadingComponent={<LoadingSkeleton />}
+			>
+				<Typography variant="h6" component="p">
+					{getByTextId(TextIds.ESCOLA)}
+				</Typography>
+			</PrepareDisplay>
 		</Box>
 	);
 };

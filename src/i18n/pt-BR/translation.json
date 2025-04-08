@@ -25,16 +25,5 @@
 			"assunto": "Contato por meio do site do Coletivo de Autistas Adultos de Recife",
 			"corpo": "Olá,\nConsegui seu contato por meio do site do Coletivo de Autistas Adultos de Recife\n"
 		}
-	},
-	"escola": {
-		"conteudo": "Algumas faculdades fazem consulta com preços populares. A lista exibida aqui pode não estar atualizada, então recomendamos que ligue antes para confirmar endereço, preço, horário etc.",
-		"tabela": {
-			"faculdade": "Faculdade",
-			"cidade": "Cidade",
-			"bairro": "Bairro",
-			"endereco": "Endereço",
-			"telefone": "Telefone(s)",
-			"preco": "Preço (aproximado)"
-		}
 	}
 }
