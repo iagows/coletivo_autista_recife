@@ -1,0 +1,1 @@
+import{g as e,c as a,C as o,j as t}from"./index-CZ-C1-Tp.js";const r=e("MuiBox",["root"]),n=a({defaultClassName:r.root,generateClassName:o.generate}),x={p:3,gap:2,display:"flex",flexDirection:"column"},C=({children:s})=>t.jsx(n,{sx:x,children:s});export{C};
