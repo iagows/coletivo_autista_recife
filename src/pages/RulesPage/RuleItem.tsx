@@ -2,22 +2,19 @@ import { CardContent, CardHeader, Typography } from "@mui/material";
 import PaperCard from "../../components/PaperCard";
 import type { RulesModelType } from "../../models/RuleModel";
 
-type Props = {
-	rule: RulesModelType;
-};
-const RuleItem = ({ rule }: Props) => {
+const RuleItem = ({ texto, detalhamento }: RulesModelType) => {
 	return (
 		<PaperCard>
-			<CardHeader title={rule.texto} />
+			<CardHeader title={texto} />
 			<CardContent>
-				{rule.detalhamento && (
+				{detalhamento && (
 					<Typography
 						gutterBottom
 						component="p"
 						variant="body2"
 						color="text.secondary"
 					>
-						{rule.detalhamento}
+						{detalhamento}
 					</Typography>
 				)}
 			</CardContent>

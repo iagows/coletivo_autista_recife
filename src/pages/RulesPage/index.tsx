@@ -1,6 +1,4 @@
-import DataDisplay from "../../components/DataDisplay";
-import LoadingSkeleton from "../../components/LoadingSkeleton";
-import PrepareDisplay from "../../components/PrepareDisplay";
+import SuspenseData from "../../components/SuspenseData";
 import { TextIds } from "../../models/TextoModel";
 import { useRulesSlice } from "../../stores/slices/regras/useRulesSlice";
 import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
@@ -11,17 +9,15 @@ const RulesPage = () => {
 	const { data, error, loading } = useRulesSlice();
 
 	return (
-		<DataDisplay id={TextIds.REGRAS_DESC} data={textoData}>
-			<PrepareDisplay
-				error={error}
-				isLoading={loading}
-				loadingComponent={<LoadingSkeleton amount={4} h={118} />}
-			>
-				{data.map((r) => (
-					<RuleItem rule={r} key={r.id} />
-				))}
-			</PrepareDisplay>
-		</DataDisplay>
+		<SuspenseData
+			data={data}
+			error={error}
+			loading={loading}
+			textData={textoData}
+			component={RuleItem}
+			id={TextIds.REGRAS_DESC}
+			idGetter={(r) => `${r.id}`}
+		/>
 	);
 };
 
