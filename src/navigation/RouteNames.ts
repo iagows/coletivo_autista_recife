@@ -37,7 +37,7 @@ const routeName: Map<RouteNames, RouteData> = new Map([
 	[RouteNames.REGRAS, { title: "path.regras", icon: RuleOutlinedIcon }],
 	[
 		RouteNames.INDICACOES,
-		{ title: "path.indicacoes", icon: ArrowRightAltOutlinedIcon },
+		{ title: "path.indicacoes_externas", icon: ArrowRightAltOutlinedIcon },
 	],
 	[
 		RouteNames.CONSULTORIOS_ESCOLA,
