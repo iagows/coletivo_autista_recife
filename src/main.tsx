@@ -4,12 +4,14 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./i18n/config";
 
+import { registerSW } from "virtual:pwa-register";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import App from "./App.tsx";
-import { store } from "./stores/index.ts";
-import { registerSW } from "virtual:pwa-register";
+import LoadingSkeleton from "./components/LoadingSkeleton/index.tsx";
+import { persistor, store } from "./stores/index.ts";
 
 const updateSW = registerSW({
 	onNeedRefresh() {
@@ -28,7 +30,9 @@ if (!doc) {
 createRoot(doc).render(
 	<StrictMode>
 		<Provider store={store}>
-			<App />
+			<PersistGate loading={<LoadingSkeleton />} persistor={persistor}>
+				<App />
+			</PersistGate>
 		</Provider>
 	</StrictMode>,
 );
