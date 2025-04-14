@@ -4,14 +4,14 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./i18n/config";
 
-import { registerSW } from "virtual:pwa-register";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import App from "./App.tsx";
-import LoadingSkeleton from "./components/LoadingSkeleton/index.tsx";
-import { persistor, store } from "./stores/index.ts";
+import { registerSW } from "virtual:pwa-register";
+import App from "./App";
+import LoadingSkeleton from "./components/LoadingSkeleton/index";
+import { persistor, store } from "./stores/index";
 
 const updateSW = registerSW({
 	onNeedRefresh() {
