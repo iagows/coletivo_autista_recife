@@ -4,6 +4,7 @@ import type { TextIds } from "../../models/TextoModel";
 import type { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import LoadingSkeleton from "../LoadingSkeleton";
 import PrepareDisplay from "../PrepareDisplay";
+import Filter from "../Filter";
 
 type FromTextoSlice = ReturnType<typeof useTextosSlice>;
 
