@@ -35,16 +35,7 @@ type Props = {
 };
 
 const IndicationItem = ({
-	profissional: {
-		id,
-		rqe,
-		crm,
-		nome,
-		preco,
-		isPublico,
-		comentario,
-		isParticular,
-	},
+	profissional,
 	links,
 	planos,
 	telefones,
@@ -52,6 +43,8 @@ const IndicationItem = ({
 	especialidades,
 }: Props) => {
 	const { translate } = useUtils();
+	const { id, rqe, crm, nome, preco, isPublico, comentario, isParticular } =
+		profissional;
 
 	const nameSpecs = `${drName(nome)} - ${espcs(especialidades)}`;
 	const crmRqe = [crm, rqe].filter((i) => i !== "").join(", ");
