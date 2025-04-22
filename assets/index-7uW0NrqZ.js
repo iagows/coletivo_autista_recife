@@ -1,0 +1,1 @@
+import{j as o,N as r,b as n,T as t,L as i}from"./index-Bdz74K8M.js";import{u as p,P as x}from"./useTextosSlice-DR9xFLR5.js";const c=()=>{const{error:s,getByTextId:e,loading:a}=p();return o.jsx(r,{children:o.jsx(x,{error:s,isLoading:a,loadingComponent:o.jsx(i,{}),children:o.jsx(n,{variant:"h6",component:"p",children:e(t.ESCOLA)})})})};export{c as default};

@@ -1,0 +1,1 @@
+import{j as e,b as r,T as t,L as n}from"./index-Bdz74K8M.js";import{u as i,P as p}from"./useTextosSlice-DR9xFLR5.js";const l=()=>{const{error:o,getByTextId:s,loading:a}=i();return e.jsx(p,{error:o,isLoading:a,loadingComponent:e.jsx(n,{}),children:e.jsx(r,{variant:"h6",component:"p",children:s(t.QUEM_SOMOS)})})};export{l as default};

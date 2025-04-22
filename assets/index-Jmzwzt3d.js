@@ -1,1 +1,0 @@
-import{j as e,T as r,b as t}from"./index-CZ-C1-Tp.js";import{u as n,P as i,L as p}from"./useTextosSlice-CAdTatdD.js";const l=()=>{const{error:o,getByTextId:s,loading:a}=n();return e.jsx(i,{error:o,isLoading:a,loadingComponent:e.jsx(p,{}),children:e.jsx(r,{variant:"h6",component:"p",children:s(t.QUEM_SOMOS)})})};export{l as default};

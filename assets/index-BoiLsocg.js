@@ -1,0 +1,1 @@
+import{j as t,T as a}from"./index-Bdz74K8M.js";import{S as i}from"./index-Dyp4BMI7.js";import{u as c}from"./useTextosSlice-DR9xFLR5.js";const m=()=>t.jsx(t.Fragment,{children:"em construção"}),x=()=>{const s=[{id:"oi"}],o=null,e=!1,r=c();return t.jsx(i,{data:s,error:o,loading:e,textData:r,component:m,id:a.ESCOLA,idGetter:n=>`${n.id}`})};export{x as default};
