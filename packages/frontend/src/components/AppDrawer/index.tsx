@@ -1,3 +1,5 @@
+import { useUtils } from "@car/storage";
+import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
 import {
 	Box,
 	List,
@@ -15,8 +17,6 @@ import coletivo from "../../assets/coletivo.jpg";
 import type RouteNames from "../../navigation/RouteNames";
 import { getRouteAsList } from "../../navigation/RouteNames";
 import { DRAWER_WIDTH, PROJECT_VERSION } from "../../util/constants";
-import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
-import { useUtils } from "@car/storage";
 
 const drawer_css: SxProps = {
 	width: DRAWER_WIDTH,
