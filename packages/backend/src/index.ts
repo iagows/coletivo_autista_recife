@@ -38,7 +38,6 @@ const Main = async () => {
 						.find()
 						.toArray();
 
-					// Validação manual com Zod
 					const result = TextosListResponse.safeParse(textos);
 					if (!result.success) {
 						throw new Error("Formato de dados inválido");
