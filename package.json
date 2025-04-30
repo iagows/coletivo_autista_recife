@@ -1,58 +1,24 @@
 {
-	"name": "coletivo_autista_recife",
-	"private": true,
-	"version": "0.11.4",
-	"type": "module",
-	"homepage": "https://github.com/iagows/coletivo_autista_recife",
-	"scripts": {
-		"dev": "vite",
-		"build": "tsc -b && vite build",
-		"preview": "vite preview",
-		"buildPatch": "bun run incPatch && bun run build",
-		"buildMinor": "bun run incMinor && bun run build",
-		"buildMajor": "bun run incMajor && bun run build",
-		"lint": "npx @biomejs/biome check --apply .",
-		"predeploy": "npm run build",
-		"gen-assets": "pwa-assets-generator",
-		"deploy": "gh-pages -d dist",
-		"incPatch": "bun predeploy.ts p",
-		"incMinor": "bun predeploy.ts m",
-		"incMajor": "bun predeploy.ts M",
-		"deployPatch": "bun run buildPatch && bun run deploy",
-		"deployMinor": "bun run buildMinor && bun run deploy",
-		"deployMajor": "bun run buildMajor && bun run deploy"
-	},
-	"peerDependencies": {
-		"react": "^17.0.0 || ^18.0.0 || ^19.0.0",
-		"react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
-	},
-	"dependencies": {
-		"@emotion/react": "^11.14.0",
-		"@emotion/styled": "^11.14.0",
-		"@fontsource/roboto": "^5.2.5",
-		"@mui/icons-material": "^6.4.11",
-		"@mui/material": "^6.4.11",
-		"@reduxjs/toolkit": "^2.7.0",
-		"add": "^2.0.6",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0",
-		"react-i18next": "^15.4.1",
-		"react-redux": "^9.2.0",
-		"react-router": "^7.5.1",
-		"react-router-dom": "^7.5.1",
-		"redux-persist": "^6.0.0",
-		"zod": "^3.24.3"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@types/react": "^19.1.2",
-		"@types/react-dom": "^19.1.2",
-		"@vite-pwa/assets-generator": "^0.2.6",
-		"@vitejs/plugin-react": "^4.4.1",
-		"gh-pages": "^6.3.0",
-		"globals": "^15.15.0",
-		"typescript": "~5.7.3",
-		"vite": "^6.3.2",
-		"vite-plugin-pwa": "^0.21.2"
-	}
+    "name": "car",
+    "version": "0.12.0",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4",
+        "@types/bun": "latest"
+    },
+    "module": "index.ts",
+    "type": "module",
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "backend": "cd packages/backend && bun run dev",
+        "frontend": "cd packages/frontend && bun run dev",
+        "build": "bun run --parallel build:frontend build:backend",
+        "build:backend": "cd packages/backend && bun run build",
+        "build:frontend": "cd packages/frontend && bun run build"
+    }
 }

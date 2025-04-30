@@ -1,0 +1,17 @@
+{
+  "name": "@car/storage",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.7.0",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "@car/models": "workspace:*"
+  }
+}

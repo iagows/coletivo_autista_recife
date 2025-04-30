@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import packageJson from "./package.json" assert { type: "json" };
+import packageJson from "./package.json";
 
 class Versao {
 	#major = 0;
