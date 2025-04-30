@@ -1,7 +1,7 @@
+import { useUtils } from "@car/storage";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import { Button, Snackbar, type SnackbarCloseReason } from "@mui/material";
 import { useState } from "react";
-import useUtils from "../../hooks/useUtils";
 
 type Props = {
 	text: string;

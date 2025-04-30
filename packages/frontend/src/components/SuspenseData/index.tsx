@@ -1,9 +1,8 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import type { ReactNode } from "react";
-import type { TextIds } from "../../models/TextoModel";
-import type { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import LoadingSkeleton from "../LoadingSkeleton";
 import PrepareDisplay from "../PrepareDisplay";
+import type { TextIds } from "@car/models/src/TextoModel";
 
 type FromTextoSlice = ReturnType<typeof useTextosSlice>;
 

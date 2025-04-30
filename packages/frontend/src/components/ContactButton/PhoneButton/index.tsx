@@ -4,7 +4,6 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import type { SxProps } from "@mui/material";
 
 import NoReferrerButton from "../../NoReferrerButton";
-import type { TelefoneModelType } from "../../../models/TelefoneModel";
 
 const telegramCss: SxProps = {
 	transform: "rotate(-40deg)",

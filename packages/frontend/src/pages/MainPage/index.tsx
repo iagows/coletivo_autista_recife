@@ -1,8 +1,8 @@
+import { useUtils } from "@car/storage";
 import { Box, type SxProps, Toolbar } from "@mui/material";
 import { Outlet } from "react-router";
 import AppDrawer from "../../components/AppDrawer";
 import AppTopbar from "../../components/AppTopbar";
-import useUtils from "../../hooks/useUtils";
 import { DRAWER_WIDTH } from "../../util/constants";
 
 const mainCss: SxProps = { userSelect: "none" };

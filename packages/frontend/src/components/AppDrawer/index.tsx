@@ -12,11 +12,11 @@ import {
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import coletivo from "../../assets/coletivo.jpg";
-import useUtils from "../../hooks/useUtils";
 import type RouteNames from "../../navigation/RouteNames";
 import { getRouteAsList } from "../../navigation/RouteNames";
-import useSettingsSlice from "../../stores/slices/settings/useSettingsSlice";
 import { DRAWER_WIDTH, PROJECT_VERSION } from "../../util/constants";
+import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
+import { useUtils } from "@car/storage";
 
 const drawer_css: SxProps = {
 	width: DRAWER_WIDTH,

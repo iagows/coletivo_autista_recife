@@ -1,7 +1,5 @@
+import { TextIds } from "@car/models/src/TextoModel";
 import SuspenseData from "../../components/SuspenseData";
-import { TextIds } from "../../models/TextoModel";
-import { useRulesSlice } from "../../stores/slices/regras/useRulesSlice";
-import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import RuleItem from "./RuleItem";
 
 const RulesPage = () => {

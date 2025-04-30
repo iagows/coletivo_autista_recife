@@ -1,6 +1,5 @@
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import NoReferrerButton from "../../NoReferrerButton";
-import type { EnderecoModelType } from "../../../models/EnderecoModel";
 
 const AddressButton = ({
 	bairro,

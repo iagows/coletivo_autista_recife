@@ -1,3 +1,4 @@
+import { useUtils } from "@car/storage";
 import Brightness4Icon from "@mui/icons-material/Brightness4"; // Ícone de lua (dark)
 import Brightness7Icon from "@mui/icons-material/Brightness7"; // Ícone de sol (light)
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
@@ -8,10 +9,9 @@ import {
 	Toolbar,
 	Typography,
 } from "@mui/material";
-import useUtils from "../../hooks/useUtils";
 import { getRouteTitle } from "../../navigation/RouteNames";
-import useSettingsSlice from "../../stores/slices/settings/useSettingsSlice";
 import { DRAWER_WIDTH } from "../../util/constants";
+import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
 
 const titleCss: SxProps = { flexGrow: 1 };
 const barCss = (isMobile: boolean): SxProps => ({

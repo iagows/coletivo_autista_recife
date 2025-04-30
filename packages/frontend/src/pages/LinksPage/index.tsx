@@ -1,6 +1,4 @@
 import SuspenseData from "../../components/SuspenseData";
-import { TextIds } from "../../models/TextoModel";
-import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 
 const Escola = () => {
 	return <>em construção</>;

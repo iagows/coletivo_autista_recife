@@ -1,5 +1,5 @@
 import type { GridBaseProps } from "@mui/material";
-import packageJson from "../../../../backup/package.json";
+import packageJson from "../../package.json";
 
 export const PROJECT_VERSION = packageJson.version;
 

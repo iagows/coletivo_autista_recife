@@ -1,8 +1,8 @@
+import type { RuleModelType } from "@car/models";
 import { CardContent, CardHeader, Typography } from "@mui/material";
 import PaperCard from "../../components/PaperCard";
-import type { RulesModelType } from "../../models/RuleModel";
 
-const RuleItem = ({ texto, detalhamento }: RulesModelType) => {
+const RuleItem = ({ texto, detalhamento }: RuleModelType) => {
 	return (
 		<PaperCard>
 			<CardHeader title={texto} />

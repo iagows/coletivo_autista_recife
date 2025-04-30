@@ -9,13 +9,6 @@ import {
 import ContactButton from "../../components/ContactButton";
 import PagamentoInfo from "../../components/PagamentoInfo";
 import PaperCard from "../../components/PaperCard";
-import useUtils from "../../hooks/useUtils";
-import type { EnderecoModelType } from "../../models/EnderecoModel";
-import type { EspecialidadeModelType } from "../../models/EspecialidadeModel";
-import type { LinkModelType } from "../../../../packages/models/src/LinkModel";
-import type { PlanoModelType } from "../../../../packages/models/src/PlanoModel";
-import type { ProfissionalModelType } from "../../../../packages/models/src/ProfissionalModel";
-import type { TelefoneModelType } from "../../models/TelefoneModel";
 import { gridSizeCss } from "../../util/constants";
 
 const drName = (nome: string) => `Dr(a) ${nome}`;

@@ -1,7 +1,4 @@
 import SuspenseData from "../../components/SuspenseData";
-import { TextIds } from "../../models/TextoModel";
-import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
-import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 import IndicationItem from "./IndicationItem";
 
 const IndicationsPage = () => {

@@ -1,14 +1,14 @@
 import { z } from "zod";
 import IdModel from "./IdModel";
 
-const RulesModel = z
+const RuleModel = z
 	.object({
 		texto: z.string(),
 		detalhamento: z.string().nullable().optional().default(""),
 	})
 	.merge(IdModel);
 
-type RulesModelType = z.infer<typeof RulesModel>;
+type RuleModelType = z.infer<typeof RuleModel>;
 
-export default RulesModel;
-export type { RulesModelType };
+export default RuleModel;
+export type { RuleModelType };
