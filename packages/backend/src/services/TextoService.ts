@@ -6,6 +6,7 @@ import type {
 	IMongoRepository,
 } from "../repositories/IMongoRepository";
 import { TextoRepository } from "../repositories/TextoRepository";
+import { MongoValidationError } from "../utils/MongoValidationError";
 
 const TextosListResponse = z.array(TextoModelMongoDB);
 
@@ -18,7 +19,7 @@ export class TextoService {
 		const result = TextosListResponse.safeParse(textos);
 
 		if (!result.success) {
-			throw new Error(`Formato de dados inválido: ${result.error}`);
+			throw new MongoValidationError(result.error);
 		}
 
 		return result.data;

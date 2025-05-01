@@ -9,6 +9,7 @@ import type {
 	IMongoRepository,
 } from "../repositories/IMongoRepository";
 import { ProfissionalRepository } from "../repositories/ProfissionalRepository";
+import { MongoValidationError } from "../utils/MongoValidationError";
 
 const ProfissionaisListResponse = z.array(ProfissionalModelMongoDB);
 
@@ -21,7 +22,7 @@ export class ProfissionalService {
 		const result = ProfissionaisListResponse.safeParse(profissionais);
 
 		if (!result.success) {
-			throw new Error(`Formato de dados inválido: ${result.error}`);
+			throw new MongoValidationError(result.error);
 		}
 
 		return result.data;

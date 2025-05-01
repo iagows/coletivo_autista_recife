@@ -1,29 +1,38 @@
 import { DependencyInjection } from "@car/utils";
-import type { Db } from "mongodb";
+import swagger from "@elysiajs/swagger";
+import Elysia from "elysia";
 import { ProfissionalController } from "./controllers/ProfissionalController";
+import { RegraController } from "./controllers/RegraController";
 import { TextoController } from "./controllers/TextoController";
 import { ProfissionalRepository } from "./repositories/ProfissionalRepository";
+import { RegraRepository } from "./repositories/RegraRepository";
 import { TextoRepository } from "./repositories/TextoRepository";
 import { ProfissionalService } from "./services/ProfissionalService";
+import { RegraService } from "./services/RegraService";
 import { TextoService } from "./services/TextoService";
 import { EnvVars } from "./utils/EnvVars";
 import { getMongoDatabase } from "./utils/mongoHelp";
-import Elysia from "elysia";
-import swagger from "@elysiajs/swagger";
 
 const Main = async () => {
 	const db = await getMongoDatabase();
 
+	// repositories
 	DependencyInjection.register(TextoRepository, new TextoRepository(db));
 	DependencyInjection.register(
 		ProfissionalRepository,
 		new ProfissionalRepository(db),
 	);
+	DependencyInjection.register(RegraRepository, new RegraRepository(db));
+
+	// services
 	DependencyInjection.register(TextoService, new TextoService());
 	DependencyInjection.register(ProfissionalService, new ProfissionalService());
+	DependencyInjection.register(RegraService, new RegraService());
 
+	// controllers
 	const textoController = new TextoController();
 	const profcontroller = new ProfissionalController();
+	const regraController = new RegraController();
 
 	const swaggerPath = EnvVars.swagger.path;
 
@@ -31,11 +40,15 @@ const Main = async () => {
 		path: swaggerPath,
 		documentation: {
 			info: {
-				title: "API do site do Coletivo de Autistas Adultos de Recife",
-				version: "1.0.0",
+				version: "1.0.1",
 				description: "API de gerenciamento de conteúdos",
+				title: "API do site do Coletivo de Autistas Adultos de Recife",
 			},
-			tags: [textoController.getTag(), profcontroller.getTag()],
+			tags: [
+				textoController.getTag(),
+				profcontroller.getTag(),
+				regraController.getTag(),
+			],
 		},
 	};
 
@@ -49,9 +62,10 @@ const Main = async () => {
 			},
 		})
 		.group("/api", (app) =>
-			app //
-				.use(textoController.getRoutes()) //
-				.use(profcontroller.getRoutes()),
+			app
+				.use(textoController.getRoutes())
+				.use(profcontroller.getRoutes())
+				.use(regraController.getRoutes()),
 		)
 		.listen(EnvVars.port);
 
@@ -63,7 +77,8 @@ const Main = async () => {
 	);
 	console.log("🗂  Endpoints disponíveis:");
 	console.log(`- ${serverUrl}/api/textos`);
-	console.log(`- ${serverUrl}/api/telefones`);
+	console.log(`- ${serverUrl}/api/profissionais`);
+	console.log(`- ${serverUrl}/api/regras`);
 };
 
 Main().catch(console.error);

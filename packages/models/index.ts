@@ -4,28 +4,35 @@ import {
 	type ProfissionalModelTypeApi,
 	type ProfissionalModelTypeMongoDB,
 } from "./src/ProfissionalModel";
-import RuleModel, { type RuleModelType } from "./src/RuleModel";
+import {
+	RegraModelApi,
+	RegraModelMongoDB,
+	type RegraModelTypeApi,
+	type RegraModelTypeMongoDB,
+} from "./src/RegraModel";
+import SettingsModel, { type SettingsModelType } from "./src/SettingsModel";
 import {
 	TextoModelApi,
 	TextoModelMongoDB,
 	type TextoModelTypeApi,
 	type TextoModelTypeMongoDB,
 } from "./src/TextoModel";
-import SettingsModel, { type SettingsModelType } from "./src/SettingsModel";
 
 export {
 	ProfissionalModelApi,
 	ProfissionalModelMongoDB,
+	RegraModelApi,
+	RegraModelMongoDB,
 	SettingsModel,
-	RuleModel,
 	TextoModelApi,
 	TextoModelMongoDB,
 };
 export type {
 	ProfissionalModelTypeApi,
 	ProfissionalModelTypeMongoDB,
+	RegraModelTypeApi,
+	RegraModelTypeMongoDB,
 	SettingsModelType,
-	RuleModelType,
 	TextoModelTypeApi,
 	TextoModelTypeMongoDB,
 };
