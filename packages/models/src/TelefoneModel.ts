@@ -1,11 +1,10 @@
 import { z } from "zod";
-import { SimNaoEnum } from "./HelpTypes";
 
 const TelefoneModel = z.object({
-	numero: z.number(),
-	whatsapp: z.enum(SimNaoEnum),
-	telegram: z.enum(SimNaoEnum),
-	ddd: z.number(),
+	ddd: z.string().length(2),
+	numero: z.string().min(8).max(9),
+	whatsapp: z.boolean().optional().default(false),
+	telegram: z.boolean().optional().default(false),
 });
 
 type TelefoneModelType = z.infer<typeof TelefoneModel>;

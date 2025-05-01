@@ -8,13 +8,21 @@ export enum TextIds {
 	ESCOLA = "681149fa562ceb08fbf486d8",
 }
 
-const TextoModel = z
+const TextoModelMongoDB = z
 	.object({
 		texto: z.string(),
 	})
 	.merge(IdModel);
 
-type TextoModelType = z.infer<typeof TextoModel>;
+type TextoModelTypeMongoDB = z.infer<typeof TextoModelMongoDB>;
 
-export default TextoModel;
-export type { TextoModelType };
+///////////////
+
+const TextoModelApi = TextoModelMongoDB.transform((doc) => ({
+	...doc,
+	id: doc._id?.toString(),
+}));
+
+type TextoModelTypeApi = z.infer<typeof TextoModelApi>;
+export { TextoModelMongoDB, TextoModelApi };
+export type { TextoModelTypeApi, TextoModelTypeMongoDB };

@@ -1,14 +1,31 @@
-import ProfissionalModel, {
-	type ProfissionalModelType,
+import {
+	ProfissionalModelApi,
+	ProfissionalModelMongoDB,
+	type ProfissionalModelTypeApi,
+	type ProfissionalModelTypeMongoDB,
 } from "./src/ProfissionalModel";
-import SettingsModel, { type SettingsModelType } from "./src/SettingsModel";
-import TextoModel, { type TextoModelType } from "./src/TextoModel";
 import RuleModel, { type RuleModelType } from "./src/RuleModel";
+import {
+	TextoModelApi,
+	TextoModelMongoDB,
+	type TextoModelTypeApi,
+	type TextoModelTypeMongoDB,
+} from "./src/TextoModel";
+import SettingsModel, { type SettingsModelType } from "./src/SettingsModel";
 
-export { ProfissionalModel, TextoModel, SettingsModel, RuleModel };
+export {
+	ProfissionalModelApi,
+	ProfissionalModelMongoDB,
+	SettingsModel,
+	RuleModel,
+	TextoModelApi,
+	TextoModelMongoDB,
+};
 export type {
-	ProfissionalModelType,
-	TextoModelType,
+	ProfissionalModelTypeApi,
+	ProfissionalModelTypeMongoDB,
 	SettingsModelType,
 	RuleModelType,
+	TextoModelTypeApi,
+	TextoModelTypeMongoDB,
 };

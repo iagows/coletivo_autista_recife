@@ -12,7 +12,7 @@
     "module": "index.ts",
     "type": "module",
     "peerDependencies": {
-        "typescript": "^5.0.0"
+        "typescript": "^5.7.3"
     },
     "scripts": {
         "backend": "cd packages/backend && bun run dev",

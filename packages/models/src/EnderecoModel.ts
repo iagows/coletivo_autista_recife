@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const EnderecoModel = z.object({
 	cidade: z.string(),
-	numero: z.number(),
+	numero: z.number().int().optional(),
 	bairro: z.string(),
 	logradouro: z.string(),
 	complemento: z.string().optional().default(""),

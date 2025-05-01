@@ -1,100 +1,69 @@
-import { TextoModel, type TextoModelType } from "@car/models";
-import { swagger } from "@elysiajs/swagger";
-import { Elysia } from "elysia";
+import { DependencyInjection } from "@car/utils";
 import type { Db } from "mongodb";
-import { z } from "zod";
+import { ProfissionalController } from "./controllers/ProfissionalController";
+import { TextoController } from "./controllers/TextoController";
+import { ProfissionalRepository } from "./repositories/ProfissionalRepository";
+import { TextoRepository } from "./repositories/TextoRepository";
+import { ProfissionalService } from "./services/ProfissionalService";
+import { TextoService } from "./services/TextoService";
 import { EnvVars } from "./utils/EnvVars";
-import { getCollections, getMongoDatabase } from "./utils/mongoHelp";
-import { zodToOpenAPI } from "./utils/zodToOpenApi";
-
-const TextosListResponse = z.array(TextoModel);
-
-type RouteContext = {
-	db: Db;
-};
+import { getMongoDatabase } from "./utils/mongoHelp";
+import Elysia from "elysia";
+import swagger from "@elysiajs/swagger";
 
 const Main = async () => {
-	const mongoDb = await getMongoDatabase();
+	const db = await getMongoDatabase();
+
+	DependencyInjection.register(TextoRepository, new TextoRepository(db));
+	DependencyInjection.register(
+		ProfissionalRepository,
+		new ProfissionalRepository(db),
+	);
+	DependencyInjection.register(TextoService, new TextoService());
+	DependencyInjection.register(ProfissionalService, new ProfissionalService());
+
+	const textoController = new TextoController();
+	const profcontroller = new ProfissionalController();
+
+	const swaggerPath = EnvVars.swagger.path;
 
 	const swaggerConfig = {
-		path: "/docs",
+		path: swaggerPath,
 		documentation: {
 			info: {
 				title: "API do site do Coletivo de Autistas Adultos de Recife",
 				version: "1.0.0",
-				description: "API de gerenciamento de textos",
+				description: "API de gerenciamento de conteúdos",
 			},
-			tags: [{ name: "Textos", description: "Textos exibidos no site" }],
+			tags: [textoController.getTag(), profcontroller.getTag()],
 		},
 	};
 
-	const textosRoutes = (app: Elysia) =>
-		app.group("/api/textos", (app) =>
-			app.get(
-				"/",
-				async ({ db }: RouteContext) => {
-					const textos = await db
-						.collection<TextoModelType>(getCollections().textos)
-						.find()
-						.toArray();
-
-					const result = TextosListResponse.safeParse(textos);
-					if (!result.success) {
-						throw new Error("Formato de dados inválido");
-					}
-
-					return result.data;
-				},
-				{
-					detail: {
-						tags: ["Textos"],
-						summary: "Listar todos os textos",
-						description: "Retorna um array com todos os textos cadastrados",
-						responses: {
-							200: {
-								description: "Listagem bem-sucedida",
-								content: {
-									"application/json": {
-										schema: zodToOpenAPI(TextosListResponse),
-									},
-								},
-							},
-							500: {
-								description: "Erro no servidor",
-								content: {
-									"application/json": {
-										schema: {
-											type: "object",
-											properties: {
-												error: { type: "string" },
-											},
-										},
-									},
-								},
-							},
-						},
-					},
-				},
-			),
-		);
-
 	const app = new Elysia()
 		.use(swagger(swaggerConfig))
-		.decorate("db", mongoDb)
-		.get("/", () => "API de Textos - Bem vindo!", {
+		.get("/", () => "API - Bem vindo!", {
 			detail: {
 				summary: "Página inicial",
 				description: "Rota raiz da API",
 				tags: ["Geral"],
 			},
 		})
-		.use(textosRoutes)
+		.group("/api", (app) =>
+			app //
+				.use(textoController.getRoutes()) //
+				.use(profcontroller.getRoutes()),
+		)
 		.listen(EnvVars.port);
 
+	// Logs de inicialização
 	const serverUrl = `http://${app.server?.hostname}:${app.server?.port}`;
 	console.log(`🦊 Servidor Elysia rodando em ${serverUrl}`);
-	console.log(`📚 Documentação Swagger disponível em ${serverUrl}/docs`);
-	console.log(`🗂  Endpoint de textos disponível em ${serverUrl}/api/textos`);
+	console.log(
+		`📚 Documentação Swagger disponível em ${serverUrl}${swaggerPath}`,
+	);
+	console.log("🗂  Endpoints disponíveis:");
+	console.log(`- ${serverUrl}/api/textos`);
+	console.log(`- ${serverUrl}/api/telefones`);
 };
 
 Main().catch(console.error);

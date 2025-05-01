@@ -1,4 +1,3 @@
-//const mongoUrl = process.env.MONGODB_URI || "mongodb://localhost:27017";
 export const EnvVars = {
 	port: process.env.SERVER_PORT || 13131,
 	mongo: {
@@ -11,6 +10,10 @@ export const EnvVars = {
 		databaseName: process.env.MONGO_DATABASE_NAME || "db_name",
 		collections: {
 			textos: process.env.MONGO_COL_SITE_TEXTS || "site_texts",
+			profissionais: process.env.MONGO_COL_SITE_PROF || "site_prof",
 		},
+	},
+	swagger: {
+		path: process.env.SWAGGER_API_PATH || "swagger",
 	},
 };

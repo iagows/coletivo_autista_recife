@@ -1,22 +1,20 @@
 import { z } from "zod";
-import IdModel from "./IdModel";
-import GenericModel from "./GenericModel";
-import { SimNaoEnum } from "./HelpTypes";
 import ConselhoModel from "./ConselhoModel";
-import PlanoModel from "./PlanoModel";
-import EspecialidadeModel from "./EspecialidadeModel";
 import EnderecoModel from "./EnderecoModel";
-import TelefoneModel from "./TelefoneModel";
+import EspecialidadeModel from "./EspecialidadeModel";
+import GenericModel from "./GenericModel";
 import LinkModel from "./LinkModel";
+import PlanoModel from "./PlanoModel";
+import TelefoneModel from "./TelefoneModel";
 
-const ProfissionalModel = z
+const ProfissionalModelMongoDB = z
 	.object({
-		publico: z.enum(SimNaoEnum),
-		particular: z.enum(SimNaoEnum),
+		particular: z.boolean().optional().default(false),
+		publico: z.boolean().optional().default(false),
 		conselhos: z.array(ConselhoModel),
-		comentario: z.string().nullable().default(""),
-		preco: z.number().optional().nullable(),
-		planos: z.array(PlanoModel),
+		comentario: z.string().optional().default(""),
+		preco: z.number().optional(),
+		planos: z.array(PlanoModel).optional().default([]),
 		especialidades: z.array(EspecialidadeModel),
 		enderecos: z.array(EnderecoModel),
 		telefones: z.array(TelefoneModel),
@@ -24,7 +22,15 @@ const ProfissionalModel = z
 	})
 	.merge(GenericModel);
 
-type ProfissionalModelType = z.infer<typeof ProfissionalModel>;
+type ProfissionalModelTypeMongoDB = z.infer<typeof ProfissionalModelMongoDB>;
 
-export default ProfissionalModel;
-export type { ProfissionalModelType };
+const ProfissionalModelApi = ProfissionalModelMongoDB.transform((doc) => ({
+	...doc,
+	id: doc._id?.toString(),
+}));
+
+type ProfissionalModelTypeApi = z.infer<typeof ProfissionalModelApi>;
+
+export { ProfissionalModelApi, ProfissionalModelMongoDB };
+
+export type { ProfissionalModelTypeApi, ProfissionalModelTypeMongoDB };

@@ -3,7 +3,7 @@ import NameModel from "./NameModel";
 
 const ConselhoModel = z
 	.object({
-		estado: z.string(),
+		estado: z.string().length(2).optional(),
 		valor: z.string(),
 	})
 	.merge(NameModel);

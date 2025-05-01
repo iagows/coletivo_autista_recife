@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@car/models": "workspace:*",
+    "@car/utils": "workspace:*",
     "@elysiajs/swagger": "^1.2.2",
     "elysia": "^1.2.25",
     "mongodb": "^6.16.0",

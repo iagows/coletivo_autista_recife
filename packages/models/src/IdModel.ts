@@ -1,7 +1,8 @@
+import { ObjectId } from "mongodb";
 import { z } from "zod";
 
 const IdModel = z.object({
-	_id: z.string(),
+	_id: z.instanceof(ObjectId).or(z.string()).optional(),
 });
 
 type IdModelType = z.infer<typeof IdModel>;
