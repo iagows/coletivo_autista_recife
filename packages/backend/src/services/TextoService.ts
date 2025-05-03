@@ -1,4 +1,4 @@
-import { TextoModelMongoDB, type TextoModelTypeMongoDB } from "@car/models";
+import { TextoModel, type TextoModelType } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import type {
@@ -8,11 +8,11 @@ import type {
 import { TextoRepository } from "../repositories/TextoRepository";
 import { MongoValidationError } from "../utils/MongoValidationError";
 
-const TextosListResponse = z.array(TextoModelMongoDB);
+const TextosListResponse = z.array(TextoModel);
 
 export class TextoService {
 	@Inject(TextoRepository)
-	private repository!: IMongoRepository<DocZod<TextoModelTypeMongoDB>>;
+	private repository!: IMongoRepository<DocZod<TextoModelType>>;
 
 	async getAllTextos() {
 		const textos = await this.repository.findAll();

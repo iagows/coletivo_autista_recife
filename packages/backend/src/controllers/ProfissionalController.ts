@@ -1,16 +1,13 @@
-import {
-	ProfissionalModelMongoDB,
-	type ProfissionalModelTypeMongoDB,
-} from "@car/models";
+import { ProfissionalModel, type ProfissionalModelType } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import { ProfissionalService } from "../services/ProfissionalService";
 import { Controller } from "./Controller";
 import type { ApiDetail, ApiTags } from "./IController";
 
-const ProfissionalListModel = z.array(ProfissionalModelMongoDB);
+const ProfissionalListModel = z.array(ProfissionalModel);
 
-export class ProfissionalController extends Controller<ProfissionalModelTypeMongoDB> {
+export class ProfissionalController extends Controller<ProfissionalModelType> {
 	@Inject(ProfissionalService)
 	private service!: ProfissionalService;
 
@@ -26,7 +23,7 @@ export class ProfissionalController extends Controller<ProfissionalModelTypeMong
 		};
 	}
 
-	getAllData(): () => Promise<ProfissionalModelTypeMongoDB[]> {
+	getAllData(): () => Promise<ProfissionalModelType[]> {
 		return async () => await this.service.getAllProfissionais();
 	}
 

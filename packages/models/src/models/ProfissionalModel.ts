@@ -2,12 +2,12 @@ import { z } from "zod";
 import ConselhoModel from "./ConselhoModel";
 import EnderecoModel from "./EnderecoModel";
 import EspecialidadeModel from "./EspecialidadeModel";
-import GenericModel from "./GenericModel";
 import LinkModel from "./LinkModel";
 import PlanoModel from "./PlanoModel";
 import TelefoneModel from "./TelefoneModel";
+import { GenericModel } from "./GenericModel";
 
-const ProfissionalModelMongoDB = z
+const ProfissionalModel = z
 	.object({
 		particular: z.boolean().optional().default(false),
 		publico: z.boolean().optional().default(false),
@@ -22,15 +22,8 @@ const ProfissionalModelMongoDB = z
 	})
 	.merge(GenericModel);
 
-type ProfissionalModelTypeMongoDB = z.infer<typeof ProfissionalModelMongoDB>;
+type ProfissionalModelType = z.infer<typeof ProfissionalModel>;
 
-const ProfissionalModelApi = ProfissionalModelMongoDB.transform((doc) => ({
-	...doc,
-	id: doc._id?.toString(),
-}));
+export { ProfissionalModel };
 
-type ProfissionalModelTypeApi = z.infer<typeof ProfissionalModelApi>;
-
-export { ProfissionalModelApi, ProfissionalModelMongoDB };
-
-export type { ProfissionalModelTypeApi, ProfissionalModelTypeMongoDB };
+export type { ProfissionalModelType };

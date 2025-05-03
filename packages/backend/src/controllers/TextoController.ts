@@ -1,13 +1,13 @@
-import { TextoModelMongoDB, type TextoModelTypeMongoDB } from "@car/models";
+import { TextoModel, type TextoModelType } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import { TextoService } from "../services/TextoService";
 import { Controller } from "./Controller";
 import type { ApiDetail, ApiTags } from "./IController";
 
-const TextosListResponse = z.array(TextoModelMongoDB);
+const TextosListResponse = z.array(TextoModel);
 
-export class TextoController extends Controller<TextoModelTypeMongoDB> {
+export class TextoController extends Controller<TextoModelType> {
 	@Inject(TextoService)
 	private service!: TextoService;
 
@@ -23,7 +23,7 @@ export class TextoController extends Controller<TextoModelTypeMongoDB> {
 		};
 	}
 
-	getAllData(): () => Promise<TextoModelTypeMongoDB[]> {
+	getAllData(): () => Promise<TextoModelType[]> {
 		return async () => await this.service.getAllTextos();
 	}
 

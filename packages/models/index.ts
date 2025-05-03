@@ -1,38 +1,40 @@
 import {
-	ProfissionalModelApi,
-	ProfissionalModelMongoDB,
-	type ProfissionalModelTypeApi,
-	type ProfissionalModelTypeMongoDB,
-} from "./src/ProfissionalModel";
+	ProfissionalContract,
+	type ProfissionalContractType,
+} from "./src/contracts/ProfissionalContract";
 import {
-	RegraModelApi,
-	RegraModelMongoDB,
-	type RegraModelTypeApi,
-	type RegraModelTypeMongoDB,
-} from "./src/RegraModel";
-import SettingsModel, { type SettingsModelType } from "./src/SettingsModel";
+	RegraContract,
+	type RegraContractType,
+} from "./src/contracts/RegraContract";
 import {
-	TextoModelApi,
-	TextoModelMongoDB,
-	type TextoModelTypeApi,
-	type TextoModelTypeMongoDB,
-} from "./src/TextoModel";
+	TextoContract,
+	type TextoContractType,
+} from "./src/contracts/TextoContract";
+import {
+	ProfissionalModel,
+	type ProfissionalModelType,
+} from "./src/models/ProfissionalModel";
+import { RegraModel, type RegraModelType } from "./src/models/RegraModel";
+import SettingsModel, {
+	type SettingsModelType,
+} from "./src/models/SettingsModel";
+import { TextoModel, type TextoModelType } from "./src/models/TextoModel";
 
 export {
-	ProfissionalModelApi,
-	ProfissionalModelMongoDB,
-	RegraModelApi,
-	RegraModelMongoDB,
+	ProfissionalModel,
+	RegraModel,
 	SettingsModel,
-	TextoModelApi,
-	TextoModelMongoDB,
+	TextoModel,
+	ProfissionalContract,
+	RegraContract,
+	TextoContract,
 };
 export type {
-	ProfissionalModelTypeApi,
-	ProfissionalModelTypeMongoDB,
-	RegraModelTypeApi,
-	RegraModelTypeMongoDB,
+	ProfissionalModelType,
+	RegraModelType,
 	SettingsModelType,
-	TextoModelTypeApi,
-	TextoModelTypeMongoDB,
+	TextoModelType,
+	ProfissionalContractType,
+	RegraContractType,
+	TextoContractType,
 };
