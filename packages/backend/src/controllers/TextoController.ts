@@ -1,4 +1,4 @@
-import { TextoModel, type TextoModelType } from "@car/models";
+import { type TextoContractType, TextoModel } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import { TextoService } from "../services/TextoService";
@@ -7,7 +7,7 @@ import type { ApiDetail, ApiTags } from "./IController";
 
 const TextosListResponse = z.array(TextoModel);
 
-export class TextoController extends Controller<TextoModelType> {
+export class TextoController extends Controller<TextoContractType> {
 	@Inject(TextoService)
 	private service!: TextoService;
 
@@ -23,7 +23,7 @@ export class TextoController extends Controller<TextoModelType> {
 		};
 	}
 
-	getAllData(): () => Promise<TextoModelType[]> {
+	getAllData(): () => Promise<TextoContractType[]> {
 		return async () => await this.service.getAllTextos();
 	}
 

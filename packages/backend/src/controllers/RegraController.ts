@@ -1,4 +1,4 @@
-import { type RegraModelType, TextoModel } from "@car/models";
+import { type RegraContractType, TextoModel } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import { RegraService } from "../services/RegraService";
@@ -7,7 +7,7 @@ import type { ApiDetail, ApiTags } from "./IController";
 
 const TextosListResponse = z.array(TextoModel);
 
-export class RegraController extends Controller<RegraModelType> {
+export class RegraController extends Controller<RegraContractType> {
 	@Inject(RegraService)
 	private service!: RegraService;
 
@@ -23,7 +23,7 @@ export class RegraController extends Controller<RegraModelType> {
 		};
 	}
 
-	getAllData(): () => Promise<RegraModelType[]> {
+	getAllData(): () => Promise<RegraContractType[]> {
 		return async () => await this.service.getAllRegras();
 	}
 

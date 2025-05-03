@@ -1,4 +1,7 @@
-import { ProfissionalModel, type ProfissionalModelType } from "@car/models";
+import {
+	ProfissionalContract,
+	type ProfissionalContractType,
+} from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import type {
@@ -8,11 +11,11 @@ import type {
 import { ProfissionalRepository } from "../repositories/ProfissionalRepository";
 import { MongoValidationError } from "../utils/MongoValidationError";
 
-const ProfissionaisListResponse = z.array(ProfissionalModel);
+const ProfissionaisListResponse = z.array(ProfissionalContract);
 
 export class ProfissionalService {
 	@Inject(ProfissionalRepository)
-	private repository!: IMongoRepository<DocZod<ProfissionalModelType>>;
+	private repository!: IMongoRepository<DocZod<ProfissionalContractType>>;
 
 	async getAllProfissionais() {
 		const profissionais = await this.repository.findAll();

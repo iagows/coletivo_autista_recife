@@ -1,4 +1,4 @@
-import { RegraModel, type RegraModelType } from "@car/models";
+import { RegraContract, type RegraContractType } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import type {
@@ -8,11 +8,11 @@ import type {
 import { RegraRepository } from "../repositories/RegraRepository";
 import { MongoValidationError } from "../utils/MongoValidationError";
 
-const RegrasListResponse = z.array(RegraModel);
+const RegrasListResponse = z.array(RegraContract);
 
 export class RegraService {
 	@Inject(RegraRepository)
-	private repository!: IMongoRepository<DocZod<RegraModelType>>;
+	private repository!: IMongoRepository<DocZod<RegraContractType>>;
 
 	async getAllRegras() {
 		const textos = await this.repository.findAll();

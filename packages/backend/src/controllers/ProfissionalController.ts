@@ -1,4 +1,4 @@
-import { ProfissionalModel, type ProfissionalModelType } from "@car/models";
+import { type ProfissionalContractType, ProfissionalModel } from "@car/models";
 import { Inject } from "@car/utils";
 import { z } from "zod";
 import { ProfissionalService } from "../services/ProfissionalService";
@@ -7,7 +7,7 @@ import type { ApiDetail, ApiTags } from "./IController";
 
 const ProfissionalListModel = z.array(ProfissionalModel);
 
-export class ProfissionalController extends Controller<ProfissionalModelType> {
+export class ProfissionalController extends Controller<ProfissionalContractType> {
 	@Inject(ProfissionalService)
 	private service!: ProfissionalService;
 
@@ -23,7 +23,7 @@ export class ProfissionalController extends Controller<ProfissionalModelType> {
 		};
 	}
 
-	getAllData(): () => Promise<ProfissionalModelType[]> {
+	getAllData(): () => Promise<ProfissionalContractType[]> {
 		return async () => await this.service.getAllProfissionais();
 	}
 
