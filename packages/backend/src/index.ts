@@ -12,6 +12,9 @@ import { RegraService } from "./services/RegraService";
 import { TextoService } from "./services/TextoService";
 import { EnvVars } from "./utils/EnvVars";
 import { getMongoDatabase } from "./utils/mongoHelp";
+import { AdminRepository } from "./repositories/AdminsRepository";
+import { AdminService } from "./services/AdminService";
+import { AdminController } from "./controllers/AdminController";
 
 const Main = async () => {
 	const db = await getMongoDatabase();
@@ -23,16 +26,19 @@ const Main = async () => {
 		new ProfissionalRepository(db),
 	);
 	DependencyInjection.register(RegraRepository, new RegraRepository(db));
+	DependencyInjection.register(AdminRepository, new AdminRepository(db));
 
 	// services
 	DependencyInjection.register(TextoService, new TextoService());
 	DependencyInjection.register(ProfissionalService, new ProfissionalService());
 	DependencyInjection.register(RegraService, new RegraService());
+	DependencyInjection.register(AdminService, new AdminService());
 
 	// controllers
 	const textoController = new TextoController();
 	const profcontroller = new ProfissionalController();
 	const regraController = new RegraController();
+	const adminsController = new AdminController();
 
 	const swaggerPath = EnvVars.swagger.path;
 
@@ -48,6 +54,7 @@ const Main = async () => {
 				textoController.getTag(),
 				profcontroller.getTag(),
 				regraController.getTag(),
+				adminsController.getTag(),
 			],
 		},
 	};
@@ -65,7 +72,8 @@ const Main = async () => {
 			app
 				.use(textoController.getRoutes())
 				.use(profcontroller.getRoutes())
-				.use(regraController.getRoutes()),
+				.use(regraController.getRoutes())
+				.use(adminsController.getRoutes()),
 		)
 		.listen(EnvVars.port);
 
@@ -79,6 +87,7 @@ const Main = async () => {
 	console.log(`- ${serverUrl}/api/textos`);
 	console.log(`- ${serverUrl}/api/profissionais`);
 	console.log(`- ${serverUrl}/api/regras`);
+	console.log(`- ${serverUrl}/api/admins`);
 };
 
 Main().catch(console.error);

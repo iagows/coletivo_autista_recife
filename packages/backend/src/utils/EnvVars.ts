@@ -11,8 +11,9 @@ export const EnvVars = {
 		databaseName: process.env.MONGO_DATABASE_NAME || "db_name",
 		collections: {
 			textos: process.env.MONGO_COL_SITE_TEXTS || "site_texts",
-			profissionais: process.env.MONGO_COL_SITE_PROF || "site_prof",
 			regras: process.env.MONGO_COL_SITE_REGRAS || "site_rules",
+			profissionais: process.env.MONGO_COL_SITE_PROF || "site_prof",
+			admins: process.env.MONGO_COL_SITE_ADM || "site_administration",
 		},
 	},
 	swagger: {

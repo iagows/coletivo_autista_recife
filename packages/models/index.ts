@@ -1,4 +1,8 @@
 import {
+	AdminContract,
+	type AdminContractType,
+} from "./src/contracts/AdminContract";
+import {
 	ProfissionalContract,
 	type ProfissionalContractType,
 } from "./src/contracts/ProfissionalContract";
@@ -10,6 +14,7 @@ import {
 	TextoContract,
 	type TextoContractType,
 } from "./src/contracts/TextoContract";
+import { AdminModel, type AdminModelType } from "./src/models/AdminModel";
 import {
 	ProfissionalModel,
 	type ProfissionalModelType,
@@ -28,6 +33,8 @@ export {
 	ProfissionalContract,
 	RegraContract,
 	TextoContract,
+	AdminModel,
+	AdminContract,
 };
 export type {
 	ProfissionalModelType,
@@ -37,4 +44,6 @@ export type {
 	ProfissionalContractType,
 	RegraContractType,
 	TextoContractType,
+	AdminModelType,
+	AdminContractType,
 };
