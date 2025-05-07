@@ -1,20 +1,20 @@
 import { DependencyInjection } from "@car/utils";
 import swagger from "@elysiajs/swagger";
 import Elysia from "elysia";
+import { AdminController } from "./controllers/AdminController";
 import { ProfissionalController } from "./controllers/ProfissionalController";
 import { RegraController } from "./controllers/RegraController";
 import { TextoController } from "./controllers/TextoController";
+import { AdminRepository } from "./repositories/AdminsRepository";
 import { ProfissionalRepository } from "./repositories/ProfissionalRepository";
 import { RegraRepository } from "./repositories/RegraRepository";
 import { TextoRepository } from "./repositories/TextoRepository";
+import { AdminService } from "./services/AdminService";
 import { ProfissionalService } from "./services/ProfissionalService";
 import { RegraService } from "./services/RegraService";
 import { TextoService } from "./services/TextoService";
 import { EnvVars } from "./utils/EnvVars";
 import { getMongoDatabase } from "./utils/mongoHelp";
-import { AdminRepository } from "./repositories/AdminsRepository";
-import { AdminService } from "./services/AdminService";
-import { AdminController } from "./controllers/AdminController";
 
 const Main = async () => {
 	const db = await getMongoDatabase();
@@ -36,31 +36,13 @@ const Main = async () => {
 
 	// controllers
 	const textoController = new TextoController();
-	const profcontroller = new ProfissionalController();
+	const profissionalController = new ProfissionalController();
 	const regraController = new RegraController();
 	const adminsController = new AdminController();
 
 	const swaggerPath = EnvVars.swagger.path;
 
-	const swaggerConfig = {
-		path: swaggerPath,
-		documentation: {
-			info: {
-				version: "1.0.1",
-				description: "API de gerenciamento de conteúdos",
-				title: "API do site do Coletivo de Autistas Adultos de Recife",
-			},
-			tags: [
-				textoController.getTag(),
-				profcontroller.getTag(),
-				regraController.getTag(),
-				adminsController.getTag(),
-			],
-		},
-	};
-
 	const app = new Elysia()
-		.use(swagger(swaggerConfig))
 		.get("/", () => "API - Bem vindo!", {
 			detail: {
 				summary: "Página inicial",
@@ -71,11 +53,31 @@ const Main = async () => {
 		.group("/api", (app) =>
 			app
 				.use(textoController.getRoutes())
-				.use(profcontroller.getRoutes())
+				.use(profissionalController.getRoutes())
 				.use(regraController.getRoutes())
 				.use(adminsController.getRoutes()),
 		)
 		.listen(EnvVars.port);
+
+	if (EnvVars.serverMode === "development") {
+		const swaggerConfig = {
+			path: swaggerPath,
+			documentation: {
+				info: {
+					version: "1.0.1",
+					description: "API de gerenciamento de conteúdos",
+					title: "API do site do Coletivo de Autistas Adultos de Recife",
+				},
+				tags: [
+					textoController.getTag(),
+					profissionalController.getTag(),
+					regraController.getTag(),
+					adminsController.getTag(),
+				],
+			},
+		};
+		app.use(swagger(swaggerConfig));
+	}
 
 	// Logs de inicialização
 	const serverUrl = `http://${app.server?.hostname}:${app.server?.port}`;
