@@ -1,5 +1,5 @@
+import type { PlanoModelType } from "@car/models/src/models/PlanoModel";
 import { Box, Typography } from "@mui/material";
-import type { PlanoModelType } from "../../../models/src/PlanoModel";
 
 type Props = {
 	isParticular: boolean;

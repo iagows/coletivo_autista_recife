@@ -1,3 +1,4 @@
+import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import NoReferrerButton from "../../NoReferrerButton";
 
