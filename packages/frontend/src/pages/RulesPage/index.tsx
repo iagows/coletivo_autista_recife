@@ -1,4 +1,5 @@
-import { TextIds } from "@car/models/src/TextoModel";
+import { TextIds } from "@car/models/src/models/TextoModel";
+import { useRulesSlice, useTextosSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 import RuleItem from "./RuleItem";
 

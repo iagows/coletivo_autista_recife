@@ -1,4 +1,3 @@
-import { useUtils } from "@car/storage";
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
 import { Button, Snackbar, type SnackbarCloseReason } from "@mui/material";
 import { useState } from "react";
@@ -7,12 +6,11 @@ type Props = {
 	text: string;
 };
 const CopyButton = ({ text }: Props) => {
-	const { translate } = useUtils();
 	const [open, setOpen] = useState<boolean>(false);
 	const [message, setMessage] = useState<string>("");
 
-	const errorMessage = translate("snack.copia.falha");
-	const successMessage = translate("snack.copia.sucesso");
+	const errorMessage = "snack.copia.falha";
+	const successMessage = "snack.copia.sucesso";
 
 	const showSnack = () => {
 		setOpen(true);

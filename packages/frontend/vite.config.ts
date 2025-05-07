@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import path from "node:path";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -31,4 +32,13 @@ export default defineConfig({
 			},
 		}),
 	],
+	resolve: {
+		alias: {
+			"@car/storage": path.resolve(__dirname, "../storage"),
+			"@car/models": path.resolve(__dirname, "../models"),
+		},
+	},
+	optimizeDeps: {
+		include: ["@car/storage", "@car/models"],
+	},
 });

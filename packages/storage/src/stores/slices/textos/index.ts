@@ -1,9 +1,8 @@
+import type { TextoContractType } from "@car/models";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { TextoModelType } from "../../../../../models/src/TextoModel";
-import { getApiTextos } from "../../../../../frontend/src/services/apiTextos";
 
 interface TextosState {
-	data: TextoModelType[];
+	data: TextoContractType[];
 	loading: boolean;
 	error: string | null;
 }
@@ -18,7 +17,7 @@ export const fetchTextos = createAsyncThunk(
 	"rules/fetchTextos",
 	async (_, { rejectWithValue }) => {
 		try {
-			return getApiTextos();
+			return [];
 		} catch (error) {
 			return rejectWithValue((error as Error).message);
 		}

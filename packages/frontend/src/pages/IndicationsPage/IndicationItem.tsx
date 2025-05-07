@@ -1,3 +1,9 @@
+import type { ProfissionalContractType } from "@car/models";
+import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
+import type { EspecialidadeModelType } from "@car/models/src/models/EspecialidadeModel";
+import type { LinkModelType } from "@car/models/src/models/LinkModel";
+import type { PlanoModelType } from "@car/models/src/models/PlanoModel";
+import type { TelefoneModelType } from "@car/models/src/models/TelefoneModel";
 import {
 	Avatar,
 	CardActions,
@@ -19,7 +25,7 @@ const espcs = (especialidades: EspecialidadeModelType[]) =>
 		.join(", ");
 
 type Props = {
-	profissional: ProfissionalModelType;
+	profissional: ProfissionalContractType;
 	links: LinkModelType[];
 	planos: PlanoModelType[];
 	telefones: TelefoneModelType[];
@@ -35,31 +41,30 @@ const IndicationItem = ({
 	enderecos,
 	especialidades,
 }: Props) => {
-	const { translate } = useUtils();
-	const { id, rqe, crm, nome, preco, isPublico, comentario, isParticular } =
+	const { id, conselhos, nome, preco, publico, comentario, particular } =
 		profissional;
 
 	const nameSpecs = `${drName(nome)} - ${espcs(especialidades)}`;
-	const crmRqe = [crm, rqe].filter((i) => i !== "").join(", ");
+	// const crmRqe = [crm, rqe].filter((i) => i !== "").join(", ");
 
 	return (
 		<Grid2 size={gridSizeCss} key={id}>
 			<PaperCard>
 				<CardHeader
 					title={nameSpecs}
-					subheader={crmRqe}
+					// subheader={crmRqe}
 					avatar={<Avatar aria-label="Profissional">{nome[0]}</Avatar>}
 				/>
 				<CardContent>
 					<PagamentoInfo
 						preco={preco}
 						planos={planos}
-						isPublico={isPublico}
-						isParticular={isParticular}
+						isPublico={publico}
+						isParticular={particular}
 					/>
 					{comentario && (
 						<Typography variant="body2" color="textSecondary">
-							{translate("indicacoes.card.comentarios")}: {comentario}
+							{"indicacoes.card.comentarios"}: {comentario}
 						</Typography>
 					)}
 				</CardContent>

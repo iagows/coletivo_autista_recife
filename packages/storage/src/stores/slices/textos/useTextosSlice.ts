@@ -1,7 +1,7 @@
+import type { TextIds } from "@car/models/src/models/TextoModel";
 import { useEffect } from "react";
 import { fetchTextos } from ".";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
-import type { TextIds } from "../../../../../models/src/TextoModel";
 
 export const useTextosSlice = () => {
 	const dispatch = useAppDispatch();

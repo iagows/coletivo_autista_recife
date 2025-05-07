@@ -1,9 +1,8 @@
+import type { RegraContractType } from "@car/models";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { RulesModelType } from "../../../../../models/src/RuleModel";
-import { getApiRules } from "../../../../../frontend/src/services/apiRules";
 
 interface RulesState {
-	data: RulesModelType[];
+	data: RegraContractType[];
 	loading: boolean;
 	error: string | null;
 }
@@ -18,7 +17,7 @@ export const fetchRules = createAsyncThunk(
 	"rules/fetchRules",
 	async (_, { rejectWithValue }) => {
 		try {
-			return getApiRules();
+			return [];
 		} catch (error) {
 			return rejectWithValue((error as Error).message);
 		}

@@ -6,19 +6,22 @@ import { Box, type SxProps } from "@mui/material";
 import NoReferrerButton from "../NoReferrerButton";
 import AddressButton from "./AddressButton";
 import PhoneButton from "./PhoneButton";
+import type { LinkModelType } from "@car/models/src/models/LinkModel";
+import type { TelefoneModelType } from "@car/models/src/models/TelefoneModel";
+import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
 
 const isolatedLinks = (links: LinkModelType[] = []) =>
 	links.reduce(
 		(acc, link) => {
-			if (link.isEmail) {
-				acc.emailList.push(link);
-			} else if (link.url.includes("instagram.com")) {
-				acc.instagramList.push(link);
-			} else if (link.url.includes("linktr.ee")) {
-				acc.linktreeList.push(link);
-			} else {
-				acc.otherLinksList.push(link);
-			}
+			// if (link.isEmail) {
+			// 	acc.emailList.push(link);
+			// } else if (link.url.includes("instagram.com")) {
+			// 	acc.instagramList.push(link);
+			// } else if (link.url.includes("linktr.ee")) {
+			// 	acc.linktreeList.push(link);
+			// } else {
+			// 	acc.otherLinksList.push(link);
+			// }
 			return acc;
 		},
 		{
@@ -41,9 +44,8 @@ const ContactButton = ({
 	telephones = [],
 	addresses = [],
 }: Props) => {
-	const { translate } = useUtils();
-	const subject = translate("indicacoes.email.assunto");
-	const body = translate("indicacoes.email.corpo");
+	const subject = "indicacoes.email.assunto";
+	const body = "indicacoes.email.corpo";
 
 	const { emailList, instagramList, linktreeList, otherLinksList } =
 		isolatedLinks(links);
@@ -51,19 +53,19 @@ const ContactButton = ({
 	return (
 		<Box sx={boxGap}>
 			{addresses?.map((e) => (
-				<AddressButton {...e} key={e.id} />
+				<AddressButton {...e} key={`${e.cidade} ${e.bairro} ${e.numero}`} />
 			))}
 			<Box display={"flex"} flexWrap={"wrap"}>
 				{emailList?.map((email) => (
 					<NoReferrerButton
 						href={`mailto:${email.url}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
-						key={email.id}
+						key={email.url}
 					>
 						<EmailOutlinedIcon />
 					</NoReferrerButton>
 				))}
 				{otherLinksList?.map((link) => (
-					<NoReferrerButton key={link.id} href={link.url}>
+					<NoReferrerButton key={link.url} href={link.url}>
 						<InsertLinkOutlinedIcon />
 					</NoReferrerButton>
 				))}
@@ -71,12 +73,12 @@ const ContactButton = ({
 					<PhoneButton key={telephone.numero} {...telephone} />
 				))}
 				{instagramList?.map((inst) => (
-					<NoReferrerButton href={inst.url} key={inst.id}>
+					<NoReferrerButton href={inst.url} key={inst.url}>
 						<InstagramIcon />
 					</NoReferrerButton>
 				))}
 				{linktreeList?.map((tree) => (
-					<NoReferrerButton href={tree.url} key={tree.id}>
+					<NoReferrerButton href={tree.url} key={tree.url}>
 						<ParkOutlinedIcon />
 					</NoReferrerButton>
 				))}

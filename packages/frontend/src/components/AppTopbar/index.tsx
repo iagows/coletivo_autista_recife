@@ -10,6 +10,8 @@ import {
 	Toolbar,
 	Typography,
 } from "@mui/material";
+import { useLocation } from "react-router";
+import type RouteNames from "../../navigation/RouteNames";
 import { getRouteTitle } from "../../navigation/RouteNames";
 import { DRAWER_WIDTH } from "../../util/constants";
 
@@ -22,12 +24,12 @@ const barCss = (isMobile: boolean): SxProps => ({
 const buttonCss: SxProps = { mr: 2 };
 
 const AppTopbar = () => {
-	const { translate, isMobile } = useUtils();
-	const { currentRoute, isDarkMode, toggleTheme, toggleDrawer } =
-		useSettingsSlice();
+	const currentRoute = useLocation().pathname;
+	const { isMobile } = useUtils();
+	const { isDarkMode, toggleTheme, toggleDrawer } = useSettingsSlice();
 
-	const currentPage = getRouteTitle(currentRoute);
-	const title = translate(currentPage);
+	const currentPage = getRouteTitle(currentRoute as RouteNames);
+	const title = currentPage;
 
 	return (
 		<AppBar sx={barCss(isMobile)}>

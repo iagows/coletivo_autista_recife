@@ -1,3 +1,5 @@
+import { TextIds } from "@car/models/src/models/TextoModel";
+import { useTextosSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 
 const Escola = () => {

@@ -1,15 +1,14 @@
+import type { ProfissionalContractType } from "@car/models";
+import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
+import type { EspecialidadeModelType } from "@car/models/src/models/EspecialidadeModel";
+import type { LinkModelType } from "@car/models/src/models/LinkModel";
+import type { PlanoModelType } from "@car/models/src/models/PlanoModel";
+import type { TelefoneModelType } from "@car/models/src/models/TelefoneModel";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { ProfissionalModelType } from "../../../../../models/src/ProfissionalModel";
-import { getApiProfissionais } from "../../../../../frontend/src/services/apiProfissionais";
-import type { PlanoModelType } from "../../../../../models/src/PlanoModel";
-import type { EspecialidadeModelType } from "../../../../../../backup/src/models/EspecialidadeModel";
-import type { EnderecoModelType } from "../../../../../../backup/src/models/EnderecoModel";
-import type { LinkModelType } from "../../../../../models/src/LinkModel";
-import type { TelefoneModelType } from "../../../../../models/src/TelefoneModel";
 
 interface ProfState {
 	data: {
-		profissional: ProfissionalModelType;
+		profissional: ProfissionalContractType;
 		planos: PlanoModelType[];
 		especialidades: EspecialidadeModelType[];
 		enderecos: EnderecoModelType[];
@@ -30,7 +29,7 @@ export const fetchProfissionais = createAsyncThunk(
 	"prof/fetchProfissionais",
 	async (_, { rejectWithValue }) => {
 		try {
-			return getApiProfissionais();
+			return [];
 		} catch (error) {
 			return rejectWithValue((error as Error).message);
 		}

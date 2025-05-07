@@ -1,4 +1,5 @@
-import { TextIds } from "@car/models/src/TextoModel";
+import { TextIds } from "@car/models/src/models/TextoModel";
+import { useTextosSlice } from "@car/storage";
 import { Box, Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PrepareDisplay from "../../components/PrepareDisplay";

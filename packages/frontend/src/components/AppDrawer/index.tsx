@@ -11,7 +11,7 @@ import {
 	type SxProps,
 	Typography,
 } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import coletivo from "../../assets/coletivo.jpg";
 import type RouteNames from "../../navigation/RouteNames";
@@ -49,9 +49,10 @@ const spacerCss: SxProps = {
 
 const AppDrawer = () => {
 	const location = useLocation();
-	const { isOpen, currentRoute, toggleDrawer, setCurrentRoute } =
-		useSettingsSlice();
-	const { isMobile, translate } = useUtils();
+	const [currentRoute, setCurrentRoute] = useState<string>(location.pathname);
+
+	const { isOpen, toggleDrawer } = useSettingsSlice();
+	const { isMobile } = useUtils();
 
 	const handleDrawerToggle = () => {
 		if (isMobile) {
@@ -61,7 +62,7 @@ const AppDrawer = () => {
 
 	useEffect(() => {
 		setCurrentRoute(location.pathname as RouteNames);
-	}, [location, setCurrentRoute]);
+	}, [location]);
 
 	return (
 		<MuiDrawer
@@ -75,7 +76,7 @@ const AppDrawer = () => {
 			<Box sx={spacerCss} />
 			<List>
 				{getRouteAsList().map(({ Icon, path, title }) => (
-					<ListItem key={`${title}_${translate(title)}`} disablePadding>
+					<ListItem key={`${title}_${title}`} disablePadding>
 						<ListItemButton
 							to={path}
 							component={Link}
@@ -85,7 +86,7 @@ const AppDrawer = () => {
 							<ListItemIcon>
 								<Icon />
 							</ListItemIcon>
-							<ListItemText primary={translate(title)} />
+							<ListItemText primary={title} />
 						</ListItemButton>
 					</ListItem>
 				))}
