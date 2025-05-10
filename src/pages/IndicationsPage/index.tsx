@@ -1,36 +1,23 @@
-import {
-	Box,
-	type SxProps,
-	Table,
-	TableCell,
-	TableHead,
-	TableRow,
-	Typography,
-} from "@mui/material";
-import useUtils from "../../hooks/useUtils";
-
-const tableBoxCss: SxProps = { marginTop: 4 };
+import SuspenseData from "../../components/SuspenseData";
+import { TextIds } from "../../models/TextoModel";
+import { useProfissionalSlice } from "../../stores/slices/profissional/useProfissionalSlice";
+import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
+import IndicationItem from "./IndicationItem";
 
 const IndicationsPage = () => {
-	const { translate } = useUtils();
+	const { data, error, loading } = useProfissionalSlice();
+	const textData = useTextosSlice();
 
 	return (
-		<Box>
-			<Typography>{translate("indicacoes.conteudo")}</Typography>
-			<Box sx={tableBoxCss}>
-				<Table size="small">
-					<TableHead>
-						<TableRow>
-							<TableCell>
-								{translate("indicacoes.tabela.profissional")}
-							</TableCell>
-							<TableCell>{translate("indicacoes.tabela.endereco")}</TableCell>
-							<TableCell>{translate("indicacoes.tabela.telefone")}</TableCell>
-						</TableRow>
-					</TableHead>
-				</Table>
-			</Box>
-		</Box>
+		<SuspenseData
+			data={data}
+			error={error}
+			loading={loading}
+			textData={textData}
+			component={IndicationItem}
+			id={TextIds.INDICACOES_DESC}
+			idGetter={(p) => `${p.profissional.id}`}
+		/>
 	);
 };
 

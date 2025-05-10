@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import lemniscata from "../../assets/lemniscate.jpg";
+import coletivo from "../../assets/coletivo.jpg";
 import useUtils from "../../hooks/useUtils";
 import type RouteNames from "../../navigation/RouteNames";
 import { getRouteAsList } from "../../navigation/RouteNames";
@@ -26,18 +26,7 @@ const drawer_css: SxProps = {
 		width: DRAWER_WIDTH,
 		boxSizing: "border-box",
 		flexDirection: "column",
-		backgroundColor: "#3b6480",
 	},
-};
-
-const textCss: SxProps = {
-	color: "white", // Texto branco
-	textShadow: `
-		-1px -1px 0 #04101d,  
-		1px -1px 0 #04101d,
-		-1px 1px 0 #04101d,
-		1px 1px 0 #04101d
-	`, // Contorno forte
 };
 
 const versionCss: SxProps = {
@@ -49,7 +38,7 @@ const versionCss: SxProps = {
 const imageCss: SxProps = {
 	width: DRAWER_WIDTH - 1,
 	height: DRAWER_WIDTH - 1,
-	backgroundImage: `url(${lemniscata})`,
+	backgroundImage: `url(${coletivo})`,
 	backgroundSize: "cover",
 	backgroundPosition: "center",
 };
@@ -96,7 +85,7 @@ const AppDrawer = () => {
 							<ListItemIcon>
 								<Icon />
 							</ListItemIcon>
-							<ListItemText primary={translate(title)} sx={textCss} />
+							<ListItemText primary={translate(title)} />
 						</ListItemButton>
 					</ListItem>
 				))}

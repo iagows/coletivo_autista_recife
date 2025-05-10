@@ -22,7 +22,7 @@ const configSlice = createSlice({
 			state.currentRoute = action.payload;
 		},
 		toggleTheme(state) {
-			state.isDarkMode = !state.isDarkMode; // Alterna entre light e dark
+			state.isDarkMode = !state.isDarkMode;
 		},
 	},
 });

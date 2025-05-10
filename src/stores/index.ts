@@ -1,11 +1,37 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import professionals from "./slices/profissional";
+import rules from "./slices/regras";
 import settings from "./slices/settings";
+import textos from "./slices/textos";
+
+const persistConfig = {
+	storage,
+	key: "config",
+	whitelist: ["settings"],
+};
+
+const rootReducer = combineReducers({
+	rules,
+	textos,
+	settings,
+	professionals,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-    reducer: combineReducers({
-        settings,
-    }),
+	reducer: persistedReducer,
+	middleware: (getDefaultMiddleware) =>
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
+			},
+		}),
 });
+
+export const persistor = persistStore(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

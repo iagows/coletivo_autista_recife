@@ -1,36 +1,27 @@
-import { Button, CardActions, CardContent, Typography } from "@mui/material";
-import type { CSSProperties } from "react";
-import { Link } from "react-router-dom";
-import CardContainer from "../../components/CardContainer";
-import PaperCard from "../../components/PaperCard";
-import LinksModel, { type LinksModelType } from "../../models/LinksModel";
-import list from "./links.json";
+import SuspenseData from "../../components/SuspenseData";
+import { TextIds } from "../../models/TextoModel";
+import { useTextosSlice } from "../../stores/slices/textos/useTextosSlice";
 
-const linkCss: CSSProperties = { textDecoration: "none" };
-
-const links: LinksModelType[] = list.map((i) => LinksModel.parse(i));
+const Escola = () => {
+	return <>em construção</>;
+};
 
 const LinksPage = () => {
+	const data = [{ id: "oi" }];
+	const error = null;
+	const loading = false;
+
+	const textData = useTextosSlice();
 	return (
-		<CardContainer>
-			{links.map((l) => (
-				<PaperCard key={l.id}>
-					<CardContent>
-						<Typography gutterBottom color="text.secondary">
-							{l.titulo}
-						</Typography>
-						<Typography variant="h5" component="div">
-							{l.texto}
-						</Typography>
-					</CardContent>
-					<CardActions>
-						<Link to={l.url} style={linkCss} target="_blank">
-							<Button size="small">Visitar</Button>{" "}
-						</Link>
-					</CardActions>
-				</PaperCard>
-			))}
-		</CardContainer>
+		<SuspenseData
+			data={data}
+			error={error}
+			loading={loading}
+			textData={textData}
+			component={Escola}
+			id={TextIds.ESCOLA}
+			idGetter={(p) => `${p.id}`}
+		/>
 	);
 };
 

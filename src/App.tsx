@@ -1,9 +1,9 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import useUtils from "./hooks/useUtils.ts";
-import AppRouter from "./navigation/AppRouter.tsx";
-import useSettingsSlice from "./stores/slices/settings/useSettingsSlice.ts";
-import theme from "./util/theme.ts";
+import useUtils from "./hooks/useUtils";
+import AppRouter from "./navigation/AppRouter";
+import useSettingsSlice from "./stores/slices/settings/useSettingsSlice";
+import theme from "./util/theme";
 
 const App = () => {
 	const { translate } = useUtils();

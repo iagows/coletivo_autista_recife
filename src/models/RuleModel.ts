@@ -1,11 +1,12 @@
 import { z } from "zod";
-import GenericModel from "./GenericModel";
 
-const RuleModel = GenericModel.extend({
-	detalhamento: z.string(),
+const RulesModel = z.object({
+	id: z.number(),
+	texto: z.string(),
+	detalhamento: z.string().nullable().optional().default(""),
 });
 
-type RuleType = z.infer<typeof RuleModel>;
+type RulesModelType = z.infer<typeof RulesModel>;
 
-export default RuleModel;
-export type { RuleType };
+export default RulesModel;
+export type { RulesModelType };

@@ -7,8 +7,19 @@ import "./i18n/config";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import App from "./App.tsx";
-import { store } from "./stores/index.ts";
+import { PersistGate } from "redux-persist/integration/react";
+import { registerSW } from "virtual:pwa-register";
+import App from "./App";
+import LoadingSkeleton from "./components/LoadingSkeleton/index";
+import { persistor, store } from "./stores/index";
+
+const updateSW = registerSW({
+	onNeedRefresh() {
+		if (confirm("Novo conteúdo disponível. Recarregar?")) {
+			updateSW(true);
+		}
+	},
+});
 
 const doc = document.getElementById("root");
 
@@ -19,7 +30,9 @@ if (!doc) {
 createRoot(doc).render(
 	<StrictMode>
 		<Provider store={store}>
-			<App />
+			<PersistGate loading={<LoadingSkeleton />} persistor={persistor}>
+				<App />
+			</PersistGate>
 		</Provider>
 	</StrictMode>,
 );

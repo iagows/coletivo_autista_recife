@@ -15,7 +15,6 @@ import { DRAWER_WIDTH } from "../../util/constants";
 
 const titleCss: SxProps = { flexGrow: 1 };
 const barCss = (isMobile: boolean): SxProps => ({
-	backgroundColor: "#044589",
 	width: `calc(100% - ${isMobile ? 0 : DRAWER_WIDTH}px)`,
 	marginLeft: `${isMobile ? 0 : DRAWER_WIDTH}px`,
 });
