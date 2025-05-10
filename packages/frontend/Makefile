@@ -24,7 +24,7 @@ deploy:
 	@bun run deploy
 
 menu:
-	@ESCOLHA=$$(whiptail --title "Iot Menu" --menu "Escolha uma opção:" 15 40 7 \
+	@ESCOLHA=$$(whiptail --title "Menu do frontend" --menu "Escolha uma opção:" 15 40 7 \
 	"1" "Instalar dependências" \
 	"2" "Executar o frontend" \
 	"3" "Atualizar assets"  \

@@ -21,7 +21,7 @@ build:
 	@bun run build
 
 menu:
-	@ESCOLHA=$$(whiptail --title "Iot Menu" --menu "Escolha uma opção:" 15 40 7 \
+	@ESCOLHA=$$(whiptail --title "Menu do projeto" --menu "Escolha uma opção:" 15 40 6 \
 	"1" "Instalar dependências" \
 	"2" "Executar o frontend" \
 	"3" "Executar o backend" \
