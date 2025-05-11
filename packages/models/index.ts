@@ -8,6 +8,7 @@ import {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
+	idDto,
 } from "./src/models";
 
 export {
@@ -20,4 +21,5 @@ export {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
+	idDto,
 };

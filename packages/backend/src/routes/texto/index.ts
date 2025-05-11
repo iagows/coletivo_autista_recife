@@ -1,5 +1,5 @@
-import Elysia from "elysia";
 import { textoDTO } from "@car/models";
+import Elysia from "elysia";
 import { PrismaClient } from "../../../generated/prisma";
 
 const db = new PrismaClient();

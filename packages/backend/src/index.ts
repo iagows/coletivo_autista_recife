@@ -1,14 +1,12 @@
 import swagger from "@elysiajs/swagger";
 import Elysia from "elysia";
-import { PrismaClient } from "../generated/prisma";
 import { ServerRoutes } from "./routes";
-import { EnvVars } from "./utils/EnvVars";
+import { EnvVars, isDevMode } from "./utils/EnvVars";
 
 const Main = async () => {
-	const db = new PrismaClient();
-
 	const app = new Elysia().use(ServerRoutes());
-	if (EnvVars.serverMode === "development") {
+
+	if (isDevMode) {
 		app.use(swagger());
 	}
 

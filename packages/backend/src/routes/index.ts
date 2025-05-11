@@ -1,12 +1,19 @@
 import Elysia from "elysia";
+import { isDevMode } from "../utils/EnvVars";
 import { AdminRoute } from "./admin";
+import { EscolaRoute } from "./escola";
+import { ProfissionalRoute } from "./profissional";
+import { RegraRoute } from "./regra";
 import { TextoRoute } from "./texto";
-import { EnvVars } from "../utils/EnvVars";
 
 export const ServerRoutes = () => {
-	const route = new Elysia().use(TextoRoute);
+	const route = new Elysia()
+		.use(EscolaRoute)
+		.use(ProfissionalRoute)
+		.use(RegraRoute)
+		.use(TextoRoute);
 
-	if (EnvVars.serverMode === "development") {
+	if (isDevMode) {
 		route.use(AdminRoute);
 	}
 	return route;
