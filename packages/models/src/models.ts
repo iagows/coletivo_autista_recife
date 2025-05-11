@@ -1,9 +1,5 @@
 import { Type } from "@sinclair/typebox";
 
-export const idDto = Type.Object({
-	id: Type.String(),
-});
-
 export const contatoDTO = Type.Object({
 	ddd: Type.Integer(),
 	numero: Type.Integer(),
@@ -36,8 +32,9 @@ export const linkDTO = Type.Object({
 });
 
 export const regraDTO = Type.Object({
+	id: Type.Optional(Type.String()),
 	texto: Type.String(),
-	descricao: Type.String(),
+	descricao: Type.Union([Type.String(), Type.Null(), Type.Undefined()]),
 });
 
 export const consutorioEscolaDTO = Type.Object({

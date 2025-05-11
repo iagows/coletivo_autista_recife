@@ -8,18 +8,19 @@ import {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
-	idDto,
 } from "./src/models";
+import { errorResponse, idParam } from "./src/swagger.models";
 
 export {
 	adminDTO,
 	consutorioEscolaDTO,
 	contatoDTO,
 	enderecoDTO,
+	errorResponse,
 	especialidadeDTO,
+	idParam,
 	linkDTO,
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
-	idDto,
 };

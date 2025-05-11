@@ -1,15 +1,20 @@
-import { idDto, regraDTO } from "@car/models";
+import { errorResponse, idParam, regraDTO } from "@car/models";
 import Elysia, { t } from "elysia";
 import { PrismaClient } from "../../../generated/prisma";
 
 const db = new PrismaClient();
 
-const MODEL_NAME = "regra.model" as const;
+const MODEL_NAME = "regra.model";
+const PARAM_ID = "regra.param.id";
+const ERROR_RESPONSE = "regra.error.response";
+const DATA_RESPONSE = "regra.response";
 
 export const RegraRoute = new Elysia({ prefix: "/regra" })
 	.model({
 		[MODEL_NAME]: regraDTO,
-		"param.id": idDto,
+		[PARAM_ID]: idParam,
+		[ERROR_RESPONSE]: errorResponse,
+		[DATA_RESPONSE]: regraDTO,
 	})
 	.post(
 		"/",
@@ -17,21 +22,40 @@ export const RegraRoute = new Elysia({ prefix: "/regra" })
 			db.regra.create({
 				data: body,
 				select: {
+					id: true,
 					texto: true,
 					descricao: true,
 				},
 			}),
 		{
-			error: ({ code, error }) => {
-				switch (code) {
-					case "VALIDATION":
-						return {
-							error: "O texto deve ser único",
-						};
-				}
-				return error;
-			},
 			body: MODEL_NAME,
+			response: {
+				200: DATA_RESPONSE,
+				400: ERROR_RESPONSE,
+				500: ERROR_RESPONSE,
+			},
+			detail: {
+				200: {
+					description: "Regra criada com sucesso",
+					content: {
+						"application/json": {
+							schema: {
+								$ref: `#/components/schemas/${DATA_RESPONSE}`,
+							},
+						},
+					},
+				},
+				400: {
+					description: "Dados inválidos",
+					content: {
+						"application/json": {
+							schema: {
+								$ref: `#/components/schemas/${ERROR_RESPONSE}`,
+							},
+						},
+					},
+				},
+			},
 		},
 	)
 	.get(
@@ -40,6 +64,11 @@ export const RegraRoute = new Elysia({ prefix: "/regra" })
 			db.regra.findMany({
 				orderBy: {
 					texto: "asc",
+				},
+				select: {
+					id: true,
+					descricao: true,
+					texto: true,
 				},
 			}),
 		{
@@ -60,7 +89,7 @@ export const RegraRoute = new Elysia({ prefix: "/regra" })
 			});
 		},
 		{
-			params: "param.id",
+			params: PARAM_ID,
 			body: MODEL_NAME,
 			error: ({ code }) => {
 				switch (code) {
@@ -89,7 +118,7 @@ export const RegraRoute = new Elysia({ prefix: "/regra" })
 			});
 		},
 		{
-			params: "param.id",
+			params: PARAM_ID,
 			error: ({ code }) => {
 				switch (code) {
 					case "NOT_FOUND":
