@@ -1,15 +1,7 @@
 # models
 
-To install dependencies:
+Modelos compartilhados
 
-```bash
-bun install
-```
+## Libs
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.42. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+- Uso o [typebox](https://github.com/sinclairzx81/typebox#readme) para (de)serializar. Compatível com Elysia (backend)

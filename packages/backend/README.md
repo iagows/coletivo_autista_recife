@@ -1,15 +1,7 @@
 # backend
 
-To install dependencies:
+> Make
 
-```bash
-bun install
-```
+## Libs
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.42. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+- O projeto usa o [prisma](https://www.prisma.io/) para abstrair a geral de servidor de banco de dados.
