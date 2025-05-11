@@ -36,10 +36,7 @@ model Admin {
   contatos  Contato[]
 }
 
-model Texto {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  texto String @unique
-}
+
 
 model Regra {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -97,4 +94,9 @@ model ConsultorioEscola {
   contatos       Contato[]
   comentario     String?
   especialidades Especialidade[]
+}
+
+model Texto {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  texto String @unique
 }

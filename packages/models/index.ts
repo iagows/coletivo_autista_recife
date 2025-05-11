@@ -1,49 +1,23 @@
 import {
-	AdminContract,
-	type AdminContractType,
-} from "./src/contracts/AdminContract";
-import {
-	ProfissionalContract,
-	type ProfissionalContractType,
-} from "./src/contracts/ProfissionalContract";
-import {
-	RegraContract,
-	type RegraContractType,
-} from "./src/contracts/RegraContract";
-import {
-	TextoContract,
-	type TextoContractType,
-} from "./src/contracts/TextoContract";
-import { AdminModel, type AdminModelType } from "./src/models/AdminModel";
-import {
-	ProfissionalModel,
-	type ProfissionalModelType,
-} from "./src/models/ProfissionalModel";
-import { RegraModel, type RegraModelType } from "./src/models/RegraModel";
-import SettingsModel, {
-	type SettingsModelType,
-} from "./src/models/SettingsModel";
-import { TextoModel, type TextoModelType } from "./src/models/TextoModel";
+	adminDTO,
+	consutorioEscolaDTO,
+	contatoDTO,
+	enderecoDTO,
+	especialidadeDTO,
+	linkDTO,
+	profissionalDTO,
+	regraDTO,
+	textoDTO,
+} from "./src/models";
 
 export {
-	ProfissionalModel,
-	RegraModel,
-	SettingsModel,
-	TextoModel,
-	ProfissionalContract,
-	RegraContract,
-	TextoContract,
-	AdminModel,
-	AdminContract,
-};
-export type {
-	ProfissionalModelType,
-	RegraModelType,
-	SettingsModelType,
-	TextoModelType,
-	ProfissionalContractType,
-	RegraContractType,
-	TextoContractType,
-	AdminModelType,
-	AdminContractType,
+	adminDTO,
+	consutorioEscolaDTO,
+	contatoDTO,
+	enderecoDTO,
+	especialidadeDTO,
+	linkDTO,
+	profissionalDTO,
+	regraDTO,
+	textoDTO,
 };

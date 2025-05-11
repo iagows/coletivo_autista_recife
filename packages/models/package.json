@@ -1,15 +1,14 @@
 {
-  "name": "@car/models",
-  "module": "src/index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "mongodb": "^6.16.0",
-    "zod": "^3.24.3"
-  }
+	"name": "@car/models",
+	"module": "src/index.ts",
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@sinclair/typebox": "^0.34.33"
+	}
 }

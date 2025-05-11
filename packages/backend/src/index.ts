@@ -1,21 +1,14 @@
 import swagger from "@elysiajs/swagger";
-import Elysia, { t } from "elysia";
-import { EnvVars } from "./utils/EnvVars";
+import Elysia from "elysia";
 import { PrismaClient } from "../generated/prisma";
-
-enum BODIES {
-	TEXTO = "texto.conteudo",
-}
+import { BODIES, SiteModels } from "./prisma/models";
+import { EnvVars } from "./utils/EnvVars";
 
 const Main = async () => {
 	const db = new PrismaClient();
 
 	const app = new Elysia()
-		.model({
-			[BODIES.TEXTO]: t.Object({
-				texto: t.String({ minLength: 6 }),
-			}),
-		})
+		.use(SiteModels)
 		.post(
 			"/texto",
 			async ({ body }) =>

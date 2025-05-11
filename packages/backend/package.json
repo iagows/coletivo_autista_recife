@@ -8,6 +8,7 @@
 		"build": "tsc"
 	},
 	"dependencies": {
+		"@car/models": "workspace:*",
 		"@elysiajs/swagger": "^1.2.2",
 		"elysia": "^1.2.25",
 		"mongodb": "^6.16.0",
