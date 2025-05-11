@@ -4,6 +4,7 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+///// CONFIGURATION /////
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -14,24 +15,53 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Contato {
-  id                  String             @id @default(auto()) @map("_id") @db.ObjectId
-  ddd                 Int
-  numero              Int
-  isTelegram          Boolean
-  isWhatsapp          Boolean
-  Admin               Admin?             @relation(fields: [adminId], references: [id])
-  adminId             String?            @db.ObjectId
-  Profissional        Profissional?      @relation(fields: [profissionalId], references: [id])
-  profissionalId      String?            @db.ObjectId
-  ConsultorioEscola   ConsultorioEscola? @relation(fields: [consultorioEscolaId], references: [id])
-  consultorioEscolaId String?            @db.ObjectId
+////////// TYPE GENERATOR //////////
+generator prismabox {
+  provider                    = "prismabox"
+  // you can optionally specify the output location. Defaults to ./prismabox
+  output                      = "./dto"
+  // if you want, you can customize the imported variable name that is used for the schemes. Defaults to "Type" which is what the standard typebox package offers
+  typeboxImportVariableName   = "t"
+  // you also can specify the dependency from which the above import should happen. This is useful if a package re-exports the typebox package and you would like to use that
+  typeboxImportDependencyName = "elysia"
+  // by default the generated schemes do not allow additional properties. You can allow them by setting this to true
+  additionalProperties        = true
+  // optionally enable the data model generation. See the data model section below for more info
+  inputModel                  = true
 }
+
+////////// TIPOS COMUNS //////////
+
+/// Contato (ddd, telefone e se está associado a telegram/whatsapp)
+type Contato {
+  ddd        Int
+  numero     Int
+  isTelegram Boolean @default(false)
+  isWhatsapp Boolean @default(false)
+}
+
+type Especialidade {
+  nome String
+}
+
+type Endereco {
+  cidade      String
+  bairro      String
+  logradouro  String
+  numero      Int?
+  complemento String?
+}
+
+type Link {
+  url String
+}
+
+////////// MODELOS //////////
 
 model Admin {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   nome      String    @unique
-  email     String
+  email     String    @unique
   last_seen DateTime?
   contatos  Contato[]
 }
@@ -45,43 +75,14 @@ model Regra {
 model Profissional {
   id             String          @id @default(auto()) @map("_id") @db.ObjectId
   nome           String          @unique
-  isParticular   Boolean?
-  isPublico      Boolean?
+  isParticular   Boolean?        @default(false)
+  isPublico      Boolean?        @default(false)
   comentario     String?
   preco          Float?
   especialidades Especialidade[]
   enderecos      Endereco[]
   links          Link[]
   contatos       Contato[]
-}
-
-model Especialidade {
-  id                  String             @id @default(auto()) @map("_id") @db.ObjectId
-  nome                String             @unique
-  Profissional        Profissional?      @relation(fields: [profissionalId], references: [id])
-  profissionalId      String?            @db.ObjectId
-  ConsultorioEscola   ConsultorioEscola? @relation(fields: [consultorioEscolaId], references: [id])
-  consultorioEscolaId String?            @db.ObjectId
-}
-
-model Endereco {
-  id                  String             @id @default(auto()) @map("_id") @db.ObjectId
-  cidade              String
-  bairro              String
-  logradouro          String
-  numero              Int?
-  complemento         String?
-  Profissional        Profissional?      @relation(fields: [profissionalId], references: [id])
-  profissionalId      String?            @db.ObjectId
-  ConsultorioEscola   ConsultorioEscola? @relation(fields: [consultorioEscolaId], references: [id])
-  consultorioEscolaId String?            @db.ObjectId
-}
-
-model Link {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  url            String        @unique
-  Profissional   Profissional? @relation(fields: [profissionalId], references: [id])
-  profissionalId String?       @db.ObjectId
 }
 
 model ConsultorioEscola {
