@@ -32,11 +32,9 @@ model Admin {
   id        String    @id @default(auto()) @map("_id") @db.ObjectId
   nome      String    @unique
   email     String
-  last_seen DateTime
+  last_seen DateTime?
   contatos  Contato[]
 }
-
-
 
 model Regra {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
