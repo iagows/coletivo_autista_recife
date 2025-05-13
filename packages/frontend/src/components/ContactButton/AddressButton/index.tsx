@@ -1,4 +1,4 @@
-import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
+import type { enderecoType } from "@car/models";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import NoReferrerButton from "../../NoReferrerButton";
 
@@ -8,7 +8,7 @@ const AddressButton = ({
 	numero,
 	logradouro,
 	complemento,
-}: EnderecoModelType) => {
+}: enderecoType) => {
 	const local = `${logradouro}, ${numero}${bairro ? ` - ${bairro}` : ""}, ${cidade}`;
 	const localComplement = complemento ? `${local} - ${complemento}` : local;
 	return (

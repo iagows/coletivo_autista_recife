@@ -6,11 +6,9 @@ import { Box, type SxProps } from "@mui/material";
 import NoReferrerButton from "../NoReferrerButton";
 import AddressButton from "./AddressButton";
 import PhoneButton from "./PhoneButton";
-import type { LinkModelType } from "@car/models/src/models/LinkModel";
-import type { TelefoneModelType } from "@car/models/src/models/TelefoneModel";
-import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
+import type { contatoType, enderecoType, linkType } from "@car/models";
 
-const isolatedLinks = (links: LinkModelType[] = []) =>
+const isolatedLinks = (links: [] = []) =>
 	links.reduce(
 		(acc, link) => {
 			// if (link.isEmail) {
@@ -25,19 +23,19 @@ const isolatedLinks = (links: LinkModelType[] = []) =>
 			return acc;
 		},
 		{
-			emailList: [] as LinkModelType[],
-			instagramList: [] as LinkModelType[],
-			linktreeList: [] as LinkModelType[],
-			otherLinksList: [] as LinkModelType[],
+			emailList: [] as linkType[],
+			instagramList: [] as linkType[],
+			linktreeList: [] as linkType[],
+			otherLinksList: [] as linkType[],
 		},
 	);
 
 const boxGap: SxProps = { gap: 2, marginBottom: 2 };
 
 type Props = {
-	links?: LinkModelType[];
-	telephones?: TelefoneModelType[];
-	addresses?: EnderecoModelType[];
+	links?: linkType[];
+	telephones?: contatoType[];
+	addresses?: enderecoType[];
 };
 const ContactButton = ({
 	links = [],
@@ -47,15 +45,15 @@ const ContactButton = ({
 	const subject = "indicacoes.email.assunto";
 	const body = "indicacoes.email.corpo";
 
-	const { emailList, instagramList, linktreeList, otherLinksList } =
-		isolatedLinks(links);
+	// const { emailList, instagramList, linktreeList, otherLinksList } =
+	// 	isolatedLinks(links);
 
 	return (
 		<Box sx={boxGap}>
 			{addresses?.map((e) => (
 				<AddressButton {...e} key={`${e.cidade} ${e.bairro} ${e.numero}`} />
 			))}
-			<Box display={"flex"} flexWrap={"wrap"}>
+			{/* <Box display={"flex"} flexWrap={"wrap"}>
 				{emailList?.map((email) => (
 					<NoReferrerButton
 						href={`mailto:${email.url}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}
@@ -82,7 +80,7 @@ const ContactButton = ({
 						<ParkOutlinedIcon />
 					</NoReferrerButton>
 				))}
-			</Box>
+			</Box> */}
 		</Box>
 	);
 };

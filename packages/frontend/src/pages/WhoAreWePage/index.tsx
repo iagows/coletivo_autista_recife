@@ -1,4 +1,3 @@
-import { TextIds } from "@car/models/src/models/TextoModel";
 import { useTextosSlice } from "@car/storage";
 import { Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
@@ -13,7 +12,7 @@ const WhoAreWePage = () => {
 			loadingComponent={<LoadingSkeleton />}
 		>
 			<Typography variant="h6" component="p">
-				{getByTextId(TextIds.QUEM_SOMOS)}
+				{/* {getByTextId(TextIds.QUEM_SOMOS)} */}
 			</Typography>
 		</PrepareDisplay>
 	);

@@ -1,4 +1,3 @@
-import type { TextIds } from "@car/models/src/models/TextoModel";
 import type { useTextosSlice } from "@car/storage";
 import { Box, Grid2, Typography } from "@mui/material";
 import type { ReactNode } from "react";
@@ -9,7 +8,7 @@ type FromTextoSlice = ReturnType<typeof useTextosSlice>;
 
 type Props<T> = {
 	data: T[];
-	id: TextIds;
+	// id: TextIds;
 	loading: boolean;
 	error: string | null;
 	textData: FromTextoSlice;
@@ -17,7 +16,7 @@ type Props<T> = {
 	component: (d: T) => ReactNode;
 };
 const SuspenseData = <T,>({
-	id,
+	// id,
 	data,
 	error,
 	loading,
@@ -33,7 +32,7 @@ const SuspenseData = <T,>({
 				loadingComponent={<LoadingSkeleton />}
 			>
 				<Typography variant="h6" component="p">
-					{textData.getByTextId(id)}
+					{/* {textData.getByTextId(id)} */}
 				</Typography>
 			</PrepareDisplay>
 			<Grid2 container spacing={2}>

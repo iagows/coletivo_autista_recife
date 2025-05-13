@@ -1,20 +1,8 @@
-import type { ProfissionalContractType } from "@car/models";
-import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
-import type { EspecialidadeModelType } from "@car/models/src/models/EspecialidadeModel";
-import type { LinkModelType } from "@car/models/src/models/LinkModel";
-import type { PlanoModelType } from "@car/models/src/models/PlanoModel";
-import type { TelefoneModelType } from "@car/models/src/models/TelefoneModel";
+import type { profissionalType } from "@car/models";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface ProfState {
-	data: {
-		profissional: ProfissionalContractType;
-		planos: PlanoModelType[];
-		especialidades: EspecialidadeModelType[];
-		enderecos: EnderecoModelType[];
-		links: LinkModelType[];
-		telefones: TelefoneModelType[];
-	}[];
+	data: profissionalType[];
 	loading: boolean;
 	error: string | null;
 }

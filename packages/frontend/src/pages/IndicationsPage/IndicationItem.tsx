@@ -1,9 +1,9 @@
-import type { ProfissionalContractType } from "@car/models";
-import type { EnderecoModelType } from "@car/models/src/models/EnderecoModel";
-import type { EspecialidadeModelType } from "@car/models/src/models/EspecialidadeModel";
-import type { LinkModelType } from "@car/models/src/models/LinkModel";
-import type { PlanoModelType } from "@car/models/src/models/PlanoModel";
-import type { TelefoneModelType } from "@car/models/src/models/TelefoneModel";
+import type {
+	contatoType,
+	enderecoType,
+	linkType,
+	profissionalType,
+} from "@car/models";
 import {
 	Avatar,
 	CardActions,
@@ -19,30 +19,27 @@ import { gridSizeCss } from "../../util/constants";
 
 const drName = (nome: string) => `Dr(a) ${nome}`;
 
-const espcs = (especialidades: EspecialidadeModelType[]) =>
+const espcs = (especialidades: string[]) =>
 	especialidades
-		.map((e) => e.nome.charAt(0).toUpperCase() + e.nome.slice(1).toLowerCase())
+		.map((e) => e.charAt(0).toUpperCase() + e.slice(1).toLowerCase())
 		.join(", ");
 
 type Props = {
-	profissional: ProfissionalContractType;
-	links: LinkModelType[];
-	planos: PlanoModelType[];
-	telefones: TelefoneModelType[];
-	enderecos: EnderecoModelType[];
-	especialidades: EspecialidadeModelType[];
+	profissional: profissionalType;
+	links: linkType[];
+	telefones: contatoType[];
+	enderecos: enderecoType[];
+	especialidades: string[];
 };
 
 const IndicationItem = ({
 	profissional,
 	links,
-	planos,
 	telefones,
 	enderecos,
 	especialidades,
 }: Props) => {
-	const { id, conselhos, nome, preco, publico, comentario, particular } =
-		profissional;
+	const { id, nome, comentario, pagamento } = profissional;
 
 	const nameSpecs = `${drName(nome)} - ${espcs(especialidades)}`;
 	// const crmRqe = [crm, rqe].filter((i) => i !== "").join(", ");
@@ -56,12 +53,7 @@ const IndicationItem = ({
 					avatar={<Avatar aria-label="Profissional">{nome[0]}</Avatar>}
 				/>
 				<CardContent>
-					<PagamentoInfo
-						preco={preco}
-						planos={planos}
-						isPublico={publico}
-						isParticular={particular}
-					/>
+					<PagamentoInfo {...pagamento} />
 					{comentario && (
 						<Typography variant="body2" color="textSecondary">
 							{"indicacoes.card.comentarios"}: {comentario}

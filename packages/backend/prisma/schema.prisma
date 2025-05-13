@@ -15,21 +15,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-////////// TYPE GENERATOR //////////
-generator prismabox {
-  provider                    = "prismabox"
-  // you can optionally specify the output location. Defaults to ./prismabox
-  output                      = "./dto"
-  // if you want, you can customize the imported variable name that is used for the schemes. Defaults to "Type" which is what the standard typebox package offers
-  typeboxImportVariableName   = "t"
-  // you also can specify the dependency from which the above import should happen. This is useful if a package re-exports the typebox package and you would like to use that
-  typeboxImportDependencyName = "elysia"
-  // by default the generated schemes do not allow additional properties. You can allow them by setting this to true
-  additionalProperties        = true
-  // optionally enable the data model generation. See the data model section below for more info
-  inputModel                  = true
-}
-
 ////////// TIPOS COMUNS //////////
 
 /// Contato (ddd, telefone e se está associado a telegram/whatsapp)
@@ -38,10 +23,6 @@ type Contato {
   numero     Int
   isTelegram Boolean @default(false)
   isWhatsapp Boolean @default(false)
-}
-
-type Especialidade {
-  nome String
 }
 
 type Endereco {
@@ -54,6 +35,13 @@ type Endereco {
 
 type Link {
   url String
+}
+
+type Pagamento {
+  isParticular Boolean? @default(false)
+  isPublico    Boolean? @default(false)
+  preco        Float?
+  planos       String[]
 }
 
 ////////// MODELOS //////////
@@ -73,26 +61,24 @@ model Regra {
 }
 
 model Profissional {
-  id             String          @id @default(auto()) @map("_id") @db.ObjectId
-  nome           String          @unique
-  isParticular   Boolean?        @default(false)
-  isPublico      Boolean?        @default(false)
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  nome           String     @unique
   comentario     String?
-  preco          Float?
-  especialidades Especialidade[]
+  especialidades String[]
   enderecos      Endereco[]
   links          Link[]
   contatos       Contato[]
+  pagamento      Pagamento
 }
 
 model ConsultorioEscola {
-  id             String          @id @default(auto()) @map("_id") @db.ObjectId
-  nome           String          @unique
-  preco          Float?
+  id             String     @id @default(auto()) @map("_id") @db.ObjectId
+  nome           String     @unique
+  comentario     String?
   enderecos      Endereco[]
   contatos       Contato[]
-  comentario     String?
-  especialidades Especialidade[]
+  pagamento      Pagamento
+  especialidades String[]
 }
 
 model Texto {

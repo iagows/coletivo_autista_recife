@@ -1,20 +1,20 @@
-import type { RegraContractType } from "@car/models";
 import { CardContent, CardHeader, Typography } from "@mui/material";
 import PaperCard from "../../components/PaperCard";
+import type { regraType } from "@car/models";
 
-const RuleItem = ({ texto, detalhamento }: RegraContractType) => {
+const RuleItem = ({ texto, descricao }: regraType) => {
 	return (
 		<PaperCard>
 			<CardHeader title={texto} />
 			<CardContent>
-				{detalhamento && (
+				{descricao && (
 					<Typography
 						gutterBottom
 						component="p"
 						variant="body2"
 						color="text.secondary"
 					>
-						{detalhamento}
+						{descricao}
 					</Typography>
 				)}
 			</CardContent>

@@ -1,8 +1,8 @@
-import type { RegraContractType } from "@car/models";
+import type { regraType } from "@car/models";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface RulesState {
-	data: RegraContractType[];
+	data: regraType[];
 	loading: boolean;
 	error: string | null;
 }

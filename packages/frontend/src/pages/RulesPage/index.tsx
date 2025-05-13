@@ -1,4 +1,3 @@
-import { TextIds } from "@car/models/src/models/TextoModel";
 import { useRulesSlice, useTextosSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 import RuleItem from "./RuleItem";
@@ -14,7 +13,7 @@ const RulesPage = () => {
 			loading={loading}
 			textData={textoData}
 			component={RuleItem}
-			id={TextIds.REGRAS_DESC}
+			// id={TextIds.REGRAS_DESC}
 			idGetter={(r) => `${r.id}`}
 		/>
 	);

@@ -1,4 +1,3 @@
-import { TextIds } from "@car/models/src/models/TextoModel";
 import { useTextosSlice } from "@car/storage";
 import { Box, Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
@@ -15,7 +14,7 @@ const EscolaPage = () => {
 				loadingComponent={<LoadingSkeleton />}
 			>
 				<Typography variant="h6" component="p">
-					{getByTextId(TextIds.ESCOLA)}
+					{/* {getByTextId(TextIds.ESCOLA)} */}
 				</Typography>
 			</PrepareDisplay>
 		</Box>

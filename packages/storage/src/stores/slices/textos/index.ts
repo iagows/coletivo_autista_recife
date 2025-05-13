@@ -1,8 +1,8 @@
-import type { TextoContractType } from "@car/models";
+import type { textoType } from "@car/models";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface TextosState {
-	data: TextoContractType[];
+	data: textoType[];
 	loading: boolean;
 	error: string | null;
 }

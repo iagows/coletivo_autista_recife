@@ -1,10 +1,21 @@
+import type {
+	adminType,
+	consutorioEscolaType,
+	contatoType,
+	enderecoType,
+	linkType,
+	pagamentoType,
+	profissionalType,
+	regraType,
+	textoType,
+} from "./src/models";
 import {
 	adminDTO,
 	consutorioEscolaDTO,
 	contatoDTO,
 	enderecoDTO,
-	especialidadeDTO,
 	linkDTO,
+	pagamentoDTO,
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
@@ -17,10 +28,22 @@ export {
 	contatoDTO,
 	enderecoDTO,
 	errorResponse,
-	especialidadeDTO,
 	idParam,
 	linkDTO,
+	pagamentoDTO,
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
+};
+
+export type {
+	adminType,
+	consutorioEscolaType,
+	contatoType,
+	enderecoType,
+	linkType,
+	pagamentoType,
+	profissionalType,
+	regraType,
+	textoType,
 };

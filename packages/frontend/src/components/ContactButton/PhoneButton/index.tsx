@@ -1,15 +1,15 @@
+import type { contatoType } from "@car/models";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import type { SxProps } from "@mui/material";
-
 import NoReferrerButton from "../../NoReferrerButton";
 
 const telegramCss: SxProps = {
 	transform: "rotate(-40deg)",
 };
 
-const PhoneButton = ({ numero, isWhatsapp, isTelegram }: TelefoneModelType) => {
+const PhoneButton = ({ numero, isWhatsapp, isTelegram }: contatoType) => {
 	return (
 		<>
 			{isWhatsapp && (
