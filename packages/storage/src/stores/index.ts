@@ -2,33 +2,35 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import professionals from "./slices/profissional";
-import rules from "./slices/regras";
+import { regraApi } from "./slices/regras";
 import settings from "./slices/settings";
 import textos from "./slices/textos";
 
-const persistConfig = {
+const settingsPersistConfig = {
+	key: "settings",
 	storage,
-	key: "config",
-	whitelist: ["settings"],
+	// whitelist opcional se quiser selecionar campos específicos
+	// whitelist: ['theme', 'language']
 };
 
 const rootReducer = combineReducers({
-	rules,
+	// Reducers não persistentes
+	regraApi: regraApi.reducer,
 	textos,
-	settings,
 	professionals,
+
+	// Reducer persistente
+	settings: persistReducer(settingsPersistConfig, settings),
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-	reducer: persistedReducer,
+	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			serializableCheck: {
 				ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
 			},
-		}),
+		}).concat(regraApi.middleware), // Adicionar middleware da API
 });
 
 export const persistor = persistStore(store);

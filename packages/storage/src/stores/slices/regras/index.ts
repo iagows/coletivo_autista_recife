@@ -1,48 +1,49 @@
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryToken } from "../baseQuery";
 import type { regraType } from "@car/models";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface RulesState {
-	data: regraType[];
-	loading: boolean;
-	error: string | null;
-}
+const REGRA_TAG = ["Regra"];
+const REGRA_EP = "/regra";
+const REGRA_EP_SLASH = `${REGRA_EP}/`;
 
-const initialState: RulesState = {
-	data: [],
-	loading: false,
-	error: null,
-};
-
-export const fetchRules = createAsyncThunk(
-	"rules/fetchRules",
-	async (_, { rejectWithValue }) => {
-		try {
-			return [];
-		} catch (error) {
-			return rejectWithValue((error as Error).message);
-		}
-	},
-);
-
-const rulesSlice = createSlice({
-	name: "rules",
-	initialState,
-	reducers: {},
-	extraReducers: (builder) => {
-		builder
-			.addCase(fetchRules.pending, (state) => {
-				state.loading = true;
-				state.error = null;
-			})
-			.addCase(fetchRules.fulfilled, (state, action) => {
-				state.loading = false;
-				state.data = action.payload;
-			})
-			.addCase(fetchRules.rejected, (state, action) => {
-				state.loading = false;
-				state.error = action.payload as string;
-			});
-	},
+export const regraApi = createApi({
+	reducerPath: "regraApi",
+	baseQuery: baseQueryToken,
+	tagTypes: REGRA_TAG,
+	endpoints: (builder) => ({
+		getRegras: builder.query<regraType[], void>({
+			query: () => REGRA_EP,
+			providesTags: REGRA_TAG,
+		}),
+		addRegra: builder.mutation<regraType, regraType>({
+			query: (body) => ({
+				url: REGRA_EP,
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: REGRA_TAG,
+		}),
+		updateRegra: builder.mutation<regraType, regraType>({
+			query: ({ id, ...body }) => ({
+				url: `${REGRA_EP_SLASH}${id}`,
+				method: "PUT",
+				body,
+			}),
+			invalidatesTags: REGRA_TAG,
+		}),
+		deleteRegra: builder.mutation<void, string>({
+			query: (id) => ({
+				url: `${REGRA_EP_SLASH}${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: REGRA_TAG,
+		}),
+	}),
 });
 
-export default rulesSlice.reducer;
+export const {
+	useGetRegrasQuery,
+	useAddRegraMutation,
+	useUpdateRegraMutation,
+	useDeleteRegraMutation,
+} = regraApi;

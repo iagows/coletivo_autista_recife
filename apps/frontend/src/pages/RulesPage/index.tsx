@@ -1,16 +1,16 @@
-import { useRulesSlice, useTextosSlice } from "@car/storage";
+import { useRegraSlice, useTextosSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 import RuleItem from "./RuleItem";
 
 const RulesPage = () => {
 	const textoData = useTextosSlice();
-	const { data, error, loading } = useRulesSlice();
+	const { regras, isLoading, error } = useRegraSlice();
 
 	return (
 		<SuspenseData
-			data={data}
-			error={error}
-			loading={loading}
+			data={regras}
+			// error={error}
+			loading={isLoading}
 			textData={textoData}
 			component={RuleItem}
 			// id={TextIds.REGRAS_DESC}

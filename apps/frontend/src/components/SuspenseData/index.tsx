@@ -7,21 +7,21 @@ import PrepareDisplay from "../PrepareDisplay";
 type FromTextoSlice = ReturnType<typeof useTextosSlice>;
 
 type Props<T> = {
-	data: T[];
+	data?: T[];
 	// id: TextIds;
 	loading: boolean;
-	error: string | null;
+	// error: string | null;
 	textData: FromTextoSlice;
 	idGetter: (d: T) => string;
 	component: (d: T) => ReactNode;
 };
 const SuspenseData = <T,>({
 	// id,
-	data,
-	error,
+	// error,
 	loading,
 	idGetter,
 	textData,
+	data = [],
 	component: C,
 }: Props<T>) => {
 	return (
@@ -37,7 +37,8 @@ const SuspenseData = <T,>({
 			</PrepareDisplay>
 			<Grid2 container spacing={2}>
 				<PrepareDisplay
-					error={error}
+					error={null}
+					// error={error}
 					isLoading={loading}
 					loadingComponent={<LoadingSkeleton w={450} h={250} amount={6} />}
 				>

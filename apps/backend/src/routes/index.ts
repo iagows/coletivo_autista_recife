@@ -7,7 +7,7 @@ import { RegraRoute } from "./regra";
 import { TextoRoute } from "./texto";
 
 export const ServerRoutes = () => {
-	const route = new Elysia()
+	const route = new Elysia({ prefix: "/api" })
 		.use(EscolaRoute)
 		.use(ProfissionalRoute)
 		.use(RegraRoute)
