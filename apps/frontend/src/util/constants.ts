@@ -3,12 +3,6 @@ import packageJson from "../../package.json";
 
 export const PROJECT_VERSION = packageJson.version;
 
-export const EnvVars = {
-	server: {
-		port: (import.meta.env.VITE_APP_EXAMPLE as number) || 12345,
-	},
-};
-
 export const BASIC_CSS = {
 	transition: {
 		time: "0.3s",

@@ -2,6 +2,7 @@
 	"name": "@car/backend",
 	"module": "index.ts",
 	"type": "module",
+	"private": true,
 	"scripts": {
 		"dev": "bun --watch src/index.ts",
 		"start": "bun src/index.ts",

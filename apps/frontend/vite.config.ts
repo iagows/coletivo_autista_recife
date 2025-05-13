@@ -34,8 +34,8 @@ export default defineConfig({
 	],
 	resolve: {
 		alias: {
-			"@car/storage": path.resolve(__dirname, "../storage"),
-			"@car/models": path.resolve(__dirname, "../models"),
+			"@car/storage": path.resolve(__dirname, "../../packages/storage"),
+			"@car/models": path.resolve(__dirname, "../../packages/models"),
 		},
 	},
 	optimizeDeps: {

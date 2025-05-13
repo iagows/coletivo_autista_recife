@@ -28,8 +28,6 @@
 		]
 	},
 	"include": [
-		"src",
-		"../packages/models/src/LinkModel.ts",
-		"../packages/models/src/HelpTypes.ts"
+		"src"
 	]
 }
