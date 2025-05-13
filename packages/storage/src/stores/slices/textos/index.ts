@@ -1,48 +1,49 @@
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryToken } from "../baseQuery";
 import type { textoType } from "@car/models";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface TextosState {
-	data: textoType[];
-	loading: boolean;
-	error: string | null;
-}
+const TEXTO_TAG = ["Texto"];
+const TEXTO_EP = "/texto";
+const TEXTO_EP_SLASH = `${TEXTO_EP}/`;
 
-const initialState: TextosState = {
-	data: [],
-	loading: false,
-	error: null,
-};
-
-export const fetchTextos = createAsyncThunk(
-	"rules/fetchTextos",
-	async (_, { rejectWithValue }) => {
-		try {
-			return [];
-		} catch (error) {
-			return rejectWithValue((error as Error).message);
-		}
-	},
-);
-
-const textosSlice = createSlice({
-	name: "textos",
-	initialState,
-	reducers: {},
-	extraReducers: (builder) => {
-		builder
-			.addCase(fetchTextos.pending, (state) => {
-				state.loading = true;
-				state.error = null;
-			})
-			.addCase(fetchTextos.fulfilled, (state, action) => {
-				state.loading = false;
-				state.data = action.payload;
-			})
-			.addCase(fetchTextos.rejected, (state, action) => {
-				state.loading = false;
-				state.error = action.payload as string;
-			});
-	},
+export const textoApi = createApi({
+	reducerPath: "textoApi",
+	baseQuery: baseQueryToken,
+	tagTypes: TEXTO_TAG,
+	endpoints: (builder) => ({
+		getTextos: builder.query<textoType[], void>({
+			query: () => TEXTO_EP,
+			providesTags: TEXTO_TAG,
+		}),
+		addTexto: builder.mutation<textoType, textoType>({
+			query: (body) => ({
+				url: TEXTO_EP,
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: TEXTO_TAG,
+		}),
+		updateTexto: builder.mutation<textoType, textoType>({
+			query: ({ id, ...body }) => ({
+				url: `${TEXTO_EP_SLASH}${id}`,
+				method: "PUT",
+				body,
+			}),
+			invalidatesTags: TEXTO_TAG,
+		}),
+		deleteTexto: builder.mutation<void, string>({
+			query: (id) => ({
+				url: `${TEXTO_EP_SLASH}${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: TEXTO_TAG,
+		}),
+	}),
 });
 
-export default textosSlice.reducer;
+export const {
+	useGetTextosQuery,
+	useAddTextoMutation,
+	useUpdateTextoMutation,
+	useDeleteTextoMutation,
+} = textoApi;

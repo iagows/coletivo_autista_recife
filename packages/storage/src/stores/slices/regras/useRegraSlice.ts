@@ -6,13 +6,13 @@ import {
 } from ".";
 
 export const useRegraSlice = () => {
-	const { data: regras, isLoading, error } = useGetRegrasQuery();
+	const { data, isLoading, error } = useGetRegrasQuery();
 	const [addRegra] = useAddRegraMutation();
 	const [updateRegra] = useUpdateRegraMutation();
 	const [deleteRegra] = useDeleteRegraMutation();
 
 	return {
-		regras,
+		regras: data,
 		isLoading,
 		error,
 		addRegra,

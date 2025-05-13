@@ -4,7 +4,7 @@ import storage from "redux-persist/lib/storage";
 import professionals from "./slices/profissional";
 import { regraApi } from "./slices/regras";
 import settings from "./slices/settings";
-import textos from "./slices/textos";
+import { textoApi } from "./slices/textos";
 
 const settingsPersistConfig = {
 	key: "settings",
@@ -16,7 +16,7 @@ const settingsPersistConfig = {
 const rootReducer = combineReducers({
 	// Reducers não persistentes
 	regraApi: regraApi.reducer,
-	textos,
+	textoApi: textoApi.reducer,
 	professionals,
 
 	// Reducer persistente
@@ -30,7 +30,9 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
 			},
-		}).concat(regraApi.middleware), // Adicionar middleware da API
+		})
+			.concat(regraApi.middleware)
+			.concat(textoApi.middleware), // Adicionar middleware da API
 });
 
 export const persistor = persistStore(store);

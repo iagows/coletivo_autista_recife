@@ -4,7 +4,7 @@ import { useProfissionalSlice } from "./src/stores/slices/profissional/useProfis
 import { useRegraSlice } from "./src/stores/slices/regras/useRegraSlice";
 import useSettingsSlice from "./src/stores/slices/settings/useSettingsSlice";
 import useSettings from "./src/stores/slices/settings/useSettingsSlice";
-import { useTextosSlice } from "./src/stores/slices/textos/useTextosSlice";
+import { useTextoSlice } from "./src/stores/slices/textos/useTextoSlice";
 
 export {
 	ColetivoStore,
@@ -13,5 +13,5 @@ export {
 	useProfissionalSlice,
 	useRegraSlice,
 	useSettingsSlice,
-	useTextosSlice,
+	useTextoSlice,
 };

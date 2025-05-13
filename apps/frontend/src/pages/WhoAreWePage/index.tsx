@@ -1,14 +1,15 @@
-import { useTextosSlice } from "@car/storage";
+import { useTextoSlice } from "@car/storage";
 import { Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PrepareDisplay from "../../components/PrepareDisplay";
 
 const WhoAreWePage = () => {
-	const { error, getByTextId, loading } = useTextosSlice();
+	const { error, isLoading } = useTextoSlice();
 	return (
 		<PrepareDisplay
-			error={error}
-			isLoading={loading}
+			error={null}
+			// error={error}
+			isLoading={isLoading}
 			loadingComponent={<LoadingSkeleton />}
 		>
 			<Typography variant="h6" component="p">

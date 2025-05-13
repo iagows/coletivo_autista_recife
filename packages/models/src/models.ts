@@ -63,6 +63,8 @@ export const consutorioEscolaDTO = Type.Object({
 export type consutorioEscolaType = Static<typeof consutorioEscolaDTO>;
 
 export const textoDTO = Type.Object({
+	id: Type.String(),
+	referencia: Type.String(),
 	texto: Type.String({ minLength: 6 }),
 });
 

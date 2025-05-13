@@ -1,9 +1,9 @@
-import { useRegraSlice, useTextosSlice } from "@car/storage";
+import { useRegraSlice, useTextoSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 import RuleItem from "./RuleItem";
 
 const RulesPage = () => {
-	const textoData = useTextosSlice();
+	const textoData = useTextoSlice();
 	const { regras, isLoading, error } = useRegraSlice();
 
 	return (

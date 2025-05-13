@@ -1,15 +1,15 @@
-import { useProfissionalSlice, useTextosSlice } from "@car/storage";
+import { useProfissionalSlice, useTextoSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 import IndicationItem from "./IndicationItem";
 
 const IndicationsPage = () => {
 	const { data, error, loading } = useProfissionalSlice();
-	const textData = useTextosSlice();
+	const textData = useTextoSlice();
 
 	return (
 		<SuspenseData
-			data={data}
-			error={error}
+			data={[]}
+			// error={null}
 			loading={loading}
 			textData={textData}
 			component={IndicationItem}

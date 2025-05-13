@@ -1,10 +1,10 @@
-import type { useTextosSlice } from "@car/storage";
+import type { useTextoSlice } from "@car/storage";
 import { Box, Grid2, Typography } from "@mui/material";
 import type { ReactNode } from "react";
 import LoadingSkeleton from "../LoadingSkeleton";
 import PrepareDisplay from "../PrepareDisplay";
 
-type FromTextoSlice = ReturnType<typeof useTextosSlice>;
+type FromTextoSlice = ReturnType<typeof useTextoSlice>;
 
 type Props<T> = {
 	data?: T[];
@@ -27,8 +27,9 @@ const SuspenseData = <T,>({
 	return (
 		<Box>
 			<PrepareDisplay
-				error={textData.error}
-				isLoading={textData.loading}
+				error={null}
+				// error={textData.error}
+				isLoading={textData.isLoading}
 				loadingComponent={<LoadingSkeleton />}
 			>
 				<Typography variant="h6" component="p">

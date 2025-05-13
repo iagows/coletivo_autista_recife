@@ -82,6 +82,7 @@ model ConsultorioEscola {
 }
 
 model Texto {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  texto String @unique
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  texto      String @unique
+  referencia String @unique
 }

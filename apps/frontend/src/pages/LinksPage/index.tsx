@@ -1,4 +1,4 @@
-import { useTextosSlice } from "@car/storage";
+import { useTextoSlice } from "@car/storage";
 import SuspenseData from "../../components/SuspenseData";
 
 const Escola = () => {
@@ -10,11 +10,11 @@ const LinksPage = () => {
 	const error = null;
 	const loading = false;
 
-	const textData = useTextosSlice();
+	const textData = useTextoSlice();
 	return (
 		<SuspenseData
 			data={data}
-			error={error}
+			// error={error}
 			loading={loading}
 			textData={textData}
 			component={Escola}
