@@ -5,13 +5,15 @@ import { EscolaRoute } from "./escola";
 import { ProfissionalRoute } from "./profissional";
 import { RegraRoute } from "./regra";
 import { TextoRoute } from "./texto";
+import { AuthRoute } from "./auth";
 
 export const ServerRoutes = () => {
 	const route = new Elysia({ prefix: "/api" })
 		.use(EscolaRoute)
 		.use(ProfissionalRoute)
 		.use(RegraRoute)
-		.use(TextoRoute);
+		.use(TextoRoute)
+		.use(AuthRoute);
 
 	if (isDevMode) {
 		route.use(AdminRoute);

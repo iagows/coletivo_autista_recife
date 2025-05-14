@@ -21,8 +21,8 @@ export type pagamentoType = Static<typeof pagamentoDTO>;
 export const adminDTO = Type.Object({
 	nome: Type.String(),
 	email: Type.String(),
-	last_seen: Type.Date(),
 	contatos: Type.Array(contatoDTO),
+	last_seen: Type.Optional(Type.Date()),
 });
 
 export type adminType = Static<typeof adminDTO>;
@@ -82,12 +82,3 @@ export const profissionalDTO = Type.Object({
 });
 
 export type profissionalType = Static<typeof profissionalDTO>;
-
-export const emailTokenDTO = Type.Object({
-	id: Type.String(),
-	sender: Type.String(),
-	when: Type.Date(),
-	ip: Type.String(),
-});
-
-export type emailTokenType = Static<typeof emailTokenDTO>;

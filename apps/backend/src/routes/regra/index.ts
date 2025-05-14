@@ -1,5 +1,5 @@
 import { errorResponse, idParam, regraDTO } from "@car/models";
-import Elysia, { t } from "elysia";
+import Elysia from "elysia";
 import { PrismaClient } from "../../../generated/prisma";
 
 const db = new PrismaClient();

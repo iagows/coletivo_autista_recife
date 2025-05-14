@@ -1,3 +1,9 @@
+import {
+	authDTO,
+	type authType,
+	emailTokenDTO,
+	type emailTokenType,
+} from "./src/email";
 import type {
 	adminType,
 	consutorioEscolaType,
@@ -8,7 +14,6 @@ import type {
 	profissionalType,
 	regraType,
 	textoType,
-	emailTokenType,
 } from "./src/models";
 import {
 	adminDTO,
@@ -20,14 +25,15 @@ import {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
-	emailTokenDTO,
 } from "./src/models";
 import { errorResponse, idParam } from "./src/swagger.models";
 
 export {
 	adminDTO,
+	authDTO,
 	consutorioEscolaDTO,
 	contatoDTO,
+	emailTokenDTO,
 	enderecoDTO,
 	errorResponse,
 	idParam,
@@ -36,18 +42,18 @@ export {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
-	emailTokenDTO,
 };
 
 export type {
 	adminType,
+	authType,
 	consutorioEscolaType,
 	contatoType,
+	emailTokenType,
 	enderecoType,
 	linkType,
 	pagamentoType,
 	profissionalType,
 	regraType,
 	textoType,
-	emailTokenType,
 };

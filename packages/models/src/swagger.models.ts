@@ -7,3 +7,8 @@ export const idParam = Type.Object({
 export const errorResponse = Type.Object({
 	error: Type.String(),
 });
+
+export const successResponse = Type.Object({
+	success: Type.Boolean(),
+	message: Type.Optional(Type.String()),
+});
