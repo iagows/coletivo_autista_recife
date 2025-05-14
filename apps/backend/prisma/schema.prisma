@@ -86,3 +86,10 @@ model Texto {
   texto      String @unique
   referencia String @unique
 }
+
+model EmailToken {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId
+  sender String
+  when   DateTime
+  ip     String
+}

@@ -8,6 +8,7 @@ import type {
 	profissionalType,
 	regraType,
 	textoType,
+	emailTokenType,
 } from "./src/models";
 import {
 	adminDTO,
@@ -19,6 +20,7 @@ import {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
+	emailTokenDTO,
 } from "./src/models";
 import { errorResponse, idParam } from "./src/swagger.models";
 
@@ -34,6 +36,7 @@ export {
 	profissionalDTO,
 	regraDTO,
 	textoDTO,
+	emailTokenDTO,
 };
 
 export type {
@@ -46,4 +49,5 @@ export type {
 	profissionalType,
 	regraType,
 	textoType,
+	emailTokenType,
 };

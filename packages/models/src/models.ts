@@ -82,3 +82,12 @@ export const profissionalDTO = Type.Object({
 });
 
 export type profissionalType = Static<typeof profissionalDTO>;
+
+export const emailTokenDTO = Type.Object({
+	id: Type.String(),
+	sender: Type.String(),
+	when: Type.Date(),
+	ip: Type.String(),
+});
+
+export type emailTokenType = Static<typeof emailTokenDTO>;
