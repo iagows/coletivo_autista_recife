@@ -3,7 +3,7 @@ import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSetting
 import Brightness4Icon from "@mui/icons-material/Brightness4"; // Ícone de lua (dark)
 import Brightness7Icon from "@mui/icons-material/Brightness7"; // Ícone de sol (light)
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { AppBar, IconButton, type SxProps, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, type SxProps, Toolbar } from "@mui/material";
 import { DRAWER_WIDTH } from "../../util/constants";
 import { PageTitle } from "./PageTitle";
 
@@ -21,20 +21,28 @@ const AppTopbar = () => {
 	return (
 		<AppBar sx={barCss(isMobile)}>
 			<Toolbar>
-				{isMobile && ( // Botão de menu visível apenas no mobile
-					<IconButton
-						edge="start"
-						sx={buttonCss}
-						color="inherit"
-						onClick={toggleDrawer}
-					>
-						<MenuOutlinedIcon />
+				<Box
+					flex={1}
+					display={"flex"}
+					alignItems={"center"}
+					justifyContent={"space-between"}
+				>
+					{isMobile && ( // Botão de menu visível apenas no mobile
+						<IconButton
+							edge="start"
+							sx={buttonCss}
+							color="inherit"
+							onClick={toggleDrawer}
+						>
+							<MenuOutlinedIcon />
+						</IconButton>
+					)}
+
+					<PageTitle />
+					<IconButton color="inherit" onClick={toggleTheme}>
+						{isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
 					</IconButton>
-				)}
-				<IconButton color="inherit" onClick={toggleTheme}>
-					{isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-				</IconButton>{" "}
-				<PageTitle />
+				</Box>
 			</Toolbar>
 		</AppBar>
 	);
