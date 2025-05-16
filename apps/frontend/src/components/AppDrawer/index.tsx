@@ -7,8 +7,6 @@ import {
 	type SxProps,
 	Typography,
 } from "@mui/material";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import coletivo from "../../assets/coletivo.jpg";
 import { DRAWER_WIDTH, PROJECT_VERSION } from "../../util/constants";
 import RouteListDisplay from "./RouteListDisplay";

@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import PrepareDisplay from "../../components/PrepareDisplay";
 
-const EscolaPage = () => {
+const SchoolPage = () => {
 	const { error, isLoading } = useTextoSlice();
 
 	return (
@@ -22,4 +22,4 @@ const EscolaPage = () => {
 	);
 };
 
-export default EscolaPage;
+export default SchoolPage;

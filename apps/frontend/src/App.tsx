@@ -1,7 +1,7 @@
 import { useSettings } from "@car/storage";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import AppRouter from "./navigation/AppRouter";
+import MainRouter from "./navigation/Router";
 import theme from "./util/theme";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
 	return (
 		<ThemeProvider theme={theme(isDarkMode)}>
 			<CssBaseline />
-			<AppRouter />
+			<MainRouter />
 		</ThemeProvider>
 	);
 };

@@ -1,13 +1,12 @@
 import { useTextoSlice } from "@car/storage";
 import { Typography } from "@mui/material";
 import { useLocation } from "react-router";
-import type RouteNames from "../../navigation/RouteNames";
-import { getRouteTitle } from "../../navigation/RouteNames";
 import LoadingSkeleton from "../LoadingSkeleton";
+import { getTitleByRoute } from "../../navigation/routes";
 
 const useTopBar = () => {
 	const currentRoute = useLocation().pathname;
-	const currentPage = getRouteTitle(currentRoute as RouteNames);
+	const currentPage = getTitleByRoute(currentRoute);
 
 	const { getByReference, isLoading } = useTextoSlice();
 
