@@ -1,10 +1,9 @@
 import { useUtils } from "@car/storage";
 import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
-import Brightness4Icon from "@mui/icons-material/Brightness4"; // Ícone de lua (dark)
-import Brightness7Icon from "@mui/icons-material/Brightness7"; // Ícone de sol (light)
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import { AppBar, Box, IconButton, type SxProps, Toolbar } from "@mui/material";
 import { DRAWER_WIDTH } from "../../util/constants";
+import ConfigArea from "../ConfigArea";
 import { PageTitle } from "./PageTitle";
 
 const barCss = (isMobile: boolean): SxProps => ({
@@ -16,7 +15,7 @@ const buttonCss: SxProps = { mr: 2 };
 
 const AppTopbar = () => {
 	const { isMobile } = useUtils();
-	const { isDarkMode, toggleTheme, toggleDrawer } = useSettingsSlice();
+	const { toggleDrawer } = useSettingsSlice();
 
 	return (
 		<AppBar sx={barCss(isMobile)}>
@@ -37,11 +36,8 @@ const AppTopbar = () => {
 							<MenuOutlinedIcon />
 						</IconButton>
 					)}
-
 					<PageTitle />
-					<IconButton color="inherit" onClick={toggleTheme}>
-						{isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-					</IconButton>
+					<ConfigArea />
 				</Box>
 			</Toolbar>
 		</AppBar>
