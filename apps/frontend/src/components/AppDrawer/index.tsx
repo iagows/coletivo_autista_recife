@@ -3,20 +3,15 @@ import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSetting
 import {
 	Box,
 	List,
-	ListItem,
-	ListItemButton,
-	ListItemIcon,
-	ListItemText,
 	Drawer as MuiDrawer,
 	type SxProps,
 	Typography,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import coletivo from "../../assets/coletivo.jpg";
-import type RouteNames from "../../navigation/RouteNames";
-import { getRouteAsList } from "../../navigation/RouteNames";
 import { DRAWER_WIDTH, PROJECT_VERSION } from "../../util/constants";
+import RouteListDisplay from "./RouteListDisplay";
 
 const drawer_css: SxProps = {
 	width: DRAWER_WIDTH,
@@ -48,9 +43,6 @@ const spacerCss: SxProps = {
 };
 
 const AppDrawer = () => {
-	const location = useLocation();
-	const [currentRoute, setCurrentRoute] = useState<string>(location.pathname);
-
 	const { isOpen, toggleDrawer } = useSettingsSlice();
 	const { isMobile } = useUtils();
 
@@ -60,10 +52,6 @@ const AppDrawer = () => {
 		}
 	};
 
-	useEffect(() => {
-		setCurrentRoute(location.pathname as RouteNames);
-	}, [location]);
-
 	return (
 		<MuiDrawer
 			variant={isMobile ? "temporary" : "permanent"}
@@ -72,24 +60,9 @@ const AppDrawer = () => {
 			sx={drawer_css}
 		>
 			<Box sx={imageCss} />
-
 			<Box sx={spacerCss} />
 			<List>
-				{getRouteAsList().map(({ Icon, path, title }) => (
-					<ListItem key={`${title}_${title}`} disablePadding>
-						<ListItemButton
-							to={path}
-							component={Link}
-							disabled={currentRoute === path}
-							onClick={isMobile ? toggleDrawer : undefined}
-						>
-							<ListItemIcon>
-								<Icon />
-							</ListItemIcon>
-							<ListItemText primary={title} />
-						</ListItemButton>
-					</ListItem>
-				))}
+				<RouteListDisplay />
 			</List>
 			<Box sx={versionCss}>
 				<Typography variant="body2" color="textSecondary">
