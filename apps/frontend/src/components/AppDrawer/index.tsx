@@ -2,7 +2,6 @@ import { useUtils } from "@car/storage";
 import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
 import {
 	Box,
-	List,
 	Drawer as MuiDrawer,
 	type SxProps,
 	Typography,
@@ -59,9 +58,7 @@ const AppDrawer = () => {
 		>
 			<Box sx={imageCss} />
 			<Box sx={spacerCss} />
-			<List>
-				<RouteListDisplay />
-			</List>
+			<RouteListDisplay />
 			<Box sx={versionCss}>
 				<Typography variant="body2" color="textSecondary">
 					Versão: {PROJECT_VERSION}

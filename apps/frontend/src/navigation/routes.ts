@@ -1,3 +1,4 @@
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 import Diversity3OutlinedIcon from "@mui/icons-material/Diversity3Outlined";
 import FormatListNumberedOutlinedIcon from "@mui/icons-material/FormatListNumberedOutlined";
@@ -7,15 +8,19 @@ import RuleOutlinedIcon from "@mui/icons-material/RuleOutlined";
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import type { SvgIconTypeMap } from "@mui/material";
 import type { OverridableComponent } from "@mui/material/OverridableComponent";
-import { type JSX, lazy } from "react";
+import type { JSX } from "react";
+import { lazyWithSuspense } from "./LazySuspense";
 
-const GuidePage = lazy(() => import("../pages/GuidesPage"));
-const LinksPage = lazy(() => import("../pages/LinksPage"));
-const RulesPage = lazy(() => import("../pages/RulesPage"));
-const WhoAreWePage = lazy(() => import("../pages/WhoAreWePage"));
-const IndicationsPage = lazy(() => import("../pages/IndicationsPage"));
-const SchoolPage = lazy(() => import("../pages/SchoolPage"));
-const MainPage = lazy(() => import("../pages/MainPage"));
+const GuidePage = lazyWithSuspense(() => import("../pages/GuidesPage"));
+const LinksPage = lazyWithSuspense(() => import("../pages/LinksPage"));
+const RulesPage = lazyWithSuspense(() => import("../pages/RulesPage"));
+const WhoAreWePage = lazyWithSuspense(() => import("../pages/WhoAreWePage"));
+const IndicationsPage = lazyWithSuspense(
+	() => import("../pages/IndicationsPage"),
+);
+const SchoolPage = lazyWithSuspense(() => import("../pages/SchoolPage"));
+const MainPage = lazyWithSuspense(() => import("../pages/MainPage"));
+const EditPage = lazyWithSuspense(() => import("../pages/EditPage"));
 
 enum RouteNames {
 	ROOT = "/",
@@ -25,6 +30,7 @@ enum RouteNames {
 	CONSULTORIOS_ESCOLA = "/consultorios_escola",
 	GUIAS = "/guias",
 	LINKS = "/links",
+	EDIT = "/editar",
 }
 
 const titleNames = {
@@ -35,6 +41,7 @@ const titleNames = {
 	[RouteNames.CONSULTORIOS_ESCOLA]: "path.escola",
 	[RouteNames.GUIAS]: "path.guias",
 	[RouteNames.LINKS]: "path.links",
+	[RouteNames.EDIT]: "path.edit",
 } as const;
 
 // biome-ignore lint/complexity/noBannedTypes: <explanation>
@@ -42,13 +49,12 @@ type MuiIcon = OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
 	muiName: string;
 };
 
-type PageElement = React.LazyExoticComponent<() => JSX.Element>;
-
 type RouteProps = {
 	isIndex?: boolean;
 	Icon: MuiIcon;
 	path: RouteNames;
-	Page: PageElement;
+	Page: JSX.Element;
+	isProtected?: boolean;
 };
 
 const routes: RouteProps[] = [
@@ -88,7 +94,13 @@ const routes: RouteProps[] = [
 		path: RouteNames.LINKS,
 		Page: LinksPage,
 	},
-];
+	{
+		Icon: AppRegistrationIcon,
+		path: RouteNames.EDIT,
+		Page: EditPage,
+		isProtected: true,
+	},
+] as const;
 
 export const getTitleByRoute = (route: RouteNames | string): string =>
 	titleNames[route as RouteNames];

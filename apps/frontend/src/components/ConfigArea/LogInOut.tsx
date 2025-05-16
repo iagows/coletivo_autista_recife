@@ -1,13 +1,14 @@
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { IconButton } from "@mui/material";
+import { DevConfigurations } from "../../util/configurations_dev";
 
 const LogInOut = () => {
-	const isLogged = false;
+	const isAuth = DevConfigurations.isAuth;
 
 	return (
 		<IconButton color="inherit">
-			{isLogged ? <LogoutIcon /> : <LoginIcon />}
+			{isAuth ? <LogoutIcon /> : <LoginIcon />}
 		</IconButton>
 	);
 };

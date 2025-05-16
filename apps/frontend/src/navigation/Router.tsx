@@ -1,18 +1,13 @@
-import { CircularProgress } from "@mui/material";
-import { Suspense } from "react";
 import {
 	Navigate,
 	RouterProvider,
 	createBrowserRouter,
 } from "react-router-dom";
 import ErrorPage from "../pages/ErrorPage";
+import ProtectedRoute from "./ProtectedRoute";
 import { getIndexPath, getMainPageRoute, getRoutes } from "./routes";
 
 const BASENAME = "/coletivo_autista_recife";
-
-const withSuspense = (component: React.ReactNode) => (
-	<Suspense fallback={<CircularProgress />}>{component}</Suspense>
-);
 
 const main = getMainPageRoute();
 const pages = getRoutes();
@@ -22,7 +17,7 @@ const router = createBrowserRouter(
 	[
 		{
 			path: main.path,
-			element: <main.Page />,
+			element: main.Page,
 			errorElement: <ErrorPage />,
 			children: [
 				{
@@ -31,7 +26,11 @@ const router = createBrowserRouter(
 				},
 				...pages.map((item) => ({
 					path: item.path,
-					element: withSuspense(<item.Page />),
+					element: item.isProtected ? (
+						<ProtectedRoute>{item.Page}</ProtectedRoute>
+					) : (
+						item.Page
+					),
 				})),
 				{
 					path: "*",
