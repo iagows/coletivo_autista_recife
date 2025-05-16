@@ -87,9 +87,16 @@ model Texto {
   referencia String @unique
 }
 
-model EmailToken {
-  id     String   @id @default(auto()) @map("_id") @db.ObjectId
-  sender String
-  when   DateTime
-  ip     String
+model Usuario {
+  id                String   @id @default(auto()) @map("_id") @db.ObjectId
+  nome              String
+  email             String   @unique
+  contato           Contato
+  pronome           Int
+  nascimento        DateTime
+  cidade            String
+  relacao           Int
+  motivacao         String
+  idade_diagnostico Int
+  senha             String
 }
