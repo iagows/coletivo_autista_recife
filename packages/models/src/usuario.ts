@@ -2,6 +2,7 @@ import { Type, type Static } from "@sinclair/typebox";
 import { contatoDTO } from "./common";
 
 export const UsuarioDto = Type.Object({
+	id: Type.String(),
 	email: Type.String(),
 	contato: contatoDTO,
 	pronome: Type.Integer(),

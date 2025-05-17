@@ -53,7 +53,7 @@ type RouteProps = {
 	isIndex?: boolean;
 	Icon: MuiIcon;
 	path: RouteNames;
-	Page: JSX.Element;
+	page: JSX.Element;
 	isProtected?: boolean;
 };
 
@@ -61,43 +61,43 @@ const routes: RouteProps[] = [
 	{
 		Icon: HomeOutlinedIcon,
 		path: RouteNames.ROOT,
-		Page: MainPage,
+		page: MainPage,
 	},
 	{
 		isIndex: true,
 		Icon: Diversity3OutlinedIcon,
 		path: RouteNames.QUEM_SOMOS,
-		Page: WhoAreWePage,
+		page: WhoAreWePage,
 	},
 	{
 		Icon: RuleOutlinedIcon,
 		path: RouteNames.REGRAS,
-		Page: RulesPage,
+		page: RulesPage,
 	},
 	{
 		Icon: ArrowRightAltOutlinedIcon,
 		path: RouteNames.INDICACOES,
-		Page: IndicationsPage,
+		page: IndicationsPage,
 	},
 	{
 		Icon: SchoolOutlinedIcon,
 		path: RouteNames.CONSULTORIOS_ESCOLA,
-		Page: SchoolPage,
+		page: SchoolPage,
 	},
 	{
 		Icon: FormatListNumberedOutlinedIcon,
 		path: RouteNames.GUIAS,
-		Page: GuidePage,
+		page: GuidePage,
 	},
 	{
 		Icon: InsertLinkOutlinedIcon,
 		path: RouteNames.LINKS,
-		Page: LinksPage,
+		page: LinksPage,
 	},
 	{
 		Icon: AppRegistrationIcon,
 		path: RouteNames.EDIT,
-		Page: EditPage,
+		page: EditPage,
 		isProtected: true,
 	},
 ] as const;

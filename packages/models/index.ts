@@ -22,11 +22,15 @@ import {
 } from "./src/models";
 import { errorResponse, idParam } from "./src/swagger.models";
 import { UsuarioDto, type UsuarioType } from "./src/usuario";
+import { omitFieldFromDTO } from "./src/util";
+
+const dtoHelp = omitFieldFromDTO;
 
 export {
 	adminDTO,
 	consutorioEscolaDTO,
 	contatoDTO,
+	dtoHelp,
 	enderecoDTO,
 	errorResponse,
 	idParam,

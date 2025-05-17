@@ -1,6 +1,5 @@
 import {
 	useAddTextoMutation,
-	useDeleteTextoMutation,
 	useGetTextosQuery,
 	useUpdateTextoMutation,
 } from ".";
@@ -9,7 +8,6 @@ export const useTextoSlice = () => {
 	const { data, isLoading, error } = useGetTextosQuery();
 	const [addTexto] = useAddTextoMutation();
 	const [updateTexto] = useUpdateTextoMutation();
-	const [deleteTexto] = useDeleteTextoMutation();
 
 	const getByReference = (reference: string): string =>
 		data?.find((t) => t.referencia === reference)?.texto ?? reference;
@@ -20,7 +18,6 @@ export const useTextoSlice = () => {
 		error,
 		addTexto,
 		updateTexto,
-		deleteTexto,
 		getByReference,
 	};
 };

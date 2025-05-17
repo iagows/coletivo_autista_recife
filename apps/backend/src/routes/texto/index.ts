@@ -1,34 +1,26 @@
-import { textoDTO } from "@car/models";
-import Elysia from "elysia";
+import type { textoType } from "@car/models";
 import { PrismaClient } from "../../../generated/prisma";
+import { createCRUDRoute } from "../crudFactory";
 
-const db = new PrismaClient();
+const prisma = new PrismaClient();
 
-export const TextoRoute = new Elysia({ prefix: "/texto" })
-	.model({
-		"texto.conteudo": textoDTO,
-	})
-	.post(
-		"/",
-		async ({ body }) =>
-			db.texto.create({
-				data: body,
-				select: {
-					texto: true,
-				},
-			}),
-		{
-			error: ({ code }) => {
-				switch (code) {
-					case "VALIDATION":
-						return {
-							error: "Nome e email devem ser únicos",
-						};
-				}
-			},
-			body: "texto.conteudo",
+export const TextoRoute = createCRUDRoute<textoType>(
+	prisma,
+	"texto", // Nome do modelo no Prisma
+	{
+		prefix: "/texto",
+		selectFields: {
+			id: true,
+			referencia: true,
+			texto: true,
 		},
-	)
-	.get("/", async () => db.texto.findMany(), {
-		body: "texto.conteudo[]",
-	});
+		uniqueFields: ["referencia"],
+		errorMessages: {
+			validation: "Referência usada já está em uso",
+			notFound: "Texto não encontrado",
+		},
+		validateUnique: async (_) => {
+			// Validação personalizada se necessário
+		},
+	},
+);

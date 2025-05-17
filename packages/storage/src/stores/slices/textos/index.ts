@@ -31,13 +31,6 @@ export const textoApi = createApi({
 			}),
 			invalidatesTags: TEXTO_TAG,
 		}),
-		deleteTexto: builder.mutation<void, string>({
-			query: (id) => ({
-				url: `${TEXTO_EP_SLASH}${id}`,
-				method: "DELETE",
-			}),
-			invalidatesTags: TEXTO_TAG,
-		}),
 	}),
 });
 
@@ -45,5 +38,4 @@ export const {
 	useGetTextosQuery,
 	useAddTextoMutation,
 	useUpdateTextoMutation,
-	useDeleteTextoMutation,
 } = textoApi;

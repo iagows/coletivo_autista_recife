@@ -17,7 +17,7 @@ const router = createBrowserRouter(
 	[
 		{
 			path: main.path,
-			element: main.Page,
+			element: main.page,
 			errorElement: <ErrorPage />,
 			children: [
 				{
@@ -27,9 +27,9 @@ const router = createBrowserRouter(
 				...pages.map((item) => ({
 					path: item.path,
 					element: item.isProtected ? (
-						<ProtectedRoute>{item.Page}</ProtectedRoute>
+						<ProtectedRoute>{item.page}</ProtectedRoute>
 					) : (
-						item.Page
+						item.page
 					),
 				})),
 				{
