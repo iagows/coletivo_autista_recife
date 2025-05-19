@@ -15,11 +15,11 @@ import { useForm } from "react-hook-form";
 type noIdTextType = Omit<textoType, "id">;
 
 type Props = {
-	item: textoType;
+	item?: textoType;
 };
 
 const TextItem = ({ item }: Props) => {
-	const { isLoading, updateTexto } = useTextoSlice();
+	const { isLoading, updateTexto, addTexto } = useTextoSlice();
 
 	const {
 		register,
@@ -28,13 +28,17 @@ const TextItem = ({ item }: Props) => {
 		formState: { isDirty },
 	} = useForm<noIdTextType>({
 		defaultValues: {
-			referencia: item.referencia,
-			texto: item.texto,
+			referencia: item?.referencia,
+			texto: item?.texto,
 		},
 	});
 
 	const onSubmit = async (data: noIdTextType) => {
-		await updateTexto({ id: item.id, ...data });
+		if (item) {
+			await updateTexto({ id: item.id, ...data });
+		} else {
+			await addTexto({ ...data });
+		}
 		reset({ referencia: data.referencia, texto: data.texto });
 	};
 
@@ -42,6 +46,8 @@ const TextItem = ({ item }: Props) => {
 		reset();
 	};
 
+	const refId = `referencia-${item?.id ?? "novo"}`;
+	const textId = `texto-${item?.id ?? "novo"}`;
 	return (
 		<Card variant="outlined" sx={{ mb: 2 }}>
 			<CardContent>
@@ -52,11 +58,11 @@ const TextItem = ({ item }: Props) => {
 				>
 					<Stack direction="row" gap={2} alignItems="flex-end" flexWrap="wrap">
 						<FormControl variant="standard">
-							<InputLabel htmlFor={`referencia-${item.id}`} shrink>
+							<InputLabel htmlFor={refId} shrink>
 								Referência
 							</InputLabel>
 							<Input
-								id={`referencia-${item.id}`}
+								id={refId}
 								{...register("referencia")}
 								disabled={isLoading}
 								placeholder="referencia.do.texto"
@@ -64,11 +70,11 @@ const TextItem = ({ item }: Props) => {
 						</FormControl>
 
 						<FormControl variant="standard" sx={{ flexGrow: 1 }}>
-							<InputLabel htmlFor={`texto-${item.id}`} shrink>
+							<InputLabel htmlFor={textId} shrink>
 								Texto
 							</InputLabel>
 							<Input
-								id={`texto-${item.id}`}
+								id={textId}
 								{...register("texto")}
 								disabled={isLoading}
 								placeholder="Texto bonitinho"
@@ -79,7 +85,7 @@ const TextItem = ({ item }: Props) => {
 						<Stack direction="row" gap={1} sx={{ ml: "auto" }}>
 							<Button
 								type="button"
-								variant="outlined"
+								variant="text"
 								onClick={handleCancel}
 								disabled={isLoading || !isDirty}
 							>
@@ -90,7 +96,7 @@ const TextItem = ({ item }: Props) => {
 								variant="contained"
 								disabled={!isDirty || isLoading}
 							>
-								Atualizar
+								{item ? "Atualizar" : "Adicionar"}
 							</Button>
 						</Stack>
 					</Stack>

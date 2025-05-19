@@ -12,6 +12,7 @@ const TextEdit = () => {
 			) : (
 				textos?.map((t) => <TextItem key={t.id} item={t} />)
 			)}
+			<TextItem />
 		</Box>
 	);
 };

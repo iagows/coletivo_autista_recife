@@ -6,6 +6,8 @@ const TEXTO_TAG = ["Texto"];
 const TEXTO_EP = "/texto";
 const TEXTO_EP_SLASH = `${TEXTO_EP}/`;
 
+type IdLess = Omit<textoType, "id">;
+
 export const textoApi = createApi({
 	reducerPath: "textoApi",
 	baseQuery: baseQueryToken,
@@ -15,7 +17,7 @@ export const textoApi = createApi({
 			query: () => TEXTO_EP,
 			providesTags: TEXTO_TAG,
 		}),
-		addTexto: builder.mutation<textoType, textoType>({
+		addTexto: builder.mutation<textoType, IdLess>({
 			query: (body) => ({
 				url: TEXTO_EP,
 				method: "POST",
