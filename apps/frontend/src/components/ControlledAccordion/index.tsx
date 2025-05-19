@@ -26,23 +26,24 @@ const ControlledAccordion = ({ contents }: Props) => {
 			setExpanded(isExpanded ? panel : false);
 		};
 	return (
-		<Accordion
-			expanded={expanded === "panel1"}
-			onChange={handleChange("panel1")}
-		>
+		<>
 			{contents.map((c) => (
-				<Box key={c.title}>
+				<Accordion
+					key={c.title}
+					expanded={expanded === c.title}
+					onChange={handleChange(c.title)}
+				>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
-						aria-controls="panel1bh-content"
-						id="panel1bh-header"
+						aria-controls={`${c.title}-content`}
+						id={`${c.title}-header`}
 					>
 						<Typography component="span">{c.title}</Typography>
 					</AccordionSummary>
 					<AccordionDetails>{c.editor}</AccordionDetails>
-				</Box>
+				</Accordion>
 			))}
-		</Accordion>
+		</>
 	);
 };
 
