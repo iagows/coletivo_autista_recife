@@ -1,12 +1,7 @@
 import type { pagamentoType } from "@car/models";
 import { Box, Typography } from "@mui/material";
 
-const PagamentoInfo = ({
-	isParticular,
-	planos,
-	isPublico,
-	preco,
-}: pagamentoType) => {
+const PagamentoInfo = ({ isParticular, planos, isPublico, preco }: pagamentoType) => {
 	const precoText = preco ? `: R$ ${preco} (valor aproximado)` : "";
 	return (
 		<Box>

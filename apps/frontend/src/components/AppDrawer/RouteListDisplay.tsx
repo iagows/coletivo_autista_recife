@@ -1,12 +1,6 @@
 import { useTextoSlice, useUtils } from "@car/storage";
 import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
-import {
-	List,
-	ListItem,
-	ListItemButton,
-	ListItemIcon,
-	ListItemText,
-} from "@mui/material";
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { getRoutes, getTitleByRoute } from "../../navigation/routes";
 import { DevConfigurations } from "../../util/configurations_dev";

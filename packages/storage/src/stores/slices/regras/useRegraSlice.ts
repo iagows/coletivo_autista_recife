@@ -1,22 +1,18 @@
-import {
-	useAddRegraMutation,
-	useDeleteRegraMutation,
-	useGetRegrasQuery,
-	useUpdateRegraMutation,
-} from ".";
+import { useAddRegraMutation, useDeleteRegraMutation, useGetRegrasQuery, useUpdateRegraMutation } from ".";
 
 export const useRegraSlice = () => {
-	const { data, isLoading, error } = useGetRegrasQuery();
-	const [addRegra] = useAddRegraMutation();
-	const [updateRegra] = useUpdateRegraMutation();
-	const [deleteRegra] = useDeleteRegraMutation();
+	const { data, isLoading: isQueryLoading, error } = useGetRegrasQuery();
+
+	const [addRegra, { isLoading: isAddLoading }] = useAddRegraMutation();
+	const [updateRegra, { isLoading: isUpdateLoading }] = useUpdateRegraMutation();
+	const [removeRegra, { isLoading: isRemoveLoading }] = useDeleteRegraMutation();
 
 	return {
-		regras: data,
-		isLoading,
-		error,
 		addRegra,
 		updateRegra,
-		deleteRegra,
+		removeRegra,
+		regras: data || [],
+		error: error ? JSON.stringify(error) : undefined,
+		isLoading: isQueryLoading || isAddLoading || isUpdateLoading || isRemoveLoading,
 	};
 };

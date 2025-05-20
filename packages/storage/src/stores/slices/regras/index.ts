@@ -6,6 +6,8 @@ const REGRA_TAG = ["Regra"];
 const REGRA_EP = "/regra";
 const REGRA_EP_SLASH = `${REGRA_EP}/`;
 
+type IdLess = Omit<regraType, "id">;
+
 export const regraApi = createApi({
 	reducerPath: "regraApi",
 	baseQuery: baseQueryToken,
@@ -15,7 +17,7 @@ export const regraApi = createApi({
 			query: () => REGRA_EP,
 			providesTags: REGRA_TAG,
 		}),
-		addRegra: builder.mutation<regraType, regraType>({
+		addRegra: builder.mutation<regraType, IdLess>({
 			query: (body) => ({
 				url: REGRA_EP,
 				method: "POST",
@@ -41,9 +43,4 @@ export const regraApi = createApi({
 	}),
 });
 
-export const {
-	useGetRegrasQuery,
-	useAddRegraMutation,
-	useUpdateRegraMutation,
-	useDeleteRegraMutation,
-} = regraApi;
+export const { useGetRegrasQuery, useAddRegraMutation, useUpdateRegraMutation, useDeleteRegraMutation } = regraApi;

@@ -11,7 +11,7 @@ export const adminDTO = Type.Object({
 export type adminType = Static<typeof adminDTO>;
 
 export const regraDTO = Type.Object({
-	id: Type.Optional(Type.String()),
+	id: Type.String(),
 	texto: Type.String(),
 	descricao: Type.Union([Type.String(), Type.Null(), Type.Undefined()]),
 });

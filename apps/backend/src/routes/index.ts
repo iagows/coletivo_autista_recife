@@ -8,11 +8,7 @@ import { TextoRoute } from "./texto";
 import { UserRoute } from "./usuario";
 
 export const ServerRoutes = () => {
-	const route = new Elysia({ prefix: "/api" })
-		.use(EscolaRoute)
-		.use(ProfissionalRoute)
-		.use(RegraRoute)
-		.use(TextoRoute);
+	const route = new Elysia({ prefix: "/api" }).use(EscolaRoute).use(ProfissionalRoute).use(RegraRoute).use(TextoRoute);
 
 	if (isDevMode) {
 		route.use(AdminRoute).use(UserRoute);

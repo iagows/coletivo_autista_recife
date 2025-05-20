@@ -36,8 +36,4 @@ export const textoApi = createApi({
 	}),
 });
 
-export const {
-	useGetTextosQuery,
-	useAddTextoMutation,
-	useUpdateTextoMutation,
-} = textoApi;
+export const { useGetTextosQuery, useAddTextoMutation, useUpdateTextoMutation } = textoApi;

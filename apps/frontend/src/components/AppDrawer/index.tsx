@@ -1,11 +1,6 @@
 import { useUtils } from "@car/storage";
 import useSettingsSlice from "@car/storage/src/stores/slices/settings/useSettingsSlice";
-import {
-	Box,
-	Drawer as MuiDrawer,
-	type SxProps,
-	Typography,
-} from "@mui/material";
+import { Box, Drawer as MuiDrawer, type SxProps, Typography } from "@mui/material";
 import coletivo from "../../assets/coletivo.jpg";
 import { DRAWER_WIDTH, PROJECT_VERSION } from "../../util/constants";
 import RouteListDisplay from "./RouteListDisplay";

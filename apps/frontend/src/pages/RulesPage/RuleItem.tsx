@@ -8,12 +8,7 @@ const RuleItem = ({ texto, descricao }: regraType) => {
 			<CardHeader title={texto} />
 			<CardContent>
 				{descricao && (
-					<Typography
-						gutterBottom
-						component="p"
-						variant="body2"
-						color="text.secondary"
-					>
+					<Typography gutterBottom component="p" variant="body2" color="text.secondary">
 						{descricao}
 					</Typography>
 				)}
