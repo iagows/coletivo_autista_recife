@@ -14,7 +14,7 @@ const Rule = ({ item }: Props) => {
 };
 
 const RulesPage = () => {
-	const { regras, isLoading } = useRegraSlice();
+	const { data: regras, isLoading } = useRegraSlice();
 	return <TextAndGrid textoId="conteudo.descricao_regras" isLoading={isLoading} data={regras} renderer={Rule} />;
 };
 

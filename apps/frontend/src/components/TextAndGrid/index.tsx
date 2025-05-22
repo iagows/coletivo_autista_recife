@@ -3,6 +3,8 @@ import TextFromId from "../TextFromId";
 import LoadingSkeleton from "../LoadingSkeleton";
 import type { JSX } from "react";
 
+const GRID_SPACING = { xs: 1, sm: 2, md: 3 } as const;
+
 type D<T extends { id: string }> = {
 	item: T;
 };
@@ -30,7 +32,7 @@ const TextAndGrid = <T extends { id: string }>({ textoId, isLoading, data, rende
 	return (
 		<>
 			<TextFromId textReference={textoId} />
-			<Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+			<Grid2 container rowSpacing={1} columnSpacing={GRID_SPACING}>
 				{isLoading ? (
 					<LoadingSkeleton amount={6} w={500} h={100} />
 				) : (

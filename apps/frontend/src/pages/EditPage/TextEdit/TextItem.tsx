@@ -1,16 +1,9 @@
 import type { textoType } from "@car/models";
 import { useTextoSlice } from "@car/storage";
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	FormControl,
-	Input,
-	InputLabel,
-	Stack,
-} from "@mui/material";
+import { Input, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
+import CardForm from "../../../components/CardForm";
+import AppFormControl from "../../../components/CardForm/AppFormControl";
 
 type noIdTextType = Omit<textoType, "id">;
 
@@ -19,7 +12,7 @@ type Props = {
 };
 
 const TextItem = ({ item }: Props) => {
-	const { isLoading, updateTexto, addTexto } = useTextoSlice();
+	const { isLoading, updateTexto, addTexto, removeTexto } = useTextoSlice();
 
 	const {
 		register,
@@ -42,67 +35,39 @@ const TextItem = ({ item }: Props) => {
 		reset({ referencia: data.referencia, texto: data.texto });
 	};
 
-	const handleCancel = () => {
-		reset();
+	const handleDelete = async () => {
+		if (item) {
+			await removeTexto(item.id);
+		}
 	};
 
-	const refId = `referencia-${item?.id ?? "novo"}`;
 	const textId = `texto-${item?.id ?? "novo"}`;
+	const refId = `referencia-${item?.id ?? "novo"}`;
 	return (
-		<Card variant="outlined" sx={{ mb: 2 }}>
-			<CardContent>
-				<Box
-					component="form"
-					onSubmit={handleSubmit(onSubmit)}
-					sx={{ "& .MuiFormControl-root": { minWidth: 200 } }}
-				>
-					<Stack direction="row" gap={2} alignItems="flex-end" flexWrap="wrap">
-						<FormControl variant="standard">
-							<InputLabel htmlFor={refId} shrink>
-								Referência
-							</InputLabel>
-							<Input
-								id={refId}
-								{...register("referencia")}
-								disabled={isLoading}
-								placeholder="referencia.do.texto"
-							/>
-						</FormControl>
+		<CardForm
+			hasItem={!!item}
+			onCancel={reset}
+			isDirty={isDirty}
+			isLoading={isLoading}
+			onDelete={handleDelete}
+			onSubmit={handleSubmit(onSubmit)}
+		>
+			<AppFormControl htmlFor={refId} label={"Referência"}>
+				<Input id={refId} disabled={isLoading} {...register("referencia")} placeholder="referencia.do.texto" />
+			</AppFormControl>
 
-						<FormControl variant="standard" sx={{ flexGrow: 1 }}>
-							<InputLabel htmlFor={textId} shrink>
-								Texto
-							</InputLabel>
-							<Input
-								id={textId}
-								{...register("texto")}
-								disabled={isLoading}
-								placeholder="Texto bonitinho"
-								fullWidth
-							/>
-						</FormControl>
-
-						<Stack direction="row" gap={1} sx={{ ml: "auto" }}>
-							<Button
-								type="button"
-								variant="text"
-								onClick={handleCancel}
-								disabled={isLoading || !isDirty}
-							>
-								Cancelar
-							</Button>
-							<Button
-								type="submit"
-								variant="contained"
-								disabled={!isDirty || isLoading}
-							>
-								{item ? "Atualizar" : "Adicionar"}
-							</Button>
-						</Stack>
-					</Stack>
-				</Box>
-			</CardContent>
-		</Card>
+			<AppFormControl htmlFor={textId} label={"Texto"}>
+				<TextField
+					rows={4}
+					fullWidth
+					multiline
+					id={textId}
+					disabled={isLoading}
+					{...register("texto")}
+					placeholder="Texto bonitinho"
+				/>
+			</AppFormControl>
+		</CardForm>
 	);
 };
 

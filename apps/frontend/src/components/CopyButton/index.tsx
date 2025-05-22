@@ -1,6 +1,8 @@
 import ContentCopyOutlinedIcon from "@mui/icons-material/ContentCopyOutlined";
-import { Button, Snackbar, type SnackbarCloseReason } from "@mui/material";
+import { Button, Snackbar, type SnackbarCloseReason, type SnackbarOrigin } from "@mui/material";
 import { useState } from "react";
+
+const ANCHOR: SnackbarOrigin = { vertical: "bottom", horizontal: "center" };
 
 type Props = {
 	text: string;
@@ -16,10 +18,7 @@ const CopyButton = ({ text }: Props) => {
 		setOpen(true);
 	};
 
-	const hideSnack = (
-		_: React.SyntheticEvent | Event,
-		reason?: SnackbarCloseReason,
-	) => {
+	const hideSnack = (_: React.SyntheticEvent | Event, reason?: SnackbarCloseReason) => {
 		if (reason === "clickaway") {
 			return;
 		}
@@ -47,13 +46,7 @@ const CopyButton = ({ text }: Props) => {
 			<Button onClick={handleCopy}>
 				<ContentCopyOutlinedIcon />
 			</Button>
-			<Snackbar
-				open={open}
-				message={message}
-				onClose={hideSnack}
-				autoHideDuration={6000}
-				anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-			/>
+			<Snackbar open={open} message={message} onClose={hideSnack} autoHideDuration={6000} anchorOrigin={ANCHOR} />
 		</>
 	);
 };

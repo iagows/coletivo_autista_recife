@@ -9,8 +9,8 @@ const SchoolPage = () => {
 	return (
 		<Box>
 			<PrepareDisplay
-				error={null}
-				// error={error}
+				// error={null}
+				error={error}
 				isLoading={isLoading}
 				loadingComponent={<LoadingSkeleton />}
 			>

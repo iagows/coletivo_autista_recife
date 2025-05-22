@@ -11,7 +11,7 @@ export const useRegraSlice = () => {
 		addRegra,
 		updateRegra,
 		removeRegra,
-		regras: data || [],
+		data: data || [],
 		error: error ? JSON.stringify(error) : undefined,
 		isLoading: isQueryLoading || isAddLoading || isUpdateLoading || isRemoveLoading,
 	};
