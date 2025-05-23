@@ -36,18 +36,12 @@ type CRUDConfig<T extends Record<string, unknown>> = {
 	validateUnique?: (body: T) => Promise<void>;
 };
 
-export function createCRUDRoute<T extends Record<string, unknown>>(
+export const createCRUDRoute = <T extends Record<string, unknown>>(
 	db: PrismaClient,
 	delegateName: keyof PrismaClient,
 	config: CRUDConfig<T>,
-) {
-	const {
-		prefix,
-		selectFields,
-		uniqueFields = [],
-		errorMessages = {},
-		validateUnique,
-	} = config;
+) => {
+	const { prefix, selectFields, uniqueFields = [], errorMessages = {}, validateUnique } = config;
 
 	const delegate = db[delegateName] as unknown as PrismaDelegateMethods<T>;
 
@@ -77,9 +71,7 @@ export function createCRUDRoute<T extends Record<string, unknown>>(
 			const existing = await delegate.findMany({ where: whereClause });
 
 			if (existing.length > 0) {
-				throw new Error(
-					errorMessages.validation || `Field ${String(field)} must be unique`,
-				);
+				throw new Error(errorMessages.validation || `Field ${String(field)} must be unique`);
 			}
 		}
 	};
@@ -123,4 +115,4 @@ export function createCRUDRoute<T extends Record<string, unknown>>(
 			if (!result) throw new Error("NOT_FOUND");
 			return result;
 		});
-}
+};

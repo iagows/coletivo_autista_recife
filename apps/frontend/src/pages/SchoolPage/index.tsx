@@ -1,24 +1,16 @@
-import { useTextoSlice } from "@car/storage";
-import { Box, Typography } from "@mui/material";
-import LoadingSkeleton from "../../components/LoadingSkeleton";
-import PrepareDisplay from "../../components/PrepareDisplay";
+import { useProfissionalSlice } from "@car/storage";
+import TextAndGrid from "../../components/TextAndGrid";
+import IndicationItem from "../IndicationsPage/IndicationItem";
 
 const SchoolPage = () => {
-	const { error, isLoading } = useTextoSlice();
-
+	const { data: profissionais, isLoading } = useProfissionalSlice();
 	return (
-		<Box>
-			<PrepareDisplay
-				// error={null}
-				error={error}
-				isLoading={isLoading}
-				loadingComponent={<LoadingSkeleton />}
-			>
-				<Typography variant="h6" component="p">
-					{/* {getByTextId(TextIds.ESCOLA)} */}
-				</Typography>
-			</PrepareDisplay>
-		</Box>
+		<TextAndGrid
+			isLoading={isLoading}
+			renderer={IndicationItem}
+			textoId="conteudo.descricao_indicacoes"
+			data={profissionais.filter((p) => p.isConsultorioEscola)}
+		/>
 	);
 };
 

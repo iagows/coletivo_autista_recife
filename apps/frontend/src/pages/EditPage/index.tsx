@@ -7,6 +7,9 @@ const TextEditorTitle = "Textos do site";
 const RegraEditor = lazyWithSuspense(() => import("./RegraEdit"));
 const RegraEditorTitle = "Regras do grupo";
 
+const ProfissionalEditor = lazyWithSuspense(() => import("./ProfEdit"));
+const ProfissionalEditorTitle = "Profissionais";
+
 const contents: AccordionContent[] = [
 	{
 		title: TextEditorTitle,
@@ -15,6 +18,10 @@ const contents: AccordionContent[] = [
 	{
 		title: RegraEditorTitle,
 		editor: RegraEditor,
+	},
+	{
+		title: ProfissionalEditorTitle,
+		editor: ProfissionalEditor,
 	},
 ];
 
