@@ -1,22 +1,10 @@
-import { Grid2, Paper, styled } from "@mui/material";
-import TextFromId from "../TextFromId";
-import LoadingSkeleton from "../LoadingSkeleton";
+import { Masonry } from "@mui/lab";
+import { Paper, styled } from "@mui/material";
 import type { JSX } from "react";
+import LoadingSkeleton from "../LoadingSkeleton";
+import TextFromId from "../TextFromId";
+import type { ResponsiveStyleValue } from "@mui/system";
 
-const GRID_SPACING = { xs: 1, sm: 2, md: 3 } as const;
-
-type D<T extends { id: string }> = {
-	item: T;
-};
-
-type Props<T extends { id: string }> = {
-	textoId: string;
-	isLoading: boolean;
-	data: T[];
-	renderer: (item: D<T>) => JSX.Element;
-};
-
-// TODO: rever esse objeto depois
 const Item = styled(Paper)(({ theme }) => ({
 	backgroundColor: "#fff",
 	...theme.typography.body2,
@@ -28,23 +16,41 @@ const Item = styled(Paper)(({ theme }) => ({
 	}),
 }));
 
-const TextAndGrid = <T extends { id: string }>({ textoId, isLoading, data, renderer: R }: Props<T>) => {
+type D<T extends { id: string }> = {
+	item: T;
+};
+
+type Props<T extends { id: string }> = {
+	data: T[];
+	textoId: string;
+	isLoading: boolean;
+	renderer: (item: D<T>) => JSX.Element;
+	columns?: ResponsiveStyleValue<string | number>;
+};
+
+const DEFAULT_COLUMNS: ResponsiveStyleValue<string | number> = { md: 1, lg: 2, xl: 3 };
+
+const TextAndGrid = <T extends { id: string }>({
+	data,
+	textoId,
+	isLoading,
+	renderer: R,
+	columns = DEFAULT_COLUMNS,
+}: Props<T>) => {
 	return (
 		<>
 			<TextFromId textReference={textoId} />
-			<Grid2 container rowSpacing={1} columnSpacing={GRID_SPACING}>
+			<Masonry columns={columns} spacing={2}>
 				{isLoading ? (
 					<LoadingSkeleton amount={6} w={500} h={100} />
 				) : (
 					data.map((d) => (
-						<Grid2 size={6} key={d.id}>
-							<Item>
-								<R item={d} />
-							</Item>
-						</Grid2>
+						<Item key={d.id}>
+							<R item={d} />
+						</Item>
 					))
 				)}
-			</Grid2>
+			</Masonry>
 		</>
 	);
 };

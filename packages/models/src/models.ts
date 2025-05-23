@@ -27,6 +27,13 @@ export const textoDTO = Type.Object({
 
 export type textoType = Static<typeof textoDTO>;
 
+export const conselhoDTO = Type.Object({
+	identificador: Type.String(),
+	estado: Type.String(),
+});
+
+export type conselhoType = Static<typeof conselhoDTO>;
+
 export const profissionalDTO = Type.Object({
 	id: Type.String(),
 	nome: Type.String(),
@@ -37,6 +44,7 @@ export const profissionalDTO = Type.Object({
 	contatos: Type.Array(contatoDTO),
 	pagamento: pagamentoDTO,
 	isConsultorioEscola: Type.Boolean(),
+	conselhos: Type.Array(conselhoDTO),
 });
 
 export type profissionalType = Static<typeof profissionalDTO>;

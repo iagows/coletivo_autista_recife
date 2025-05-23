@@ -44,6 +44,11 @@ type Pagamento {
   planos       String[]
 }
 
+type Conselho {
+  identificador String
+  estado        String
+}
+
 ////////// MODELOS //////////
 
 model Admin {
@@ -70,6 +75,7 @@ model Profissional {
   pagamento           Pagamento
   links               Link[]
   isConsultorioEscola Boolean
+  conselhos           Conselho[]
 }
 
 model Texto {
