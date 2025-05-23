@@ -1,48 +1,51 @@
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQueryToken } from "../baseQuery";
 import type { profissionalType } from "@car/models";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface ProfState {
-	data: profissionalType[];
-	loading: boolean;
-	error: string | null;
-}
+const PROFISSIONAL_TAG = ["Profissional"];
+const PROFISSIONAL_EP = "/profissional";
+const PROFISSIONAL_EP_SLASH = `${PROFISSIONAL_EP}/`;
 
-const initialState: ProfState = {
-	data: [],
-	loading: false,
-	error: null,
-};
+type IdLess = Omit<profissionalType, "id">;
 
-export const fetchProfissionais = createAsyncThunk(
-	"prof/fetchProfissionais",
-	async (_, { rejectWithValue }) => {
-		try {
-			return [];
-		} catch (error) {
-			return rejectWithValue((error as Error).message);
-		}
-	},
-);
-
-const profissionaisSlice = createSlice({
-	name: "prof",
-	initialState,
-	reducers: {},
-	extraReducers: (builder) => {
-		builder
-			.addCase(fetchProfissionais.pending, (state) => {
-				state.loading = true;
-				state.error = null;
-			})
-			.addCase(fetchProfissionais.fulfilled, (state, action) => {
-				state.loading = false;
-				state.data = action.payload;
-			})
-			.addCase(fetchProfissionais.rejected, (state, action) => {
-				state.loading = false;
-				state.error = action.payload as string;
-			});
-	},
+export const profissionalApi = createApi({
+	reducerPath: "profissionalApi",
+	baseQuery: baseQueryToken,
+	tagTypes: PROFISSIONAL_TAG,
+	endpoints: (builder) => ({
+		getProfissionais: builder.query<profissionalType[], void>({
+			query: () => PROFISSIONAL_EP,
+			providesTags: PROFISSIONAL_TAG,
+		}),
+		addProfissional: builder.mutation<profissionalType, IdLess>({
+			query: (body) => ({
+				url: PROFISSIONAL_EP,
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: PROFISSIONAL_TAG,
+		}),
+		updateProfissional: builder.mutation<profissionalType, profissionalType>({
+			query: ({ id, ...body }) => ({
+				url: `${PROFISSIONAL_EP_SLASH}${id}`,
+				method: "PUT",
+				body,
+			}),
+			invalidatesTags: PROFISSIONAL_TAG,
+		}),
+		deleteProfissional: builder.mutation<void, string>({
+			query: (id) => ({
+				url: `${PROFISSIONAL_EP_SLASH}${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: PROFISSIONAL_TAG,
+		}),
+	}),
 });
 
-export default profissionaisSlice.reducer;
+export const {
+	useGetProfissionaisQuery,
+	useAddProfissionalMutation,
+	useUpdateProfissionalMutation,
+	useDeleteProfissionalMutation,
+} = profissionalApi;

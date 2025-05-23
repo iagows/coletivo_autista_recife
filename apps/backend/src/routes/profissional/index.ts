@@ -1,40 +1,32 @@
-import { profissionalDTO } from "@car/models";
-import Elysia from "elysia";
+import type { profissionalType } from "@car/models";
 import { PrismaClient } from "../../../generated/prisma";
+import { createCRUDRoute } from "../crudFactory";
 
-const db = new PrismaClient();
+const prisma = new PrismaClient();
 
-export const ProfissionalRoute = new Elysia({ prefix: "/profissional" })
-	.model({
-		"profissional.conteudo": profissionalDTO,
-	})
-	.post(
-		"/",
-		async ({ body }) =>
-			db.profissional.create({
-				data: body,
-				select: {
-					nome: true,
-					pagamento: true,
-					links: true,
-					contatos: true,
-					enderecos: true,
-					comentario: true,
-					especialidades: true,
-				},
-			}),
-		{
-			error: ({ code }) => {
-				switch (code) {
-					case "VALIDATION":
-						return {
-							error: "O nome deve ser único",
-						};
-				}
-			},
-			body: "profissional.conteudo",
+export const ProfissionalRoute = createCRUDRoute<profissionalType>(
+	prisma,
+	"profissional", // Nome do modelo no Prisma
+	{
+		prefix: "/profissional",
+		selectFields: {
+			id: true,
+			nome: true,
+			links: true,
+			contatos: true,
+			enderecos: true,
+			pagamento: true,
+			comentario: true,
+			especialidades: true,
+			isConsultorioEscola: true,
 		},
-	)
-	.get("/", async () => db.profissional.findMany(), {
-		body: "profissional.conteudo[]",
-	});
+		uniqueFields: ["nome"],
+		errorMessages: {
+			validation: "Profissional já está em uso",
+			notFound: "Profissional não encontrado",
+		},
+		validateUnique: async (_) => {
+			// Validação personalizada se necessário
+		},
+	},
+);

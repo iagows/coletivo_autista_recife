@@ -61,24 +61,15 @@ model Regra {
 }
 
 model Profissional {
-  id             String     @id @default(auto()) @map("_id") @db.ObjectId
-  nome           String     @unique
-  comentario     String?
-  especialidades String[]
-  enderecos      Endereco[]
-  links          Link[]
-  contatos       Contato[]
-  pagamento      Pagamento
-}
-
-model ConsultorioEscola {
-  id             String     @id @default(auto()) @map("_id") @db.ObjectId
-  nome           String     @unique
-  comentario     String?
-  enderecos      Endereco[]
-  contatos       Contato[]
-  pagamento      Pagamento
-  especialidades String[]
+  id                  String     @id @default(auto()) @map("_id") @db.ObjectId
+  nome                String     @unique
+  comentario          String?
+  especialidades      String[]
+  enderecos           Endereco[]
+  contatos            Contato[]
+  pagamento           Pagamento
+  links               Link[]
+  isConsultorioEscola Boolean
 }
 
 model Texto {
@@ -97,6 +88,6 @@ model Usuario {
   cidade            String
   relacao           Int
   motivacao         String
-  idade_diagnostico Int
+  idade_diagnostico Int?
   senha             String
 }

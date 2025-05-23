@@ -1,37 +1,28 @@
-import { adminDTO } from "@car/models";
-import Elysia from "elysia";
+import type { adminType } from "@car/models";
 import { PrismaClient } from "../../../generated/prisma";
+import { createCRUDRoute } from "../crudFactory";
 
-const db = new PrismaClient();
+const prisma = new PrismaClient();
 
-export const AdminRoute = new Elysia({ prefix: "/admin" })
-	.model({
-		"admin.conteudo": adminDTO,
-	})
-	.post(
-		"/",
-		async ({ body }) =>
-			db.admin.create({
-				data: body,
-				select: {
-					nome: true,
-					email: true,
-					contatos: true,
-					last_seen: true,
-				},
-			}),
-		{
-			error: ({ code }) => {
-				switch (code) {
-					case "VALIDATION":
-						return {
-							error: "O email deve ser único",
-						};
-				}
-			},
-			body: "admin.conteudo",
+export const AdminRoute = createCRUDRoute<adminType>(
+	prisma,
+	"admin", // Nome do modelo no Prisma
+	{
+		prefix: "/admin",
+		selectFields: {
+			id: true,
+			contatos: true,
+			email: true,
+			last_seen: true,
+			nome: true,
 		},
-	)
-	.get("/", async () => db.admin.findMany(), {
-		body: "admin.conteudo[]",
-	});
+		uniqueFields: ["email", "nome"],
+		errorMessages: {
+			validation: "Nome/Email já está em uso",
+			notFound: "Admin não encontrado",
+		},
+		validateUnique: async (_) => {
+			// Validação personalizada se necessário
+		},
+	},
+);

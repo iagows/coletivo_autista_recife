@@ -2,6 +2,7 @@ import { Type, type Static } from "@sinclair/typebox";
 import { contatoDTO, enderecoDTO, linkDTO, pagamentoDTO } from "./common";
 
 export const adminDTO = Type.Object({
+	id: Type.String(),
 	nome: Type.String(),
 	email: Type.String(),
 	contatos: Type.Array(contatoDTO),
@@ -17,17 +18,6 @@ export const regraDTO = Type.Object({
 });
 
 export type regraType = Static<typeof regraDTO>;
-
-export const consutorioEscolaDTO = Type.Object({
-	nome: Type.String(),
-	enderecos: Type.Array(enderecoDTO),
-	contatos: Type.Array(contatoDTO),
-	comentario: Type.Optional(Type.String()),
-	especialidades: Type.Array(Type.String()),
-	pagamento: pagamentoDTO,
-});
-
-export type consutorioEscolaType = Static<typeof consutorioEscolaDTO>;
 
 export const textoDTO = Type.Object({
 	id: Type.String(),
@@ -46,6 +36,7 @@ export const profissionalDTO = Type.Object({
 	links: Type.Array(linkDTO),
 	contatos: Type.Array(contatoDTO),
 	pagamento: pagamentoDTO,
+	isConsultorioEscola: Type.Boolean(),
 });
 
 export type profissionalType = Static<typeof profissionalDTO>;

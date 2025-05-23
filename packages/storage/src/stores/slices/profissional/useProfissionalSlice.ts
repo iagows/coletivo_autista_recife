@@ -1,17 +1,23 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
-import { fetchProfissionais } from ".";
+import {
+	useGetProfissionaisQuery,
+	useAddProfissionalMutation,
+	useDeleteProfissionalMutation,
+	useUpdateProfissionalMutation,
+} from ".";
 
 export const useProfissionalSlice = () => {
-	const dispatch = useAppDispatch();
-	const state = useAppSelector((state) => state.professionals);
+	const { data, isLoading: isQueryLoading, error } = useGetProfissionaisQuery();
 
-	useEffect(() => {
-		dispatch(fetchProfissionais());
-	}, [dispatch]);
+	const [addProfissional, { isLoading: isAddLoading }] = useAddProfissionalMutation();
+	const [updateProfissional, { isLoading: isUpdateLoading }] = useUpdateProfissionalMutation();
+	const [removeProfissional, { isLoading: isRemoveLoading }] = useDeleteProfissionalMutation();
 
 	return {
-		...state,
-		refetch: () => dispatch(fetchProfissionais()),
+		addProfissional,
+		updateProfissional,
+		removeProfissional,
+		data: data || [],
+		error: error ? JSON.stringify(error) : undefined,
+		isLoading: isQueryLoading || isAddLoading || isUpdateLoading || isRemoveLoading,
 	};
 };

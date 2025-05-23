@@ -5,6 +5,7 @@ import type { regraType } from "@car/models";
 type Props = {
 	item: regraType;
 };
+
 const Rule = ({ item }: Props) => {
 	return (
 		<>

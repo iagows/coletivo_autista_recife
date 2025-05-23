@@ -10,7 +10,7 @@ export const UsuarioDto = Type.Object({
 	cidade: Type.String(),
 	relacao: Type.Integer(),
 	motivacao: Type.String(),
-	idade_diagnostico: Type.Integer(),
+	idade_diagnostico: Type.Optional(Type.Integer()),
 	senha: Type.String(),
 	nome: Type.String(),
 });

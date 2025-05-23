@@ -11,8 +11,6 @@ import {
 import {
 	adminDTO,
 	type adminType,
-	consutorioEscolaDTO,
-	type consutorioEscolaType,
 	profissionalDTO,
 	type profissionalType,
 	regraDTO,
@@ -28,7 +26,6 @@ const dtoHelp = omitFieldFromDTO;
 
 export {
 	adminDTO,
-	consutorioEscolaDTO,
 	contatoDTO,
 	dtoHelp,
 	enderecoDTO,
@@ -44,7 +41,6 @@ export {
 
 export type {
 	adminType,
-	consutorioEscolaType,
 	contatoType,
 	enderecoType,
 	linkType,
