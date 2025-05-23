@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import professionals from "./slices/profissional";
+import { profissionalApi } from "./slices/profissional";
 import { regraApi } from "./slices/regras";
 import settings from "./slices/settings";
 import { textoApi } from "./slices/textos";
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 	// Reducers não persistentes
 	regraApi: regraApi.reducer,
 	textoApi: textoApi.reducer,
-	professionals,
+	profissionalApi: profissionalApi.reducer,
 
 	// Reducer persistente
 	settings: persistReducer(settingsPersistConfig, settings),
@@ -31,8 +31,10 @@ export const store = configureStore({
 				ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
 			},
 		})
+			// Adicionar middleware da API
 			.concat(regraApi.middleware)
-			.concat(textoApi.middleware), // Adicionar middleware da API
+			.concat(textoApi.middleware)
+			.concat(profissionalApi.middleware),
 });
 
 export const persistor = persistStore(store);

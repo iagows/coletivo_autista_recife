@@ -15,7 +15,7 @@ const GenericEditorPanel = <T extends { id: string }>({ hook, renderer: C }: Pro
 	return (
 		<Box display={"flex"} gap={2} flexDirection={"column"}>
 			{isLoading ? <LoadingSkeleton amount={6} w={350} h={80} /> : data?.map((t) => <C key={t.id} item={t} />)}
-			<C />
+			<C key={`new-item-${Date.now()}`} />
 		</Box>
 	);
 };
