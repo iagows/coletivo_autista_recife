@@ -9,7 +9,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.8.1",
+    "@reduxjs/toolkit": "^2.8.2",
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
     "@car/models": "workspace:*"

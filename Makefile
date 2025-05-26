@@ -1,8 +1,18 @@
 MAKEFLAGS += -s # comente essa linha para depurar
 
+PROJECT_DIRS := . apps/backend apps/frontend packages/models packages/storage
+
 all: menu
 
-all@install:
+update@project:
+	@for D in $(PROJECT_DIRS); do \
+        ( \
+            echo "Atualizando '$$D' ..."; \
+            cd $$D || { echo "Falha ao entrar no diretório $$D"; exit 1; } && bun update; \
+        ); \
+    done
+
+install@project:
 	@bun i
 
 run@front:
@@ -29,7 +39,7 @@ menu:
 	"5" "Build backend" \
 	"6" "Build all" 3>&1 1>&2 2>&3); \
 	case $$ESCOLHA in \
-		1) $(MAKE) all@install ;; \
+		1) $(MAKE) install@project ;; \
 		2) $(MAKE) run@front ;; \
 		3) $(MAKE) run@back ;; \
 		4) $(MAKE) build@front ;; \
