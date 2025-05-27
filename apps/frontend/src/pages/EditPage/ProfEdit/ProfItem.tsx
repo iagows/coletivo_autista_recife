@@ -1,9 +1,10 @@
 import type { profissionalType } from "@car/models";
 import { useProfissionalSlice } from "@car/storage";
-import { TextField } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CardForm from "../../../components/CardForm";
 import AppFormControl from "../../../components/CardForm/AppFormControl";
+import AddressEdit from "./AddressEdit";
 
 type noIdProfissionalType = Omit<profissionalType, "id">;
 
@@ -14,12 +15,7 @@ type Props = {
 const ProfItem = ({ item }: Props) => {
 	const { isLoading, addProfissional, removeProfissional, updateProfissional } = useProfissionalSlice();
 
-	const {
-		register,
-		handleSubmit,
-		reset,
-		formState: { isDirty },
-	} = useForm<noIdProfissionalType>({
+	const hookResult = useForm<noIdProfissionalType>({
 		defaultValues: {
 			nome: item?.nome,
 			links: item?.links,
@@ -32,6 +28,13 @@ const ProfItem = ({ item }: Props) => {
 			isConsultorioEscola: item?.isConsultorioEscola,
 		},
 	});
+
+	const {
+		reset,
+		register,
+		handleSubmit,
+		formState: { isDirty },
+	} = hookResult;
 
 	const onSubmit = async (data: noIdProfissionalType) => {
 		if (item) {
@@ -69,20 +72,25 @@ const ProfItem = ({ item }: Props) => {
 			onDelete={handleDelete}
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<AppFormControl htmlFor={nameFieldId} label="Nome">
-				<TextField id={nameFieldId} {...register("nome")} disabled={isLoading} placeholder="Nome" fullWidth />
-			</AppFormControl>
+			<Stack gap={2} alignItems="flex-end" flexWrap="wrap">
+				<Stack direction="row" gap={2} alignItems="flex-end" flexWrap="wrap">
+					<AppFormControl htmlFor={nameFieldId} label="Nome">
+						<TextField id={nameFieldId} {...register("nome")} disabled={isLoading} placeholder="Nome" fullWidth />
+					</AppFormControl>
 
-			<AppFormControl htmlFor={comentarioFieldId} label="Comentários">
-				<TextField
-					id={comentarioFieldId}
-					{...register("comentario")}
-					disabled={isLoading}
-					placeholder="Comentários da regra"
-					multiline
-					rows={4}
-				/>
-			</AppFormControl>
+					<AppFormControl htmlFor={comentarioFieldId} label="Comentários">
+						<TextField
+							rows={4}
+							multiline
+							disabled={isLoading}
+							id={comentarioFieldId}
+							{...register("comentario")}
+							placeholder="Comentários da regra"
+						/>
+					</AppFormControl>
+				</Stack>
+				<AddressEdit hookForm={hookResult} />
+			</Stack>
 		</CardForm>
 	);
 };
