@@ -1,4 +1,4 @@
-import { Type, type Static } from "@sinclair/typebox";
+import { type Static, Type } from "@sinclair/typebox";
 import { contatoDTO, enderecoDTO, linkDTO, pagamentoDTO } from "./common";
 
 export const adminDTO = Type.Object({
@@ -38,12 +38,12 @@ export const profissionalDTO = Type.Object({
 	id: Type.String(),
 	nome: Type.String(),
 	comentario: Type.Optional(Type.String()),
-	especialidades: Type.Array(Type.String()),
-	enderecos: Type.Array(enderecoDTO),
-	links: Type.Array(linkDTO),
-	contatos: Type.Array(contatoDTO),
 	pagamento: pagamentoDTO,
 	isConsultorioEscola: Type.Boolean(),
+	enderecos: Type.Array(enderecoDTO),
+	especialidades: Type.Array(Type.String()),
+	links: Type.Array(linkDTO),
+	contatos: Type.Array(contatoDTO),
 	conselhos: Type.Array(conselhoDTO),
 });
 

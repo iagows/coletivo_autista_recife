@@ -1,10 +1,10 @@
 import type { profissionalType } from "@car/models";
 import { useProfissionalSlice } from "@car/storage";
-import { Stack, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, Stack, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CardForm from "../../../components/CardForm";
-import AppFormControl from "../../../components/CardForm/AppFormControl";
 import AddressEdit from "./AddressEdit";
+import PagamentoEdit from "./PagamentoEdit";
 
 type noIdProfissionalType = Omit<profissionalType, "id">;
 
@@ -31,10 +31,14 @@ const ProfItem = ({ item }: Props) => {
 
 	const {
 		reset,
+		watch,
 		register,
+		setValue,
 		handleSubmit,
 		formState: { isDirty },
 	} = hookResult;
+
+	const { isParticular } = watch("pagamento") ?? { isParticular: false };
 
 	const onSubmit = async (data: noIdProfissionalType) => {
 		if (item) {
@@ -61,8 +65,6 @@ const ProfItem = ({ item }: Props) => {
 		}
 	};
 
-	const nameFieldId = `nome-${item?.id ?? "novo"}`;
-	const comentarioFieldId = `comentario-${item?.id ?? "novo"}`;
 	return (
 		<CardForm
 			hasItem={!!item}
@@ -72,23 +74,18 @@ const ProfItem = ({ item }: Props) => {
 			onDelete={handleDelete}
 			onSubmit={handleSubmit(onSubmit)}
 		>
-			<Stack gap={2} alignItems="flex-end" flexWrap="wrap">
+			<Stack gap={2}>
 				<Stack direction="row" gap={2} alignItems="flex-end" flexWrap="wrap">
-					<AppFormControl htmlFor={nameFieldId} label="Nome">
-						<TextField id={nameFieldId} {...register("nome")} disabled={isLoading} placeholder="Nome" fullWidth />
-					</AppFormControl>
-
-					<AppFormControl htmlFor={comentarioFieldId} label="Comentários">
-						<TextField
-							rows={4}
-							multiline
-							disabled={isLoading}
-							id={comentarioFieldId}
-							{...register("comentario")}
-							placeholder="Comentários da regra"
-						/>
-					</AppFormControl>
+					<TextField {...register("nome")} placeholder="Nome" fullWidth label="Nome" />
 				</Stack>
+				<TextField
+					rows={4}
+					multiline
+					{...register("comentario")}
+					placeholder="Comentários sobre o profissional"
+					label="Comentários"
+				/>
+				<PagamentoEdit hookForm={hookResult} />
 				<AddressEdit hookForm={hookResult} />
 			</Stack>
 		</CardForm>

@@ -5,10 +5,10 @@ import FormList from "./FormList";
 
 const defaultAddress: enderecoType = {
 	bairro: "",
-	cidade: "Recife",
 	numero: 0,
 	logradouro: "",
 	complemento: "",
+	cidade: "Recife",
 };
 
 type noIdProfissionalType = Omit<profissionalType, "id">;

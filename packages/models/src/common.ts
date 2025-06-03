@@ -12,7 +12,7 @@ export type contatoType = Static<typeof contatoDTO>;
 export const pagamentoDTO = Type.Object({
 	isParticular: Type.Boolean(),
 	isPublico: Type.Boolean(),
-	preco: Type.Number(),
+	preco: Type.Optional(Type.Number()),
 	planos: Type.Array(Type.String()),
 });
 
@@ -22,7 +22,7 @@ export const enderecoDTO = Type.Object({
 	cidade: Type.String(),
 	bairro: Type.String(),
 	logradouro: Type.String(),
-	numero: Type.Number(),
+	numero: Type.Optional(Type.Number()),
 	complemento: Type.Optional(Type.String()),
 });
 

@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, Stack, type SxProps } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, Stack, type SxProps } from "@mui/material";
 import type { FormEventHandler, PropsWithChildren } from "react";
 
 const STACK_CSS: SxProps = { ml: "auto" };
@@ -29,21 +29,20 @@ const CardForm = ({
 				<Box component="form" onSubmit={onSubmit} sx={FORM_CSS}>
 					<Stack direction="row" gap={2} alignItems="flex-end" flexWrap="wrap">
 						{children}
-						<Stack direction="row" gap={1} sx={STACK_CSS}>
-							<Button type="button" variant="text" onClick={onCancel} disabled={isLoading || !isDirty}>
-								Cancelar
-							</Button>
-							<Button type="submit" variant="contained" disabled={!isDirty || isLoading}>
-								{hasItem ? "Atualizar" : "Adicionar"}
-							</Button>
-
-							<Button type="button" variant="outlined" onClick={onDelete} disabled={isLoading || !hasItem}>
-								Deletar
-							</Button>
-						</Stack>
 					</Stack>
 				</Box>
 			</CardContent>
+			<CardActions>
+				<Button type="submit" variant="contained" disabled={!isDirty || isLoading}>
+					{hasItem ? "Atualizar" : "Adicionar"}
+				</Button>
+				<Button type="button" variant="text" onClick={onCancel} disabled={isLoading || !isDirty}>
+					Cancelar
+				</Button>
+				<Button type="button" variant="outlined" onClick={onDelete} disabled={isLoading || !hasItem}>
+					Deletar
+				</Button>
+			</CardActions>
 		</Card>
 	);
 };
