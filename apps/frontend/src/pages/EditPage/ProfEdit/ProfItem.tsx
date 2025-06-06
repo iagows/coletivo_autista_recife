@@ -1,10 +1,20 @@
 import type { profissionalType } from "@car/models";
 import { useProfissionalSlice } from "@car/storage";
-import { Checkbox, FormControlLabel, Stack, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, InputAdornment, Stack, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import CardForm from "../../../components/CardForm";
 import AddressEdit from "./AddressEdit";
-import PagamentoEdit from "./PagamentoEdit";
+
+const numberProps = {
+	input: {
+		startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+		inputProps: {
+			step: "0.01", // Permite incrementos de centavos
+			min: "0", // Valor mínimo zero
+			pattern: "\\d+(\\.\\d{1,2})?", // Padrão para 2 casas decimais
+		},
+	},
+} as const;
 
 type noIdProfissionalType = Omit<profissionalType, "id">;
 
@@ -31,14 +41,12 @@ const ProfItem = ({ item }: Props) => {
 
 	const {
 		reset,
-		watch,
 		register,
 		setValue,
+		watch,
 		handleSubmit,
 		formState: { isDirty },
 	} = hookResult;
-
-	const { isParticular } = watch("pagamento") ?? { isParticular: false };
 
 	const onSubmit = async (data: noIdProfissionalType) => {
 		if (item) {
@@ -65,6 +73,8 @@ const ProfItem = ({ item }: Props) => {
 		}
 	};
 
+	const { isParticular, isPublico } = watch("pagamento");
+
 	return (
 		<CardForm
 			hasItem={!!item}
@@ -85,7 +95,30 @@ const ProfItem = ({ item }: Props) => {
 					placeholder="Comentários sobre o profissional"
 					label="Comentários"
 				/>
-				<PagamentoEdit hookForm={hookResult} />
+				<Stack direction="row" spacing={2}>
+					<FormControlLabel
+						control={
+							<Checkbox checked={isPublico} onChange={(e) => setValue("pagamento.isPublico", e.target.checked)} />
+						}
+						label="Público"
+					/>
+					<FormControlLabel
+						control={
+							<Checkbox checked={isParticular} onChange={(e) => setValue("pagamento.isParticular", e.target.checked)} />
+						}
+						label="Privado"
+					/>
+
+					{isParticular && (
+						<TextField
+							fullWidth
+							type="number"
+							label="Preço"
+							slotProps={numberProps}
+							{...register("pagamento.preco", { valueAsNumber: true })}
+						/>
+					)}
+				</Stack>
 				<AddressEdit hookForm={hookResult} />
 			</Stack>
 		</CardForm>

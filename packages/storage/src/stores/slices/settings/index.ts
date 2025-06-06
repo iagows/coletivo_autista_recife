@@ -1,7 +1,7 @@
-import type { SettingsModelType } from "@car/models";
+import type { settingsDtoType } from "@car/models";
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const INITIAL: SettingsModelType = {
+const INITIAL: settingsDtoType = {
 	isOpen: false,
 	isDarkMode: true,
 };

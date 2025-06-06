@@ -1,15 +1,11 @@
-import {
-	setDrawerOpen as sliceSetOpen,
-	toggleDrawer as sliceToggleDrawer,
-	toggleTheme as sliceToggleTheme,
-} from ".";
+import { setDrawerOpen as sliceSetOpen, toggleDrawer as sliceToggleDrawer, toggleTheme as sliceToggleTheme } from ".";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxHooks";
 
 type Out = {
-	isDarkMode: boolean;
 	isOpen: boolean;
-	toggleDrawer: () => void;
+	isDarkMode: boolean;
 	toggleTheme: () => void;
+	toggleDrawer: () => void;
 	setDrawerOpen: (isOpen: boolean) => void;
 };
 

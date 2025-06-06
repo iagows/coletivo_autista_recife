@@ -20,6 +20,7 @@ import {
 	textoDTO,
 	type textoType,
 } from "./src/models";
+import { settingsDto, type settingsDtoType } from "./src/settings";
 import { errorResponse, idParam } from "./src/swagger.models";
 import { UsuarioDto, type UsuarioType } from "./src/usuario";
 import { omitFieldFromDTO } from "./src/util";
@@ -38,19 +39,21 @@ export {
 	pagamentoDTO,
 	profissionalDTO,
 	regraDTO,
+	settingsDto,
 	textoDTO,
 	UsuarioDto,
 };
 
 export type {
 	adminType,
+	conselhoType,
 	contatoType,
 	enderecoType,
 	linkType,
 	pagamentoType,
 	profissionalType,
 	regraType,
+	settingsDtoType,
 	textoType,
 	UsuarioType,
-	conselhoType,
 };
