@@ -1,4 +1,4 @@
-import { Grid2, Skeleton } from "@mui/material";
+import { Grid, Skeleton } from "@mui/material";
 import { clone } from "../../util/clone";
 import { gridSizeCss } from "../../util/constants";
 
@@ -10,9 +10,9 @@ type Props = {
 const LoadingSkeleton = ({ amount = 1, h, w }: Props) => (
 	<>
 		{clone(amount, (i) => (
-			<Grid2 size={gridSizeCss} key={i}>
+			<Grid size={gridSizeCss} key={i}>
 				<Skeleton width={w} height={h} animation="wave" variant="rectangular" />
-			</Grid2>
+			</Grid>
 		))}
 	</>
 );

@@ -1,5 +1,5 @@
-import type { conselhoType, contatoType, enderecoType, linkType, profissionalType } from "@car/models";
-import { Avatar, CardActions, CardContent, CardHeader, Grid2, Typography } from "@mui/material";
+import type { conselhoType, profissionalType } from "@car/models";
+import { Avatar, CardActions, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import ContactButton from "../../components/ContactButton";
 import PagamentoInfo from "../../components/PagamentoInfo";
 import PaperCard from "../../components/PaperCard";
@@ -23,7 +23,7 @@ const IndicationItem = ({ item }: Props) => {
 	const nameSpecs = `${drName(nome)} - ${espcs(especialidades)}`;
 
 	return (
-		<Grid2 size={gridSizeCss} key={id}>
+		<Grid size={gridSizeCss} key={id}>
 			<PaperCard>
 				<CardHeader
 					title={nameSpecs}
@@ -42,7 +42,7 @@ const IndicationItem = ({ item }: Props) => {
 					<ContactButton links={links} addresses={enderecos} telephones={contatos} />
 				</CardActions>
 			</PaperCard>
-		</Grid2>
+		</Grid>
 	);
 };
 

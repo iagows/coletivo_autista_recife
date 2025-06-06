@@ -32,7 +32,12 @@ const ProfItem = ({ item }: Props) => {
 			contatos: item?.contatos,
 			conselhos: item?.conselhos,
 			enderecos: item?.enderecos,
-			pagamento: item?.pagamento,
+			pagamento: item?.pagamento || {
+				isParticular: false,
+				isPublico: false,
+				preco: 0,
+				planos: [],
+			},
 			comentario: item?.comentario,
 			especialidades: item?.especialidades,
 			isConsultorioEscola: item?.isConsultorioEscola,
